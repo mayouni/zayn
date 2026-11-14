@@ -6,7 +6,7 @@
 <title>Why — the problem behind Zayn, and Softanza's answer</title>
 <meta name="description" content="Zayn exists because, over years of building software with AI assistants across many projects, the interface was always the hardest, most nerve-wracking and most costly part, and the part where AI is least capable. This page tells that problem, what it cost, why AI falls short there, and Softanza's answer: technology rethought from first principles, a system-design approach to intent-driven UI, and a compiled language that masters the interface and governs it, for people and for agents.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=0417b108">
+<link rel="stylesheet" href="stz.css?v=99076cdf">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -20,10 +20,10 @@
     <div class="menu">
         <a class="brand" href="../index.html">Zayn</a>
     <a class="here" aria-current="true" href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
     <a href="how.html">Language</a>
     <a href="rules.html">Law</a>
     <a href="adopt.html">Adopt</a>
-    <a href="audit.html">Demo</a>
     </div>
     <div class="tools">
       <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -42,8 +42,8 @@
     <li><a aria-current="page" href="why.html">The problem</a></li>
     <li><a href="case.html">The case</a></li>
     <li><a href="thinking.html">Reasoning</a></li>
-    <li><a href="positioning.html">Comparison</a></li>
     <li><a href="innovation.html">Claims</a></li>
+    <li><a href="positioning.html">Comparison</a></li>
   </ul>
 </nav>
 </div>
@@ -56,7 +56,7 @@
 <!-- /shell:trail -->
     <p class="kicker">Why · the problem behind Zayn, and Softanza's answer</p>
     <h1>Zayn exists for one problem: the interface was always the hardest part of building software with AI, and Softanza answers it from first principles.</h1>
-    <p class="sub">The author of Zayn met the problem over years of projects built with AI assistants, and counted it: <span data-fact="corpus.corrections">482</span> corrections of interfaces in <span data-fact="corpus.projects">26</span> projects, <span data-fact="corpus.repeats">170</span> of them a defect corrected before. Softanza answers it with a system-design approach to intent-driven UI and a compiled language that governs the interface, for people and for agents.</p>
+    <p class="sub">The author of Zayn met the problem over years of projects built with AI assistants, and counted it: <span data-fact="corpus.corrections">484</span> corrections of interfaces in <span data-fact="corpus.projects">26</span> projects, <span data-fact="corpus.repeats">170</span> of them a defect corrected before. Softanza answers it with a system-design approach to intent-driven UI and a compiled language that governs the interface, for people and for agents.</p>
   </div>
 </header>
 
@@ -102,7 +102,7 @@
 <section>
   <div class="narrow">
     <h2 id="the-cost" data-outline="The cost">What the interface cost, counted in the author's own corrections</h2>
-    <p>The corpus gathers every correction of an interface the author made, from the memory of each project and from the repositories themselves: <span data-fact="corpus.corrections">482</span> corrections in <span data-fact="corpus.projects">26</span> projects, from February to November 2026.</p>
+    <p>The corpus gathers every correction of an interface the author made, from the memory of each project and from the repositories themselves: <span data-fact="corpus.corrections">484</span> corrections in <span data-fact="corpus.projects">26</span> projects, from February to November 2026.</p>
     <ul>
       <li><b>Repeated.</b> <span data-fact="corpus.repeats">170</span> corrections fix a defect that had been corrected before, in the same project or in another.</li>
       <li><b>Concentrated.</b> On 9 November 2026 alone the author made <span data-fact="corpus.oneDay">42</span> corrections on two sites.</li>
@@ -142,7 +142,7 @@
       <li><b>Language is cooperative.</b> A reader expects as much as is needed, plainly said.</li>
       <li><b>The senses have floors.</b> Below a size, a contrast or a target, reading and touching fail.</li>
     </ul>
-    <p><a href="../doc/design/DESIGN-SYSTEM.md">The design system</a> derives its principles from these laws, and <a href="../doc/design/design-system-samples.html">the samples page</a> shows each one.</p>
+    <p><a href="design.html">The design system</a> derives its principles from these laws, and <a href="samples.html">the samples</a> show each one.</p>
   </div>
 </section>
 
@@ -180,7 +180,7 @@
     <ul>
       <li><a href="case.html">The case</a> sets out why a law stored as data is worth having, and the rules the builds with AI produced.</li>
       <li><a href="thinking.html">Reasoning</a>, <a href="positioning.html">Comparison</a> and <a href="innovation.html">Claims</a> give the reasoning, the practices beside Zayn and what is new.</li>
-      <li><a href="how.html">The Language section</a> shows the four steps, <a href="rules.html">the Law section</a> holds the rules, and <a href="audit.html">the Demo section</a> runs them.</li>
+      <li><a href="how.html">The Language section</a> shows the four steps, <a href="rules.html">the Law section</a> holds the rules, and <a href="audit.html">the tools under Adopt</a> run them.</li>
     </ul>
   </div>
 </section>

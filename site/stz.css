@@ -98,7 +98,7 @@ button, input, select, textarea { font: inherit; }
 code, pre, kbd { font-family: var(--mono); }
 [data-vibe="guardian"] code, [data-vibe="guardian"] pre, [data-vibe="guardian"] kbd { font-family: var(--font); }
 code { background: var(--surface); border: var(--hairline) solid var(--line); border-radius: 4px;
-  padding: 0 .3em; font-size: 1em; overflow-wrap: break-word; }
+  padding: 0 .3em; font-size: 1em; overflow-wrap: anywhere; }
 /* a name in code that is longer than the whole line wraps inside itself rather than widening the page; one that fits a line moves to it whole;
    in a table cell it wraps as its cell does */
 td code, th code { overflow-wrap: inherit; }
@@ -408,7 +408,7 @@ p.gloss { color: var(--ink); }
 p.gloss b { font-weight: var(--weight-strong); }
 /* words for a reader that reads the markup, kept out of sight (a cell's word beside its mark) */
 .sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
-.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1.4rem; }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr)); gap: 1.4rem; }
 .caption { color: var(--ink-2); margin-top: .8rem; max-width: var(--measure-max); }
 
 /* ---- cards & grids ---- */
@@ -630,7 +630,8 @@ figure.plate { margin: var(--space-3) 0 0; background: var(--surface); border: v
 .state > .label { font: var(--weight-strong) var(--size-small) var(--font); color: var(--ink-2); padding-bottom: 0; max-width: none; }
 .state > .l2, .state > .l3 { border-top: var(--hairline) solid var(--line); }
 .state > .shot, .state > .term, .state > .own-out { border: 0; border-radius: 0; background: transparent; width: auto; max-width: none; }
-.state > .gloss { font-size: var(--size-small); max-width: none; padding-top: 0; }
+/* a gloss keeps a reading measure where the plate stacks its cells across the whole width (K03) */
+.state > .gloss { font-size: var(--size-small); max-width: calc(var(--measure-max) + 2.4rem); padding-top: 0; }
 /* where the window allows, the declaration and the verdict read down the left, at the width a report's line needs, and the sketch of
    what a person meets stands beside them: three cells in their reading order, and no report line cut into a narrow third */
 @media (min-width: 1100px) {
@@ -894,7 +895,7 @@ form.try button[disabled] { opacity: .6; cursor: wait; }
 #try-result .try-verdict.bad { color: var(--danger); }
 #try-result .try-verdict.good { color: var(--success); }
 #try-result ul { margin: 0; padding-left: 1.2rem; }
-#try-result li { margin: 0 0 .6rem; }
+#try-result li { margin: 0 0 .6rem; overflow-wrap: anywhere; }
 /* ---- the sample frame: a live UI sample in a window, the lawful one beside the offending one, each citing its rule (DESIGN-SYSTEM.md
    section 6.4; M3 item 3). The frame draws a window, so its edge and its title strip are lines that draw something (K07). ---- */
 .samples { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); margin: var(--space-3) 0; max-width: 60rem; }
@@ -946,6 +947,8 @@ p > a:only-child, li > a:only-child, td > a:only-child, .card > a, footer.site a
 /* on the narrowest phones GitHub and the Theme select take the bar's whole width and wrap onto two lines where one does not hold them,
    so the select never reaches past the window (K13: it did at 320 and 360 px on every page, found with the grid above) */
 @media (max-width: 420px) {
+  /* the five sections two to a row, so "AI & agents" never pushes a third past the window (K13 at 320 px) */
+  nav.site .menu { grid-template-columns: repeat(2, max-content); }
   nav.site .tools { flex: 1 1 100%; flex-wrap: wrap; gap: .4rem .9rem; margin-left: 0; }
   nav.site .tools .github { padding-right: .9rem; }
 }

@@ -6,7 +6,7 @@
 <title>Conformance — how a tool proves that it reads Zayn as the reference does</title>
 <meta name="description" content="A tool conforms to Zayn when it gives the reference verifier's verdict on every fixture of the suite, against a pinned pack of files. The page shows the two commands that check conformance, what a pass proves, and a status board of what exists, what is designed and what is held.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=0417b108">
+<link rel="stylesheet" href="stz.css?v=99076cdf">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -20,10 +20,10 @@
     <div class="menu">
         <a class="brand" href="../index.html">Zayn</a>
     <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
     <a href="how.html">Language</a>
-    <a class="here" aria-current="true" href="rules.html">Law</a>
-    <a href="adopt.html">Adopt</a>
-    <a href="audit.html">Demo</a>
+    <a href="rules.html">Law</a>
+    <a class="here" aria-current="true" href="adopt.html">Adopt</a>
     </div>
     <div class="tools">
       <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -39,11 +39,10 @@
 </nav>
 <nav class="band" aria-label="Pages of the section">
   <ul>
-    <li><a href="rules.html">The rules</a></li>
-    <li><a href="../constitution/reader/index.html">The Reader</a></li>
-    <li><a href="gotchas/">What a violation feels like</a></li>
-    <li><a href="vibes.html">Two cultures, one truth</a></li>
-    <li><a aria-current="page" href="conformance.html">Conformance</a></li>
+    <li><a href="adopt.html">Start</a></li>
+    <li><a href="build.html">Programmers</a></li>
+    <li><a href="web.html">Your product</a></li>
+    <li><a aria-current="true" href="audit.html">Tools</a></li>
   </ul>
 </nav>
 </div>
@@ -52,7 +51,7 @@
 <header class="page">
   <div class="narrow">
     <!-- shell:trail -->
-<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="rules.html">Law</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Conformance</span></nav>
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><a href="audit.html">Tools</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Conformance</span></nav>
 <!-- /shell:trail -->
     <p class="kicker">Law · for people who build a tool that reads Zayn</p>
     <h1>Conformance is the proof that a tool gives the reference verifier's verdict on every fixture, and any CI can refute a false claim to it.</h1>
@@ -65,14 +64,22 @@
 
 <!-- shell:layout -->
 <div class="layout has-list">
-<nav class="list3 sections" aria-label="Sections of this page">
-  <p class="outline-title">On this page</p>
+<nav class="list3" aria-label="Pages of the family">
   <ul>
-    <li><a href="#two-commands">Two commands</a></li>
-    <li><a href="#what-a-pass-does-not-prove">Limits of a pass</a></li>
-    <li><a href="#status">Status board</a></li>
-    <li><a href="#self-check">Self-checks</a></li>
-    <li><a href="#what-it-stands-on">What it stands on</a></li>
+    <li><a href="audit.html">Three ways</a></li>
+    <li><a href="tour.html">The tour</a></li>
+    <li><a href="../tools/ui-audit.html">UI audit</a></li>
+    <li><a href="screenshots.html">Screenshots</a></li>
+    <li><a href="../tools/zayn/wasm-proof.html">Wasm proof</a></li>
+    <li><a aria-current="page" href="conformance.html">Conformance</a>
+      <ul class="sub">
+        <li><a href="#two-commands">Two commands</a></li>
+        <li><a href="#what-a-pass-does-not-prove">Limits of a pass</a></li>
+        <li><a href="#status">Status board</a></li>
+        <li><a href="#self-check">Self-checks</a></li>
+        <li><a href="#what-it-stands-on">What it stands on</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 <!-- /shell:layout -->
@@ -170,10 +177,10 @@ Zayn conformance — level 4
     <p>This site aims to obey the law it publishes. Before each piece of the site shipped, its author ran the <a href="../tools/ui-audit.html">UI audit</a> in both cultures and recorded the result with the commit, but
     <b>no gate enforces this audit yet</b>.</p>
     <p>The <kbd>F2</kbd> key, or the Theme select at the top of any page, switches the culture, and the rights of the person stay the same in both cultures (Article VI).
-    <a href="gotchas/index.html">What a violation feels like</a> lets a person commit each family of offence inside a safe fence, beside its lawful twin, and
+    <a href="gotchas/index.html">The families of violations</a> let a person commit each family of offence inside a safe fence, beside its lawful twin, and
     <a href="vibes.html">the two-cultures exhibit</a> renders one shared truth in both cultures at once.</p>
     <p>The consumers of the law are named here with their figures. The <b>reference implementation</b> is <a href="../tools/zayn/README.md"><code>tools/zayn</code></a>, and this site's own check
-    (<code>tools/site-facts.js</code>) re-runs it on <span data-fact="site.verifierRuns">25</span> declarations shown on these pages and fails if the page and the verifier ever disagree.</p>
+    (<code>tools/site-facts.js</code>) re-runs it on <span data-fact="site.verifierRuns">29</span> declarations shown on these pages and fails if the page and the verifier ever disagree.</p>
   </div>
 </section>
 

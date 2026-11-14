@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-vibe="curator">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The design system — thirteen principles, read on the painted page</title>
+<meta name="description" content="Zayn designs every page from thirteen principles, each drawn from a measured fact about how a person perceives, attends and acts, and each read on the painted page by the UI audit.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23e04a6e' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="stz.css?v=99076cdf">
+<!-- shell:vibe -->
+<script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
+<!-- /shell:vibe -->
+</head>
+<body data-archetype="landing">
+
+<!-- shell:menu -->
+<div class="bars">
+<nav class="site" aria-label="Main menu">
+  <div class="wrap">
+    <div class="menu">
+        <a class="brand" href="../index.html">Zayn</a>
+    <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
+    <a href="how.html">Language</a>
+    <a class="here" aria-current="true" href="rules.html">Law</a>
+    <a href="adopt.html">Adopt</a>
+    </div>
+    <div class="tools">
+      <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <div class="vibe-picker">
+        <label for="vibe-select">Theme</label>
+        <select id="vibe-select">
+          <option value="curator">Modern</option>
+          <option value="guardian">Retro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="band" aria-label="Pages of the section">
+  <ul>
+    <li><a href="rules.html">The rules</a></li>
+    <li><a href="../constitution/reader/index.html">The Reader</a></li>
+    <li><a href="gotchas/">Violations</a></li>
+    <li><a href="vibes.html">Two cultures</a></li>
+    <li><a aria-current="page" href="design.html">Design system</a></li>
+  </ul>
+</nav>
+</div>
+<!-- /shell:menu -->
+
+<!-- The design system, a page of the site written for its readers, designers first (ZAYN-SITE-INTEGRAL-01; the Principal, 2026-11-14:
+     "thos two pages (design system and samples oages) must be integral part of the website and seen in t's menu strcture not external
+     auxiliary pages like that!"). The maintainers' document, doc/design/DESIGN-SYSTEM.md, stays the full record and is linked out. -->
+<header class="page">
+  <div class="narrow">
+    <!-- shell:trail -->
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="rules.html">Law</a><span class="sep">›</span><a href="design.html">Design system</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Principles</span></nav>
+<!-- /shell:trail -->
+    <h1>The design system</h1>
+    <p class="sub">Zayn designs every page from thirteen principles, each drawn from a measured fact about how a person perceives, attends and acts.</p>
+  </div>
+</header>
+
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a aria-current="page" href="design.html">Principles</a>
+      <ul class="sub">
+        <li><a href="#one-principle">One principle</a></li>
+        <li><a href="#six-facts">Six facts</a></li>
+        <li><a href="#thirteen-principles">Thirteen principles</a></li>
+        <li><a href="#read-on-paint">Read on the paint</a></li>
+        <li><a href="#what-exists">What exists today</a></li>
+        <li><a href="#this-page">This page, declared</a></li>
+      </ul>
+    </li>
+    <li><a href="samples.html">Samples</a></li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
+
+<section>
+  <div class="narrow">
+    <h2 id="one-principle" data-outline="One principle">One principle, refused and corrected</h2>
+    <p>The menu is the tree: a section's landing comes first in its band under a name of its own. A menu is a declaration too, so the verifier holds it to that principle.</p>
+    <figure class="plate" id="plate">
+      <div class="plate-head">
+        <h3>A band that repeats its section</h3>
+        <fieldset class="switch">
+          <legend>Show the menu</legend>
+          <label><input type="radio" name="plate-state" value="first" checked> as first written</label>
+          <label><input type="radio" name="plate-state" value="fixed"> corrected</label>
+        </fieldset>
+      </div>
+      <div class="plate-grid">
+        <div class="state first">
+          <p class="label l1">1. You declare the menu</p>
+<pre class="shot">// menu.zayn
+DEFINE NAV_GRAPH try (
+  LABEL "Try",
+  TARGET try_page,
+  ENTRIES [try_here, build]
+)
+DEFINE NAV_GRAPH try_here (LABEL "Try", TARGET try_page)
+DEFINE NAV_GRAPH build (LABEL "Build", TARGET build_page)</pre>
+          <p class="gloss g1"><b>In words:</b> a menu entry, Try, opens a band whose first entry is also called Try.</p>
+          <p class="label l2">2. The verifier answers, by name</p>
+<pre class="term">$ zayn check menu.zayn
+menu.zayn:7  <span class="bad">error  MENU_LABEL_REPEATS_PARENT</span>  "Try" of try_here repeats "Try" of try
+    A menu entry's label repeats the label of the entry it sits under.
+    <span class="dim">Rule 116 · The Menu Tells the Truth About the Tree · Article III</span>
+
+1 error(s), 0 warning(s) across 1 file(s) at level 2</pre>
+          <p class="gloss g2"><b>In words:</b> the verifier read line 7, marked in the declaration. A reader who chose Try meets Try again and cannot tell where they are (Rule 116).</p>
+          <p class="label l3">3. What a person meets in the bar</p>
+          <div class="story sketch">
+            <p class="illus">Illustration: Zayn checks the declaration, and the bar stays yours to draw.</p>
+            <p class="frame-cap">The menu, then its band</p>
+            <div class="frame"><b>Try</b>
+              <div class="ctl-row"><span class="ctl gone">Try, again · Rule 116</span><span class="ctl">Build</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="state fixed">
+          <p class="label l1">1. You declare the menu</p>
+<pre class="shot">// menu.zayn
+DEFINE NAV_GRAPH try (
+  LABEL "Try",
+  TARGET try_page,
+  ENTRIES [try_here, build]
+)
+DEFINE NAV_GRAPH try_here (LABEL "Three ways", TARGET try_page)
+DEFINE NAV_GRAPH build (LABEL "Build", TARGET build_page)</pre>
+          <p class="gloss g1"><b>In words:</b> the landing keeps its place first in the band, under a name of its own.</p>
+          <p class="label l2">2. The verifier answers, by name</p>
+<pre class="term">$ zayn check menu.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+          <p class="gloss g2"><b>In words:</b> line 7 now names the landing apart from its section, so nothing is left to refuse.</p>
+          <p class="label l3">3. What a person meets in the bar</p>
+          <div class="story sketch">
+            <p class="illus">Illustration: Zayn checks the declaration, and the bar stays yours to draw.</p>
+            <p class="frame-cap">The menu, then its band</p>
+            <div class="frame"><b>Try</b>
+              <div class="ctl-row"><span class="ctl kept">Three ways</span><span class="ctl">Build</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </figure>
+    <p class="caption">This site's own menu is declared the same way, in <code>site/menu.zayn</code>, and the build refuses it on this rule.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="six-facts" data-outline="Six facts">Six facts the principles stand on</h2>
+    <p>Each fact was measured long before these sites existed. A principle is kept only when it follows from one of them and the corpus of corrections shows a generator breaking it.</p>
+    <table class="board">
+      <thead><tr><th>The fact</th><th>What it states</th><th>What follows</th></tr></thead>
+      <tbody>
+        <tr><td>Grouping comes before reading</td><td>The eye groups what is near, alike, enclosed or connected before it reads a word.</td><td>Space says what belongs together; a box or a line must draw a real group.</td></tr>
+        <tr><td>Every visible difference is read as a meaning</td><td>A difference in position, size, colour or shape is taken as information, meant or not.</td><td>A difference that means nothing is noise; one variable carries one meaning.</td></tr>
+        <tr><td>Attention and memory are scarce</td><td>A person holds about four things at once, and each added choice costs time.</td><td>One emphasis per element; a bar of five entries; decided stays decided.</td></tr>
+        <tr><td>Acting is a loop closed through what is perceived</td><td>A person finds a control by its sign, acts, then judges the result from what they see, hear or feel.</td><td>One shape, one meaning; the menu is the tree; every input closes the loop.</td></tr>
+        <tr><td>Language is cooperative</td><td>A reader expects as much as needed, truthfully and plainly.</td><td>Words for the reader, stated at their true size.</td></tr>
+        <tr><td>The senses have floors</td><td>Below a size and a contrast, reading slows; below a size, a finger misses.</td><td>Text set for reading; targets a finger can hit.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="thirteen-principles" data-outline="Thirteen principles">Thirteen principles, one for each cause of the corrections</h2>
+    <p>Each principle closes one cause the corpus found. <a href="samples.html">Each is shown live on the samples page</a>, a lawful interface beside an offending one.</p>
+    <table class="board">
+      <thead><tr><th>The principle</th><th>Its bounds</th></tr></thead>
+      <tbody>
+        <tr><td>Every text is set for reading</td><td>Six sizes; a floor of 18 px; contrast of 7 to 1; reading text never shrinks to fit.</td></tr>
+        <tr><td>Width belongs to the content</td><td>A measure of sixty to seventy-five characters; a box at most a third empty; a control beside its content.</td></tr>
+        <tr><td>A line or a box draws something real</td><td>Lines only on tables, fields, drawings, focus, samples, code and the grid of peer regions.</td></tr>
+        <tr><td>One emphasis per element, one critical element per view</td><td>Five semantic colours and one neutral for data; motion only reports.</td></tr>
+        <tr><td>Balance is on by default</td><td>A last line at least a third of the widest; no line crosses a sentence in a title.</td></tr>
+        <tr><td>One shape, one meaning</td><td>Four shapes; a container never reacts.</td></tr>
+        <tr><td>The menu is the tree</td><td>Five entries a bar; the landing first under its own label; an outline on longer pages.</td></tr>
+        <tr><td>Everything is on the page, with one scroll</td><td>No tooltip; nothing shown only under a pointer; no scroll inside the page; nothing moves the layout.</td></tr>
+        <tr><td>Every input reaches everything</td><td>Every hover has a tap; targets of 48 px on a phone and 24 px elsewhere.</td></tr>
+        <tr><td>Words serve the reader</td><td>A title of six words, a lede that defines; a live sample for every concept.</td></tr>
+        <tr><td>The page speaks for its reader</td><td>Affirmative, at its true size; the action after the understanding.</td></tr>
+        <tr><td>The painted page is the instrument</td><td>Read on the painted page, at several widths and in both cultures.</td></tr>
+        <tr><td>Decided stays decided</td><td>No platform default; the house's own components; a change named.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="read-on-paint" data-outline="Read on the paint">Each principle read on the painted page</h2>
+    <p>The UI audit opens each page of a site in a browser and measures what was painted: sizes, contrast, widths, lines, targets and the menu's tree. A page passes on its paint, never on its source alone.</p>
+    <p><a href="../tools/ui-audit.html">The UI audit, run on any page ↗</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>The thirteen principles and the six facts under them</td><td class="status exists">exists</td></tr>
+        <tr><td>The tokens of both cultures, in the site's stylesheet</td><td class="status exists">exists</td></tr>
+        <tr><td>The samples, lawful beside offending, for every principle</td><td class="status exists">exists</td></tr>
+        <tr><td>The UI audit's checks on the painted page, in both cultures</td><td class="status exists">exists</td></tr>
+        <tr><td>The full record for maintainers, with the corpus behind each principle: <a class="leaves" href="https://github.com/mayouni/zayn/blob/main/doc/design/DESIGN-SYSTEM.md" target="_blank" rel="noopener">DESIGN-SYSTEM.md on GitHub</a></td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to understand the principles and compare them with the samples.</p>
+<pre class="shot">// design.zayn
+DEFINE SCREEN design_system (
+  SATISFIES [UNDERSTAND, COMPARE],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor understands and compares, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check design.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- shell:footer -->
+<footer class="site">
+  <div class="narrow">
+    <div class="bar">
+      <div class="row">
+        <a href="../LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <p class="fine">Zayn is a <a href="https://mayouni.github.io/stzsite/index.html">Softanza</a> project.</p>
+    <p class="fine">© 2026 Mansour Ayouni · MIT licence</p>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="stz.js?v=e07737fa"></script>
+</body>
+</html>

@@ -8,7 +8,8 @@
 .rule-chip { font: var(--weight-regular) var(--size-small) var(--font); color: var(--link);
   text-decoration: underline; text-decoration-thickness: from-font; vertical-align: middle;
   overflow-wrap: anywhere; }
-.duel { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+/* a pane is 19rem wide where the window allows, and the window's width on a phone narrower than that (K13 at 320 px) */
+.duel { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
   gap: 1.2rem; margin-top: 1rem; align-items: start; }
 .pane { border-radius: 10px; overflow: hidden; border: 2px solid; }
 .pane .head { font: var(--weight-strong) var(--size-small) var(--mono); text-transform: uppercase;
@@ -119,3 +120,52 @@ table.mini th { color: var(--muted); text-transform: uppercase; letter-spacing: 
 /* the hub's family cards */
 .family-card .offenses { font: var(--weight-strong) var(--size-small) var(--mono); color: var(--accent-ink);
   overflow-wrap: anywhere; }
+
+/* ---- the samples of the design system (site/samples.html; ZAYN-SITE-INTEGRAL-01): each principle shown lawful beside offending, in the
+   site's sample frame (.samples, figure.sample, .window, .view). The helpers below draw the lawful samples with the site's tokens; the
+   offending ones are in the fence that follows, the only rules here that may break the system, each the one principle it stands beside. */
+.s-quiet { font-size: var(--size-small); color: var(--ink-2); margin: 0; }
+.s-cta { display: inline-flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; border: var(--hairline) solid var(--edge);
+  border-radius: var(--radius); padding: var(--space-2); }
+.s-cta p { margin: 0; max-width: 40ch; }
+ul.s-points { padding-left: 1.2rem; margin: 0; }
+ul.s-points li { margin: 0 0 var(--space-1); }
+.s-alert { color: var(--danger); font-weight: var(--weight-strong); border-left: var(--ring) solid var(--danger); padding-left: var(--space-1); margin: 0 0 var(--space-2); }
+.s-title { font-size: var(--size-section); font-weight: var(--weight-strong); line-height: var(--leading-title); margin: 0; }
+.s-title .whole { display: inline-block; }
+.s-seg { display: inline-flex; border: var(--hairline) solid var(--edge); border-radius: var(--radius); overflow: hidden; }
+.s-seg label { display: inline-flex; align-items: center; min-height: var(--target-phone); padding: 0 var(--space-2); cursor: pointer; }
+.s-seg input { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); opacity: 0; }
+.s-seg label:has(input:checked) { background: var(--action); color: var(--on-action); }
+.s-seg label:has(input:focus-visible) { outline: var(--ring) solid var(--focus); outline-offset: -2px; }
+.s-after { margin: var(--space-2) 0 0; }
+.s-check { display: inline-flex; align-items: center; gap: .5rem; min-height: var(--target-phone); }
+.s-menu { font-weight: var(--weight-strong); margin: 0 0 var(--space-1); }
+.s-band { display: flex; flex-wrap: wrap; gap: var(--space-2); font-size: var(--size-small); }
+.s-here { font-weight: var(--weight-strong); }
+table.s-records { border-collapse: collapse; font-size: var(--size-small); width: auto; }
+table.s-records th { text-align: left; color: var(--ink-2); font-weight: var(--weight-regular); border-bottom: var(--hairline) solid var(--line); padding: .2rem 1rem .2rem 0; }
+table.s-records td { padding: .25rem 1rem .25rem 0; }
+.s-status { font-size: var(--size-small); color: var(--ink-2); margin: var(--space-1) 0 0; }
+.s-targets { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.s-targets a { display: inline-flex; align-items: center; min-height: var(--target-phone); padding: 0 var(--space-1); }
+.s-svg { display: block; max-width: 20rem; }
+.s-svg text { fill: var(--ink); font-family: var(--font); }
+.s-svg .wire { stroke: var(--ink-2); stroke-width: 2; fill: none; }
+.s-svg .node { fill: var(--surface); stroke: var(--edge); stroke-width: 1.5; }
+/* offense:start */
+.x-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; }
+.x-cards > div { border: 2px solid var(--action); border-radius: 8px; padding: .5rem; font-weight: 800; font-size: 1.125rem; }
+.x-rules { margin-top: .5rem; }
+.x-rules p { border-bottom: 1px solid var(--edge); padding-bottom: .4rem; margin: 0 0 .4rem; }
+.x-loud { font-weight: 800; background: color-mix(in srgb, var(--warning) 15%, var(--paper)); color: var(--link); text-decoration: underline 3px; }
+.x-red { background: color-mix(in srgb, var(--danger) 12%, var(--paper)); color: var(--danger); border: 2px solid var(--danger); padding: .4rem .6rem; margin: 0 0 .4rem; font-weight: 800; }
+.x-scroll { height: 7.5rem; overflow: auto; border: 1px solid var(--edge); padding: .4rem .6rem; font-size: 1.125rem; }
+.x-tip { position: relative; display: inline-block; color: var(--link); text-decoration: underline dotted; cursor: help; }
+.x-tip .bubble { display: none; position: absolute; left: 0; bottom: 130%; width: 14rem; background: var(--ink); color: var(--paper);
+  padding: .4rem .6rem; border-radius: 8px; font-size: .85rem; }
+.x-tip:hover .bubble { display: block; }
+.x-tiny { margin: 0; }
+.x-tiny a { font-size: .8rem; margin-right: .2rem; }
+.x-platform { accent-color: #1a73e8; }
+/* offense:end */

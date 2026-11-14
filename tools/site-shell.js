@@ -6,7 +6,8 @@
      node tools/site-shell.js            check: every page carries exactly the shell this file renders
      node tools/site-shell.js --write    render the shell into every page
 
-   doc/design/SITE-2.md and SITE-3.md decide the shape: a main menu of FIVE entries (Rule 27), Approach, Language, Law, Use, Try; under it, fixed with it, a
+   doc/design/SITE-2.md and SITE-3.md decide the shape: a main menu of FIVE entries (Rule 27), since the site rethink (ZAYN-SITE-RETHINK-01
+   step 2) Why, AI & agents, Language, Law, Adopt; under it, fixed with it, a
    band of the section's pages, five at most (Rules 27, 120); a vertical list on the left ONLY where a page
    has a family (level 3), and the page then takes the full width; and a visually hidden Breadcrumb landmark
    on every page (Rule 108). The same band is on every page of its section, the same list on every page of
@@ -49,66 +50,73 @@ const ASSET_RE = new RegExp('((?:href|src|data-wasm)=")([^"?]*?(' + ASSETS.map(a
 
 /* ---- the structure --------------------------------------------------------------------------- */
 const SECTIONS = [
-  /* Why comes first (ZANE-DESIGN-01 M3 pass 1; the Principal, 2026-11-10: "there is still no "Why" page as I requested"). Five
-     entries at most (Rule 27), so the section Approach is dissolved: its reasoning, comparison and claims join Why, the grid and the
-     channels join Language, and Conformance joins Law; every path stays. The Why section's landing is why.html, the file whose name it
-     says, under a label of its own (Rule 116 at v3.16); The case it held is merged into it. */
+  /* The menu of the site rethink (ZAYN-SITE-RETHINK-01 step 2; the Principal approved the six rulings 2026-11-14, ruling 2, and the addendum
+     put AI & agents second, as the harobanda site does): Why, AI & agents, Language, Law, Adopt. Five entries (Rule 27), five at most under
+     each (Rule 120); a section and its landing keep two names (Rule 116). Demo leaves the menu: its pages go to Adopt > Tools. Every path
+     stays, and the ids of the sections that stay keep their names. */
   { id: 'whyzayn', label: 'Why', head: 'site/why.html' },
+  /* AI & agents opens on Generate until step 4 writes its landing, Three roles, Agent surfaces and the page For machines */
+  { id: 'agents', label: 'AI & agents', head: 'site/generate.html' },
   { id: 'language', label: 'Language', head: 'site/how.html' },
   { id: 'law', label: 'Law', head: 'site/rules.html' },
-  /* Adopt and Demo, not Use and Try (the Principal, 2026-11-10: "Use and Try are very simular lettting the navigation be cofusing";
-     ruled "Adopt / Demo", ZANE-MENU-USETRY-01); the ids stay, so every path and every reference holds */
-  { id: 'use', label: 'Adopt', head: 'site/adopt.html' },
-  { id: 'try', label: 'Demo', head: 'site/audit.html' }
+  { id: 'use', label: 'Adopt', head: 'site/adopt.html' }
 ];
 /* A page's label is the one name it goes by in the band, the family list, the trail and its title (Rule 116). A section and its landing
-   page are two things, so each has one name (Rule 116 at v3.16; the Principal, 2026-11-08: "you must bring bakc the frist option but find
-   an other lable for it that is different from the main option(Approach in our case)"): the main menu names the SECTION, by its label
-   above, and links to its head page; the band opens on that head page, the section's landing, under the page's own label. A family works
-   the same way one level down: its head page stands in the band under the family's name (`family`), and opens the family's list under
-   its own label. The menu these make is declared in Zayn, in site/menu.zayn, and refused by the checks `zayn check` makes. */
+   page are two things, so each has one name (Rule 116 at v3.16): the main menu names the SECTION and links to its head page; the band
+   opens on that head page under the page's own label. A family works the same way one level down: its head page stands in the band under
+   the family's name (`family`), and opens the family's list under its own label. The menu these make is declared in Zayn, in
+   site/menu.zayn, and refused by the checks `zayn check` makes. */
 const FAMILIES = [['stillness', 'Stillness'], ['forms', 'Forms'], ['state', 'State'], ['widgets', 'Widgets'],
-                  ['reading', 'Reading'], ['navigation', 'Navigation'], ['intelligence', 'Intelligence']];
+                  ['reading', 'Reading'], ['navigation', 'Navigation']];
 /* each family page's subject term (doc/design/WRITING.md section 2) */
-const FAMILY_TERMS = { stillness: 'still', forms: 'form', state: 'state', widgets: 'widget', reading: 'read', navigation: 'navigat', intelligence: 'intelligen' };
+const FAMILY_TERMS = { stillness: 'still', forms: 'form', state: 'state', widgets: 'widget', reading: 'read', navigation: 'navigat' };
 const PAGES = [
   { file: 'index.html', home: true, term: 'Zayn' },
+  /* Why: The problem, The case, Reasoning, Claims, Comparison (REVIEW.md section 6) */
   { file: 'site/why.html', section: 'whyzayn', label: 'The problem', rail: true, term: 'problem' },
-  /* The case stands apart from The problem: the problem is the author's, met over years of building interfaces with AI; the case is
-     the argument for a law (the Principal, 2026-11-11: "i don't see why you call this page why.html, it's case.html!") */
   { file: 'site/case.html', section: 'whyzayn', label: 'The case', rail: true, term: 'case' },
   { file: 'site/thinking.html', section: 'whyzayn', label: 'Reasoning', rail: true, term: 'reason' },
+  { file: 'site/innovation.html', section: 'whyzayn', label: 'Claims', rail: true, term: 'claim' },
   { file: 'site/positioning.html', section: 'whyzayn', family: 'Comparison', label: 'Overview', rail: true, term: 'overview' },
   { file: 'site/practices.html', section: 'whyzayn', label: 'Practices', parent: 'site/positioning.html', rail: true, term: 'practice' },
   { file: 'site/frameworks.html', section: 'whyzayn', label: 'Frameworks and languages', parent: 'site/positioning.html', rail: true, term: 'framework' },
-  { file: 'site/innovation.html', section: 'whyzayn', label: 'Claims', rail: true, term: 'claim' },
+  /* AI & agents: Generate, and the rules that govern an agent, Rules 97 to 104, 121 and 124, which leave the families of violations */
+  { file: 'site/generate.html', section: 'agents', label: 'Generate', rail: true, term: 'generat' },
+  { file: 'site/gotchas/intelligence.html', section: 'agents', label: 'The rules for agents', rail: true, term: 'intelligen' },
+  /* Language: The basics, The grid, Channels, Refusals, Declared in Haro */
   { file: 'site/how.html', section: 'language', label: 'The basics', rail: true, term: 'basic' },
-  { file: 'site/refusal.html', section: 'language', label: 'What it refuses', rail: true, term: 'refus' },
   { file: 'site/grid.html', section: 'language', label: 'The grid', rail: true, term: 'grid' },
   { file: 'site/media.html', section: 'language', label: 'Channels', rail: true, term: 'channel' },
+  { file: 'site/refusal.html', section: 'language', label: 'Refusals', rail: true, term: 'refus' },
   { file: 'site/haro.html', section: 'language', label: 'Declared in Haro', rail: true, term: 'Haro' },
+  /* Law: The rules, The Reader, Violations, Two cultures, Design system. The design system and its samples are pages of the site, in its
+     menu (the Principal, 2026-11-14: "thos two pages (design system and samples oages) must be integral part of the website and seen in
+     t's menu strcture not external auxiliary pages like that!"; ZAYN-SITE-INTEGRAL-01); Conformance, about the toolchain, goes to Tools */
   { file: 'site/rules.html', section: 'law', label: 'The rules', rail: true, term: 'rule' },
   { file: 'constitution/reader/index.html', section: 'law', label: 'The Reader', rail: true, outside: 'reader', term: 'Reader' },
-  { file: 'site/gotchas/index.html', section: 'law', family: 'What a violation feels like', label: 'All families', rail: true, term: 'famil' },
+  { file: 'site/gotchas/index.html', section: 'law', family: 'Violations', label: 'All families', rail: true, term: 'famil' },
   ...FAMILIES.map(([f, label]) => ({ file: `site/gotchas/${f}.html`, section: 'law', label, parent: 'site/gotchas/index.html', rail: true, term: FAMILY_TERMS[f] })),
-  { file: 'site/vibes.html', section: 'law', label: 'Two cultures, one truth', rail: true, term: 'culture' },
-  { file: 'site/conformance.html', section: 'law', label: 'Conformance', rail: true, term: 'conform' },
-  { file: 'site/adopt.html', section: 'use', label: 'Ways in', rail: true, term: 'ways in' },
-  { file: 'site/web.html', section: 'use', label: 'Web apps', rail: true, term: 'web' },
-  { file: 'site/mobile.html', section: 'use', label: 'Mobile apps', rail: true, term: 'mobile' },
-  { file: 'site/beyond.html', section: 'use', label: 'Beyond screens', rail: true, term: 'screen' },
-  { file: 'site/stack.html', section: 'use', family: 'Your stack', label: 'Overview', rail: true, term: 'overview' },
-  { file: 'site/build.html', section: 'use', label: 'Build', parent: 'site/stack.html', rail: true, term: 'build' },
-  { file: 'site/generate.html', section: 'use', label: 'Generate', parent: 'site/stack.html', rail: true, term: 'generat' },
-  { file: 'site/softanza.html', section: 'use', label: 'Softanza', parent: 'site/stack.html', rail: true, term: 'Softanza' },
-  { file: 'site/ports.html', section: 'use', label: 'Other languages', parent: 'site/stack.html', rail: true, term: 'other language' },
-  { file: 'site/audit.html', section: 'try', label: 'Three ways', rail: true, term: 'three way' },
-  { file: 'site/tour.html', section: 'try', label: 'The tour', rail: true, term: 'tour' },
+  { file: 'site/vibes.html', section: 'law', label: 'Two cultures', rail: true, term: 'culture' },
+  { file: 'site/design.html', section: 'law', family: 'Design system', label: 'Principles', rail: true, term: 'design' },
+  { file: 'site/samples.html', section: 'law', label: 'Samples', parent: 'site/design.html', rail: true, term: 'sample' },
+  /* Adopt: Start, Programmers, Your product, Tools; Designers comes with step 3. The landing is one page, so the menu never points a
+     level deeper than it shows (Rule 116); Your stack, the map of the programmer's pages, stands under Programmers */
+  { file: 'site/adopt.html', section: 'use', label: 'Start', rail: true, term: 'ways in' },
+  { file: 'site/build.html', section: 'use', family: 'Programmers', label: 'Build', rail: true, term: 'build' },
+  { file: 'site/stack.html', section: 'use', label: 'Your stack', parent: 'site/build.html', rail: true, term: 'overview' },
+  { file: 'site/ports.html', section: 'use', label: 'Other languages', parent: 'site/build.html', rail: true, term: 'other language' },
+  { file: 'site/softanza.html', section: 'use', label: 'Softanza', parent: 'site/build.html', rail: true, term: 'Softanza' },
+  { file: 'site/web.html', section: 'use', family: 'Your product', label: 'Web apps', rail: true, term: 'web' },
+  { file: 'site/mobile.html', section: 'use', label: 'Mobile apps', parent: 'site/web.html', rail: true, term: 'mobile' },
+  { file: 'site/beyond.html', section: 'use', label: 'Beyond screens', parent: 'site/web.html', rail: true, term: 'screen' },
+  { file: 'site/audit.html', section: 'use', family: 'Tools', label: 'Three ways', rail: true, term: 'three way' },
+  { file: 'site/tour.html', section: 'use', label: 'The tour', parent: 'site/audit.html', rail: true, term: 'tour' },
   /* outside the shell proper: the UI audit tool and the Reader keep their own pages and styles and take the menu, the band and the trail (the tool also the footer) */
-  { file: 'tools/ui-audit.html', section: 'try', label: 'UI audit', rail: true, outside: 'tool', term: 'audit' },
-  { file: 'site/screenshots.html', section: 'try', label: 'Screenshots', rail: true, term: 'screenshot' },
+  { file: 'tools/ui-audit.html', section: 'use', label: 'UI audit', parent: 'site/audit.html', rail: true, outside: 'tool', term: 'audit' },
+  { file: 'site/screenshots.html', section: 'use', label: 'Screenshots', parent: 'site/audit.html', rail: true, term: 'screenshot' },
   /* the wasm's proof page (stage S3 of the binary): a tool, framed as the UI audit is */
-  { file: 'tools/zayn/wasm-proof.html', section: 'try', label: 'Wasm proof', rail: true, outside: 'tool', term: 'wasm' }
+  { file: 'tools/zayn/wasm-proof.html', section: 'use', label: 'Wasm proof', parent: 'site/audit.html', rail: true, outside: 'tool', term: 'wasm' },
+  { file: 'site/conformance.html', section: 'use', label: 'Conformance', parent: 'site/audit.html', rail: true, term: 'conform' }
 ];
 const by = new Map(PAGES.map(p => [p.file, p]));
 /* The pages written before doc/design/WRITING.md, which the register check has not yet judged. Each is printed by name on every
@@ -149,7 +157,7 @@ function menu(p) {
   const here = p.section;
   const links = SECTIONS.map(s => {
     const on = s.id === here;
-    return `    <a${on ? ' class="here" aria-current="true"' : ''} href="${href(p.file, s.head)}">${s.label}</a>`;
+    return `    <a${on ? ' class="here" aria-current="true"' : ''} href="${href(p.file, s.head)}">${esc(s.label)}</a>`;
   }).join('\n');
   /* GitHub, its word then its mark, and the Theme select stand at the bar's right, apart from each other (the author, 2026-11-06: "Add
      Github icon to the right along with the combo of the vibe"; "add the Github text left to the icon and separate it from the Style combo
@@ -262,7 +270,9 @@ function sectionsOf(t) {
   return { text: t.slice(0, a) + body + t.slice(b), list };
 }
 function list3(p, secs) {
-  if (p.home || p.outside) return '';
+  /* a tool page (the UI audit, the wasm proof) shows its family's list, so the family reads the same on each of its pages (Rule 115); the
+     Reader keeps its own layout */
+  if (p.home || p.outside === 'reader') return '';
   const f = familyOf(p);
   const own = secs && secs.length >= SECTION_MIN ? secs : null;
   const subs = own ? `\n      <ul class="sub">\n${own.map(x => `        <li><a href="#${x.id}">${esc(x.label)}</a></li>`).join('\n')}\n      </ul>\n    ` : '';
@@ -612,6 +622,8 @@ const META_RE = /<meta\b[^>]*\b(?:name="description"|property="og:description")[
 const AFFIRM_ALLOWED = [
   { file: 'site/haro.html', words: 'two checks the condition language cannot yet express',
     reason: 'a technical table of the forged court: the seam column names what Haro\'s condition language expresses, a fact about Haro and not a lack of Zayn (Central, 2026-11-09)' },
+  { file: 'site/samples.html', words: 'Not yet tested on macOS; nobody has run it there.',
+    reason: 'the offending sample of the principle "The page speaks for its reader": the sentence the page refuses, shown inside its offending frame beside the lawful one' },
   { file: 'site/gotchas/reading.html', words: 'not yet been articulated by your teams',
     reason: 'the violation this page demonstrates: marketing copy written badly on purpose, inside the red frame the reader is meant to feel' },
 ];
@@ -812,7 +824,7 @@ function checkOwed(notes) {
    them all in and retires the list. TITLE_ALLOWED excuses a title by its words, each entry with its reason; an entry that matches no title
    fails. SKETCH_LABEL: a sketch of a screen (an element of class sketch, or a figure.sample) opens on its label, a <p class="illus">
    beginning "Illustration", because Zayn checks a declaration and does not draw the screen (ruling 6). */
-const RETHOUGHT = ['index.html'];
+const RETHOUGHT = ['index.html', 'site/design.html', 'site/samples.html'];
 const TITLE_MAX = 6;
 const TITLE_ALLOWED = [
   { file: 'index.html', words: 'Declare what a user is doing. The law refuses the rest.',
@@ -955,6 +967,28 @@ function checkSayOnce(problems, notes) {
   notes.push('NOTE K30 SAY_ONCE, owed by step 5 of ZAYN-SITE-RETHINK-01: ' + owed.length + ' page(s) whose first ' + SAY_WINDOW + ' words repeat a pair of content words' + (owed.length ? ': ' + owed.join(', ') : ''));
 }
 
+/* IN_REGISTRY (ZAYN-SITE-INTEGRAL-01; the Principal, 2026-11-14: "thos two pages (design system and samples oages) must be integral part of
+   the website and seen in t's menu strcture not external auxiliary pages like that!"): a page the site presents as its own is a page of the
+   site, in the registry, so the menu reaches it. Every link of a page of the registry to an .html file of this repository (a relative
+   address, its fragment and query aside; a folder read as its index.html) names a page the registry lists. A link that leaves the site is
+   an absolute address and is not read; scripts and comments are not read. */
+function checkInRegistry(problems) {
+  for (const f of new Set(['index.html', ...PAGES.map(p => p.file)])) {
+    const file = path.join(ROOT, f);
+    if (!fs.existsSync(file)) continue;
+    const text = fs.readFileSync(file, 'utf8').replace(/\r\n/g, '\n').replace(/<!--[\s\S]*?-->/g, blank).replace(/<(script|style)\b[\s\S]*?<\/\1>/g, blank);
+    for (const m of text.matchAll(/<a\b[^>]*\shref="([^"]*)"/g)) {
+      const h = m[1].replace(/[#?].*$/, '');
+      if (!h || /^[a-z][a-z0-9+.-]*:/i.test(h) || h.startsWith('//')) continue;
+      let target = path.posix.normalize(path.posix.join(path.posix.dirname(f), h));
+      if (h.endsWith('/') || target === '.' || target.endsWith('/')) target = target.replace(/\/?$/, '/') + 'index.html';
+      target = target.replace(/^\.\//, '');
+      if (!target.endsWith('.html') || by.has(target)) continue;
+      problems.push(`${f}:${text.slice(0, m.index).split('\n').length}: links ${target}, a page the registry does not list: a page the site presents as its own is a page of the site, in its menu (ZAYN-SITE-INTEGRAL-01, IN_REGISTRY)`);
+    }
+  }
+}
+
 function main(argv) {
   const write = argv.includes('--write');
   const problems = [];
@@ -976,6 +1010,7 @@ function main(argv) {
   checkArrows(problems);
   checkInWords(problems, notes);
   checkSayOnce(problems, notes);
+  checkInRegistry(problems);
   checkOwed(notes);
   let changed = 0;
   for (const p of PAGES) {

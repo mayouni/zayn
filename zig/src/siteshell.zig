@@ -32,14 +32,13 @@ const fmt = js.fmt;
 
 const Section = struct { id: []const u8, label: []const u8, head: []const u8 };
 const sections = [_]Section{
-    // Why comes first (ZANE-DESIGN-01 M3 pass 1); Approach is dissolved so the menu keeps five entries (Rule 27); why.html is the
-    // Why section's landing and holds The case, merged into it
+    // the menu of the site rethink (ZAYN-SITE-RETHINK-01 step 2): Why, AI & agents, Language, Law, Adopt; Demo leaves the menu and its
+    // pages go to Adopt > Tools; AI & agents opens on Generate until step 4 writes its landing (SECTIONS in tools/site-shell.js)
     .{ .id = "whyzayn", .label = "Why", .head = "site/why.html" },
+    .{ .id = "agents", .label = "AI & agents", .head = "site/generate.html" },
     .{ .id = "language", .label = "Language", .head = "site/how.html" },
     .{ .id = "law", .label = "Law", .head = "site/rules.html" },
-    // Adopt and Demo, not Use and Try (the Principal, 2026-11-10; ZANE-MENU-USETRY-01); the ids stay
     .{ .id = "use", .label = "Adopt", .head = "site/adopt.html" },
-    .{ .id = "try", .label = "Demo", .head = "site/audit.html" },
 };
 
 const Outside = enum { none, reader, tool };
@@ -60,45 +59,52 @@ fn fam(comptime f: []const u8, comptime label: []const u8, comptime term: []cons
 }
 const pages = [_]Page{
     .{ .file = "index.html", .home = true, .term = "Zayn" },
+    // Why: The problem, The case, Reasoning, Claims, Comparison (REVIEW.md section 6)
     .{ .file = "site/why.html", .section = "whyzayn", .label = "The problem", .rail = true, .term = "problem" },
-    // The case stands apart from The problem (the Principal, 2026-11-11)
     .{ .file = "site/case.html", .section = "whyzayn", .label = "The case", .rail = true, .term = "case" },
     .{ .file = "site/thinking.html", .section = "whyzayn", .label = "Reasoning", .rail = true, .term = "reason" },
+    .{ .file = "site/innovation.html", .section = "whyzayn", .label = "Claims", .rail = true, .term = "claim" },
     .{ .file = "site/positioning.html", .section = "whyzayn", .family = "Comparison", .label = "Overview", .rail = true, .term = "overview" },
     .{ .file = "site/practices.html", .section = "whyzayn", .label = "Practices", .parent = "site/positioning.html", .rail = true, .term = "practice" },
     .{ .file = "site/frameworks.html", .section = "whyzayn", .label = "Frameworks and languages", .parent = "site/positioning.html", .rail = true, .term = "framework" },
-    .{ .file = "site/innovation.html", .section = "whyzayn", .label = "Claims", .rail = true, .term = "claim" },
+    // AI & agents: Generate, and the rules that govern an agent, which leave the families of violations
+    .{ .file = "site/generate.html", .section = "agents", .label = "Generate", .rail = true, .term = "generat" },
+    .{ .file = "site/gotchas/intelligence.html", .section = "agents", .label = "The rules for agents", .rail = true, .term = "intelligen" },
+    // Language: The basics, The grid, Channels, Refusals, Declared in Haro
     .{ .file = "site/how.html", .section = "language", .label = "The basics", .rail = true, .term = "basic" },
-    .{ .file = "site/refusal.html", .section = "language", .label = "What it refuses", .rail = true, .term = "refus" },
     .{ .file = "site/grid.html", .section = "language", .label = "The grid", .rail = true, .term = "grid" },
     .{ .file = "site/media.html", .section = "language", .label = "Channels", .rail = true, .term = "channel" },
+    .{ .file = "site/refusal.html", .section = "language", .label = "Refusals", .rail = true, .term = "refus" },
     .{ .file = "site/haro.html", .section = "language", .label = "Declared in Haro", .rail = true, .term = "Haro" },
+    // Law: The rules, The Reader, Violations, Two cultures, Design system (ZAYN-SITE-INTEGRAL-01)
     .{ .file = "site/rules.html", .section = "law", .label = "The rules", .rail = true, .term = "rule" },
     .{ .file = "constitution/reader/index.html", .section = "law", .label = "The Reader", .rail = true, .outside = .reader, .term = "Reader" },
-    .{ .file = "site/gotchas/index.html", .section = "law", .family = "What a violation feels like", .label = "All families", .rail = true, .term = "famil" },
+    .{ .file = "site/gotchas/index.html", .section = "law", .family = "Violations", .label = "All families", .rail = true, .term = "famil" },
     fam("stillness", "Stillness", "still"),
     fam("forms", "Forms", "form"),
     fam("state", "State", "state"),
     fam("widgets", "Widgets", "widget"),
     fam("reading", "Reading", "read"),
     fam("navigation", "Navigation", "navigat"),
-    fam("intelligence", "Intelligence", "intelligen"),
-    .{ .file = "site/vibes.html", .section = "law", .label = "Two cultures, one truth", .rail = true, .term = "culture" },
-    .{ .file = "site/conformance.html", .section = "law", .label = "Conformance", .rail = true, .term = "conform" },
-    .{ .file = "site/adopt.html", .section = "use", .label = "Ways in", .rail = true, .term = "ways in" },
-    .{ .file = "site/web.html", .section = "use", .label = "Web apps", .rail = true, .term = "web" },
-    .{ .file = "site/mobile.html", .section = "use", .label = "Mobile apps", .rail = true, .term = "mobile" },
-    .{ .file = "site/beyond.html", .section = "use", .label = "Beyond screens", .rail = true, .term = "screen" },
-    .{ .file = "site/stack.html", .section = "use", .family = "Your stack", .label = "Overview", .rail = true, .term = "overview" },
-    .{ .file = "site/build.html", .section = "use", .label = "Build", .parent = "site/stack.html", .rail = true, .term = "build" },
-    .{ .file = "site/generate.html", .section = "use", .label = "Generate", .parent = "site/stack.html", .rail = true, .term = "generat" },
-    .{ .file = "site/softanza.html", .section = "use", .label = "Softanza", .parent = "site/stack.html", .rail = true, .term = "Softanza" },
-    .{ .file = "site/ports.html", .section = "use", .label = "Other languages", .parent = "site/stack.html", .rail = true, .term = "other language" },
-    .{ .file = "site/audit.html", .section = "try", .label = "Three ways", .rail = true, .term = "three way" },
-    .{ .file = "site/tour.html", .section = "try", .label = "The tour", .rail = true, .term = "tour" },
-    .{ .file = "tools/ui-audit.html", .section = "try", .label = "UI audit", .rail = true, .outside = .tool, .term = "audit" },
-    .{ .file = "site/screenshots.html", .section = "try", .label = "Screenshots", .rail = true, .term = "screenshot" },
-    .{ .file = "tools/zayn/wasm-proof.html", .section = "try", .label = "Wasm proof", .rail = true, .outside = .tool, .term = "wasm" },
+    .{ .file = "site/vibes.html", .section = "law", .label = "Two cultures", .rail = true, .term = "culture" },
+    .{ .file = "site/design.html", .section = "law", .family = "Design system", .label = "Principles", .rail = true, .term = "design" },
+    .{ .file = "site/samples.html", .section = "law", .label = "Samples", .parent = "site/design.html", .rail = true, .term = "sample" },
+    // Adopt: Start, Programmers, Your product, Tools; Designers comes with step 3
+    // the landing is one page, so the menu never points a level deeper than it shows (Rule 116); Your stack stands under Programmers
+    .{ .file = "site/adopt.html", .section = "use", .label = "Start", .rail = true, .term = "ways in" },
+    .{ .file = "site/build.html", .section = "use", .family = "Programmers", .label = "Build", .rail = true, .term = "build" },
+    .{ .file = "site/stack.html", .section = "use", .label = "Your stack", .parent = "site/build.html", .rail = true, .term = "overview" },
+    .{ .file = "site/ports.html", .section = "use", .label = "Other languages", .parent = "site/build.html", .rail = true, .term = "other language" },
+    .{ .file = "site/softanza.html", .section = "use", .label = "Softanza", .parent = "site/build.html", .rail = true, .term = "Softanza" },
+    .{ .file = "site/web.html", .section = "use", .family = "Your product", .label = "Web apps", .rail = true, .term = "web" },
+    .{ .file = "site/mobile.html", .section = "use", .label = "Mobile apps", .parent = "site/web.html", .rail = true, .term = "mobile" },
+    .{ .file = "site/beyond.html", .section = "use", .label = "Beyond screens", .parent = "site/web.html", .rail = true, .term = "screen" },
+    .{ .file = "site/audit.html", .section = "use", .family = "Tools", .label = "Three ways", .rail = true, .term = "three way" },
+    .{ .file = "site/tour.html", .section = "use", .label = "The tour", .parent = "site/audit.html", .rail = true, .term = "tour" },
+    .{ .file = "tools/ui-audit.html", .section = "use", .label = "UI audit", .parent = "site/audit.html", .rail = true, .outside = .tool, .term = "audit" },
+    .{ .file = "site/screenshots.html", .section = "use", .label = "Screenshots", .parent = "site/audit.html", .rail = true, .term = "screenshot" },
+    .{ .file = "tools/zayn/wasm-proof.html", .section = "use", .label = "Wasm proof", .parent = "site/audit.html", .rail = true, .outside = .tool, .term = "wasm" },
+    .{ .file = "site/conformance.html", .section = "use", .label = "Conformance", .parent = "site/audit.html", .rail = true, .term = "conform" },
 };
 
 /// The four files every page shares, and the rest a page loads: their address carries the first 8 hex of the sha256 of
@@ -214,7 +220,7 @@ fn menu(a: Allocator, p: *const Page) ![]const u8 {
     var links: List = .empty;
     for (sections) |s| {
         const on = eqlOpt(s.id, p.section);
-        try links.append(a, try fmt(a, "    <a{s} href=\"{s}\">{s}</a>", .{ if (on) " class=\"here\" aria-current=\"true\"" else "", try href(a, p.file, s.head), s.label }));
+        try links.append(a, try fmt(a, "    <a{s} href=\"{s}\">{s}</a>", .{ if (on) " class=\"here\" aria-current=\"true\"" else "", try href(a, p.file, s.head), try esc(a, s.label) }));
     }
     // The Reader carries the same bar as every page, in the same markup (ZANE-READER-MENUPOS-01, K23 BAR_ALIGN); its tools hold GitHub
     // alone, since the Reader's theme is its own light and dark, switched in its footer bar.
@@ -369,7 +375,8 @@ fn sectionsOf(a: Allocator, t: []const u8) !Sections {
 }
 
 fn list3(a: Allocator, p: *const Page, secs: []const Sec) ![]const u8 {
-    if (p.home or p.outside != .none) return "";
+    // a tool page shows its family's list (Rule 115); the Reader keeps its own layout (list3 in tools/site-shell.js)
+    if (p.home or p.outside == .reader) return "";
     const f = try familyOf(a, p);
     const own: ?[]const Sec = if (secs.len >= SECTION_MIN) secs else null;
     var subs: []const u8 = "";
@@ -850,6 +857,7 @@ fn checkReleases(a: Allocator, problems: *List) !void {
 const AffirmAllowed = struct { file: []const u8, words: []const u8, reason: []const u8 };
 const affirm_allowed = [_]AffirmAllowed{
     .{ .file = "site/haro.html", .words = "two checks the condition language cannot yet express", .reason = "a technical table of the forged court: the seam column names what Haro's condition language expresses, a fact about Haro and not a lack of Zayn (Central, 2026-11-09)" },
+    .{ .file = "site/samples.html", .words = "Not yet tested on macOS; nobody has run it there.", .reason = "the offending sample of the principle \"The page speaks for its reader\": the sentence the page refuses, shown inside its offending frame beside the lawful one" },
     .{ .file = "site/gotchas/reading.html", .words = "not yet been articulated by your teams", .reason = "the violation this page demonstrates: marketing copy written badly on purpose, inside the red frame the reader is meant to feel" },
 };
 fn checkAffirm(a: Allocator, problems: *List) !void {
@@ -1238,7 +1246,7 @@ fn checkOwed(a: Allocator, notes: *List) !void {
 // ---- the rethought site (ZAYN-SITE-RETHINK-01): FRONT_PLATE, TITLE6 and SKETCH_LABEL (checkFront, checkTitles and checkSketches in
 // tools/site-shell.js, finding for finding) ------------------------------------------------------------------------------
 
-const rethought = [_][]const u8{"index.html"};
+const rethought = [_][]const u8{ "index.html", "site/design.html", "site/samples.html" };
 const title_max = 6;
 const TitleAllowed = struct { file: []const u8, words: []const u8, reason: []const u8 };
 const title_allowed = [_]TitleAllowed{
@@ -1468,6 +1476,37 @@ fn checkSayOnce(a: Allocator, problems: *List, notes: *List) !void {
     try notes.append(a, try fmt(a, "NOTE K30 SAY_ONCE, owed by step 5 of ZAYN-SITE-RETHINK-01: {d} page(s) whose first {d} words repeat a pair of content words{s}{s}", .{ owed.items.len, say_window, if (owed.items.len > 0) ": " else "", try std.mem.join(a, ", ", owed.items) }));
 }
 
+// IN_REGISTRY (ZAYN-SITE-INTEGRAL-01; checkInRegistry in tools/site-shell.js): every link of a page of the registry to an .html file of
+// this repository names a page the registry lists, so the menu reaches every page the site presents as its own
+fn checkInRegistry(a: Allocator, problems: *List) !void {
+    var files: List = .empty;
+    try addOnce(a, &files, "index.html");
+    for (pages) |p| try addOnce(a, &files, p.file);
+    const comments = try re.compile(a, "<!--[\\s\\S]*?-->", "g");
+    const hidden = try re.compile(a, "<(script|style)\\b[\\s\\S]*?<\\/\\1>", "g");
+    const anchor = try re.compile(a, "<a\\b[^>]*\\shref=\"([^\"]*)\"", "g");
+    const scheme = try re.compile(a, "^[a-z][a-z0-9+.-]*:", "i");
+    for (files.items) |f| {
+        if (!exists(f)) continue;
+        var text: []const u8 = try std.mem.replaceOwned(u8, a, try readFile(a, f), "\r\n", "\n");
+        text = try re.replaceFn(a, &comments, text, a, newlinesOnly);
+        text = try re.replaceFn(a, &hidden, text, a, newlinesOnly);
+        var it = re.iterate(&anchor, text);
+        while (it.next()) |m| {
+            const raw = m.get(text, 1).?;
+            const cut = std.mem.indexOfAny(u8, raw, "#?") orelse raw.len;
+            const h = raw[0..cut];
+            if (h.len == 0 or re.testIn(&scheme, h) or std.mem.startsWith(u8, h, "//")) continue;
+            var target = try normalize(a, try fmt(a, "{s}/{s}", .{ dirname(f), h }));
+            if (std.mem.endsWith(u8, h, "/") or std.mem.eql(u8, target, ".")) {
+                target = if (std.mem.eql(u8, target, ".")) "index.html" else try fmt(a, "{s}/index.html", .{target});
+            }
+            if (!std.mem.endsWith(u8, target, ".html") or byFile(target) != null) continue;
+            try problems.append(a, try fmt(a, "{s}:{d}: links {s}, a page the registry does not list: a page the site presents as its own is a page of the site, in its menu (ZAYN-SITE-INTEGRAL-01, IN_REGISTRY)", .{ f, lineAt(text, m.start), target }));
+        }
+    }
+}
+
 // ---- the run ------------------------------------------------------------------------------------------------------
 
 pub fn run(a: Allocator, out: *std.Io.Writer, argv: []const []const u8) !u8 {
@@ -1494,6 +1533,7 @@ pub fn run(a: Allocator, out: *std.Io.Writer, argv: []const []const u8) !u8 {
     try checkArrows(a, &problems);
     try checkInWords(a, &problems, &notes);
     try checkSayOnce(a, &problems, &notes);
+    try checkInRegistry(a, &problems);
     try checkOwed(a, &notes);
     var changed: usize = 0;
     for (&pages) |*p| {

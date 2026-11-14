@@ -6,12 +6,12 @@
 <title>Generate — holding an AI generator to the law with a grammar and a court</title>
 <meta name="description" content="The generate workflow holds an AI generator to the law through two layers: a grammar that fixes the shape of what the generator can write, and a court that refuses what the law forbids. The page says which layer holds what.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=0417b108">
+<link rel="stylesheet" href="stz.css?v=99076cdf">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
 </head>
-<body data-archetype="article">
+<body data-archetype="landing">
 
 <!-- shell:menu -->
 <div class="bars">
@@ -20,10 +20,10 @@
     <div class="menu">
         <a class="brand" href="../index.html">Zayn</a>
     <a href="why.html">Why</a>
+    <a class="here" aria-current="true" href="generate.html">AI &amp; agents</a>
     <a href="how.html">Language</a>
     <a href="rules.html">Law</a>
-    <a class="here" aria-current="true" href="adopt.html">Adopt</a>
-    <a href="audit.html">Demo</a>
+    <a href="adopt.html">Adopt</a>
     </div>
     <div class="tools">
       <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -39,11 +39,8 @@
 </nav>
 <nav class="band" aria-label="Pages of the section">
   <ul>
-    <li><a href="adopt.html">Ways in</a></li>
-    <li><a href="web.html">Web apps</a></li>
-    <li><a href="mobile.html">Mobile apps</a></li>
-    <li><a href="beyond.html">Beyond screens</a></li>
-    <li><a aria-current="true" href="stack.html">Your stack</a></li>
+    <li><a aria-current="page" href="generate.html">Generate</a></li>
+    <li><a href="gotchas/intelligence.html">The rules for agents</a></li>
   </ul>
 </nav>
 </div>
@@ -52,7 +49,7 @@
 <header class="page">
   <div class="narrow">
     <!-- shell:trail -->
-<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><a href="stack.html">Your stack</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Generate</span></nav>
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="generate.html">AI &amp; agents</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Generate</span></nav>
 <!-- /shell:trail -->
     <p class="kicker">Use · generate · you build interfaces with AI</p>
     <h1>The generate workflow holds an AI generator to the law with a grammar that fixes what it can write and a court that refuses what the law forbids.</h1>
@@ -63,21 +60,14 @@
 
 <!-- shell:layout -->
 <div class="layout has-list">
-<nav class="list3" aria-label="Pages of the family">
+<nav class="list3 sections" aria-label="Sections of this page">
+  <p class="outline-title">On this page</p>
   <ul>
-    <li><a href="stack.html">Overview</a></li>
-    <li><a href="build.html">Build</a></li>
-    <li><a aria-current="page" href="generate.html">Generate</a>
-      <ul class="sub">
-        <li><a href="#a-declaration-the-grammar-allows-and-the">Grammar and law</a></li>
-        <li><a href="#the-grammar-holds-the-shape">The grammar</a></li>
-        <li><a href="#a-loop-you-can-run-today">A loop to run today</a></li>
-        <li><a href="#feel-what-the-law-forbids-first">Feel it first</a></li>
-        <li><a href="#the-law-for-agents">The law for agents</a></li>
-      </ul>
-    </li>
-    <li><a href="softanza.html">Softanza</a></li>
-    <li><a href="ports.html">Other languages</a></li>
+    <li><a href="#a-declaration-the-grammar-allows-and-the">Grammar and law</a></li>
+    <li><a href="#the-grammar-holds-the-shape">The grammar</a></li>
+    <li><a href="#a-loop-you-can-run-today">A loop to run today</a></li>
+    <li><a href="#feel-what-the-law-forbids-first">Feel it first</a></li>
+    <li><a href="#the-law-for-agents">The law for agents</a></li>
   </ul>
 </nav>
 <!-- /shell:layout -->
@@ -141,7 +131,7 @@ pick.zayn:2  <span class="bad">error</span>  <span class="bad">SELECT_ACT_COLLAP
 <section class="alt">
   <div class="narrow">
     <h2 id="feel-what-the-law-forbids-first" data-outline="Feel it first">Pages that let you commit each violation before asking a generator to avoid it</h2>
-    <p>The defects that a generator reproduces have rules behind them. <a href="gotchas/">What a violation feels like</a> lets you commit each
+    <p>The defects that a generator reproduces have rules behind them. <a href="gotchas/">The families of violations</a> let you commit each
     family of offence yourself, safely fenced and beside its lawful twin, before you ask a model to avoid them.</p>
   </div>
 </section>

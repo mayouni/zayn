@@ -204,7 +204,7 @@ const siteLines = [];
       ['shell', 'an svg in a scrolling wrapper', () => before('site/web.html', '</main>', '<div class="scroll"><svg viewBox="0 0 1 1"></svg></div>\n'), CHECK, 'fail', 'an svg sits in a scrolling wrapper'],
       ['shell', 'the site names Zing', () => edit('site/stz.js', t => t + '\n// Zing\n'), CHECK, 'fail', 'names Zing'],
       ['shell', 'an outline entry over twenty characters', () => sub1('site/audit.html', 'data-outline="Three ways to try"', 'data-outline="Three ways to try it out today"'), CHECK, 'fail', 'give its h2 a data-outline of 20 at most'],
-      ['shell', 'an outline entry repeating its page\'s label', () => sub1('site/audit.html', 'data-outline="Three ways to try"', 'data-outline="Demo"'), CHECK, 'fail', 'repeats the label "Demo" above it'],
+      ['shell', 'an outline entry repeating its page\'s label', () => sub1('site/audit.html', 'data-outline="Three ways to try"', 'data-outline="Tools"'), CHECK, 'fail', 'repeats the label "Tools" above it'],
       ['shell', 'an outline entry repeating a band label', () => sub1('site/audit.html', 'data-outline="Three ways to try"', 'data-outline="Screenshots"'), CHECK, 'fail', 'name the same thing on one page'],
       ['shell', 'a page tells the reader to run node', () => before('site/web.html', '</main>', '<p>Run <code>node tools/zayn/cli.js check x.zayn</code>.</p>\n'), CHECK, 'fail', 'tells the reader to run Node ("node tools/zayn/cli.js")'],
       ['shell', 'a page names Node as what it needs', () => before('site/web.html', '</main>', '<p>It needs Node and a browser.</p>\n'), CHECK, 'fail', 'tells the reader to run Node ("Node")'],
@@ -238,7 +238,7 @@ const siteLines = [];
       ['shell', 'a colour defined in a token block', () => edit('site/stz.css', t => t + '\n:root { --extra: #123456; }\n[data-vibe="guardian"] { --extra: #654321; }\n'), [['--write']], 'pass', ''],
       ['shell', 'an offending demo fenced, not read', () => edit('site/gotchas.css', t => t + '\n/* offense:start */\n.extra { color: #123456; font-size: 3px; }\n/* offense:end */\n'), [['--write']], 'pass', ''],
       ['shell', 'a hover that reaches another element', () => edit('site/gotchas.css', t => t + '\n.extra:hover .tip { display: block; }\n'), CHECK, 'fail', 'makes a :hover reach another element'],
-      ['shell', 'a page without its archetype', () => sub1('site/web.html', ' data-archetype="article"', ''), [[], ['--write']], 'fail', 'site/web.html: differs from the shell'],
+      ['shell', 'a page without its archetype', () => sub1('site/mobile.html', ' data-archetype="article"', ''), [[], ['--write']], 'fail', 'site/mobile.html: differs from the shell'],
       // the rethought site (ZAYN-SITE-RETHINK-01): the first screen shows the claim, a title has six words, a sketch says it is one
       ['shell', 'a front page whose head holds no plate', () => sub1('index.html', '<figure class="plate"', '<figure class="slab"'), CHECK, 'fail', 'the first screen holds no declaration and verdict'],
       ['shell', 'a front page whose main opens on a section', () => sub1('index.html', /<main id="main">/, '<main id="main">\n<section><p>x</p></section>'), CHECK, 'fail', 'main does not open on the head that holds the claim'],
@@ -258,6 +258,9 @@ const siteLines = [];
       ['shell', 'the front page saying one thing twice on its first screen', () => sub1('index.html', '<p class="sub">', '<p class="sub">The compilable language checks it. '), CHECK, 'fail', 'say the same thing twice ("compilable language")'],
       ['shell', 'a page not rethought saying one thing twice, counted for step 5', () => sub1('site/web.html', '<p class="sub">', '<p class="sub">Web apps held to the law. Web apps held to the law. '), [[], ['--write']], 'pass', ''],
       ['shell', 'a repeat inside a sample frame, not a statement', () => sub1('index.html', '<p class="sub">', '<figure class="sample"><p class="illus">Illustration</p><p>Order ships. Order ships.</p></figure><p class="sub">'), [[], ['--write']], 'pass', ''],
+      // IN_REGISTRY: a page the site presents as its own is a page of the site, in its menu (ZAYN-SITE-INTEGRAL-01)
+      ['shell', 'a link to a page the registry does not list', () => before('site/web.html', '</main>', '<p><a href="../doc/design/extra.html">the extra page</a></p>\n'), CHECK, 'fail', 'links doc/design/extra.html, a page the registry does not list'],
+      ['shell', 'links to a folder, a fragment, a file and another site, all lawful', () => before('site/web.html', '</main>', '<p><a href="gotchas/">families</a>, <a href="how.html#basics">the basics</a>, <a href="../doc/design/BINARY.md">the binary</a>, <a href="https://example.org/x.html">elsewhere</a></p>\n'), [[], ['--write']], 'pass', ''],
       ['shell', 'a long paragraph, counted for milestone 3', () => before('site/web.html', '</main>', '<p>' + 'word '.repeat(80) + '</p>\n'), [[], ['--write']], 'pass', ''],
       ['shell', 'an article section with a sample frame', () => sub1('site/web.html', '<section', '<section><figure class="sample"><p class="illus">Illustration</p>x</figure></section>\n<section'), [[], ['--write']], 'pass', ''],
 

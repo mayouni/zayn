@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" data-vibe="curator">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samples — the design system, shown live</title>
+<meta name="description" content="Each principle of Zayn's design system shown as a live sample: a lawful interface beside an offending one, with the rule the lawful one follows.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23e04a6e' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="stz.css?v=99076cdf">
+<!-- shell:vibe -->
+<script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
+<!-- /shell:vibe -->
+<link rel="stylesheet" href="gotchas.css?v=7e6f0c5e">
+</head>
+<body data-archetype="article">
+
+<!-- shell:menu -->
+<div class="bars">
+<nav class="site" aria-label="Main menu">
+  <div class="wrap">
+    <div class="menu">
+        <a class="brand" href="../index.html">Zayn</a>
+    <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
+    <a href="how.html">Language</a>
+    <a class="here" aria-current="true" href="rules.html">Law</a>
+    <a href="adopt.html">Adopt</a>
+    </div>
+    <div class="tools">
+      <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <div class="vibe-picker">
+        <label for="vibe-select">Theme</label>
+        <select id="vibe-select">
+          <option value="curator">Modern</option>
+          <option value="guardian">Retro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="band" aria-label="Pages of the section">
+  <ul>
+    <li><a href="rules.html">The rules</a></li>
+    <li><a href="../constitution/reader/index.html">The Reader</a></li>
+    <li><a href="gotchas/">Violations</a></li>
+    <li><a href="vibes.html">Two cultures</a></li>
+    <li><a aria-current="true" href="design.html">Design system</a></li>
+  </ul>
+</nav>
+</div>
+<!-- /shell:menu -->
+
+<!-- The samples of the design system, a page of the site (ZAYN-SITE-INTEGRAL-01; the Principal, 2026-11-14: "thos two pages (design system
+     and samples oages) must be integral part of the website and seen in t's menu strcture not external auxiliary pages like that!"). It was
+     doc/design/design-system-samples.html, a page with its own styles and no menu; it now wears the site's tokens and its two cultures. -->
+<header class="page">
+  <div class="narrow">
+    <!-- shell:trail -->
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="rules.html">Law</a><span class="sep">›</span><a href="design.html">Design system</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Samples</span></nav>
+<!-- /shell:trail -->
+    <h1>Samples of every principle</h1>
+    <p class="sub">Each sample sets a lawful interface beside an offending one, and its caption names the rule the first one follows.</p>
+  </div>
+</header>
+
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a href="design.html">Principles</a></li>
+    <li><a aria-current="page" href="samples.html">Samples</a>
+      <ul class="sub">
+        <li><a href="#t">Type set for reading</a></li>
+        <li><a href="#s">Width from content</a></li>
+        <li><a href="#i">Lines that draw</a></li>
+        <li><a href="#e">One emphasis</a></li>
+        <li><a href="#b">Balanced lines</a></li>
+        <li><a href="#f">Shape and meaning</a></li>
+        <li><a href="#n">The menu is the tree</a></li>
+        <li><a href="#l">One flow, one scroll</a></li>
+        <li><a href="#h">Every input</a></li>
+        <li><a href="#w">Words for the reader</a></li>
+        <li><a href="#m">The reader's page</a></li>
+        <li><a href="#p">The painted result</a></li>
+        <li><a href="#x">Decisions stay</a></li>
+        <li><a href="#what-exists">What exists today</a></li>
+        <li><a href="#this-page">This page, declared</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
+
+<section>
+  <div class="narrow">
+    <h2 id="t" data-outline="Type set for reading">Every text is set for reading</h2>
+    <p>Reading text is 21 px, secondary text is never under 18 px, and every text stands at 7:1 against what is under it.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">An order</div><div class="view">
+        <p>The order ships on Thursday.</p><p class="s-quiet">Placed by the Niamey office on <span data-specimen>4</span> November.</p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rule 105: secondary text is quieter by tone, not by size.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">An order</div><div class="view">
+        <p>The order ships on Thursday.</p><p class="x-small">Placed by the Niamey office on <span data-specimen>4</span> November.</p>
+      </div></div><figcaption><span class="tag bad">Offending</span> Small text in pale grey, which the corpus calls "the critical legibility error the whole world makes".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="s" data-outline="Width from content">Width belongs to the content</h2>
+    <p>A box is as wide as what it holds, and its control sits beside the words it acts on; the width left over stays empty.</p>
+    <div class="samples wide">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A wide screen</div><div class="view">
+        <div class="s-cta"><p>Watch the notices that concern your project.</p><button class="btn primary" type="button">Add the bar</button></div>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Width Belongs to the Content.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A wide screen</div><div class="view">
+        <div class="x-stretch"><span>Watch the notices that concern your project.</span><button class="btn primary" type="button">Add the bar</button></div>
+      </div></div><figcaption><span class="tag bad">Offending</span> The box stretched across the screen: "you are not obliged to stretch it".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="i" data-outline="Lines that draw">A line or a box draws something real</h2>
+    <p>Space groups the points of a list; a border appears only where it draws a table, a field, a drawing or a window.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">What you get</div><div class="view">
+        <ul class="s-points"><li><strong>Signals.</strong> The week's notices for your project.</li><li><strong>Trends.</strong> What rises across a month.</li><li><strong>A bar.</strong> One line for your own site.</li></ul>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rule 2: white space is structural.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">What you get</div><div class="view">
+        <div class="x-cards"><div>Signals</div><div>Trends</div><div>A bar</div></div>
+        <div class="x-rules"><p>The week's notices.</p><p>What rises across a month.</p><p>One line for your site.</p></div>
+      </div></div><figcaption><span class="tag bad">Offending</span> "many squares, each attracting attention" and "horizontal lines everywhere".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="e" data-outline="One emphasis">One emphasis per element, one critical element per view</h2>
+    <p>A link is told by one cue, and a page singles out one thing that is wrong.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">Status</div><div class="view">
+        <p class="s-alert">The nightly backup failed.</p>
+        <p>Read <a href="#e">the backup log</a> for the cause.</p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rules 3, 87 and 118.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">Status</div><div class="view">
+        <p class="x-red">The nightly backup failed.</p><p class="x-red">Two certificates expire in <span data-specimen>30</span> days.</p>
+        <p>Read <a href="#e" class="x-loud">the backup log</a> for the cause.</p>
+      </div></div><figcaption><span class="tag bad">Offending</span> "two red divs one under the other" and "underline + bold is over focus".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="b" data-outline="Balanced lines">Balance is on by default</h2>
+    <p>Each sentence of a title is balanced on its own, and no line carries the end of one sentence into the next.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A front page</div><div class="view">
+        <p class="s-title"><span class="whole">AI changes every week.</span> <span class="whole">Softanza hears what concerns it the same week.</span></p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Balance Is On by Default.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A front page</div><div class="view">
+        <p class="x-cut">AI changes every week. Softanza hears what concerns it the same week.</p>
+      </div></div><figcaption><span class="tag bad">Offending</span> "bad line cuts AGAIN and AGAIN and AGAIN".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="f" data-outline="Shape and meaning">One shape, one meaning</h2>
+    <p>A two-state control shows both states, and a control's word says what it does to the item.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">The book</div><div class="view">
+        <div class="s-seg" role="radiogroup" aria-label="Chapters shown">
+          <label><input type="radio" name="f-ok" checked> Every chapter</label><label><input type="radio" name="f-ok"> The spine only</label></div>
+        <p class="s-after"><label class="s-check"><input type="checkbox" checked> Audit this page</label></p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rules 106 and 119.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">The book</div><div class="view">
+        <button class="btn ghost" type="button">Show every chapter</button>
+        <p class="s-after"><button class="btn ghost" type="button">Remove</button></p>
+      </div></div><figcaption><span class="tag bad">Offending</span> A toggle named for the other state, and "Remove" read as deleting the file.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="n" data-outline="The menu is the tree">The menu is the tree</h2>
+    <p>A section's landing page comes first in its band, under a name of its own.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">Menu, then band</div><div class="view">
+        <p class="s-menu">Approach</p><div class="s-band"><span class="s-here">Reasoning</span><span>The grid</span><span>Comparison</span></div>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rule 116.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">Menu, then band</div><div class="view">
+        <p class="s-menu">Try</p><div class="s-band"><span class="s-here">Try</span><span>Build</span><span>Audit</span></div>
+      </div></div><figcaption><span class="tag bad">Offending</span> "like Try and then Try here".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="l" data-outline="One flow, one scroll">Everything is on the page, with one scroll</h2>
+    <p>What a control does is written in the page, and a list grows with the page instead of scrolling inside it.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">The audit</div><div class="view">
+        <table class="s-records"><thead><tr><th scope="col">Page</th><th scope="col">Findings</th></tr></thead>
+          <tbody><tr><td>/index.html</td><td>0</td></tr><tr><td>/site/how.html</td><td>0</td></tr><tr><td>/site/why.html</td><td>2</td></tr></tbody></table>
+        <p class="s-status">Run the audit: reads every listed page in both cultures.</p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rules 110 and 114.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">The audit</div><div class="view">
+        <div class="x-scroll">/index.html<br>/site/how.html<br>/site/why.html<br>/site/adopt.html<br>/site/build.html<br>/site/media.html<br>/site/tour.html</div>
+        <p class="s-status"><span class="x-tip">Run<span class="bubble">Reads every listed page in both cultures.</span></span></p>
+      </div></div><figcaption><span class="tag bad">Offending</span> A second scroll bar and an info bubble.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="h" data-outline="Every input">Every input reaches everything</h2>
+    <p>A target is 48 px tall on a phone, and nothing is reachable only by hovering.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A phone</div><div class="view">
+        <div class="s-targets"><a href="#h">Signals</a><a href="#h">Trends</a><a href="#h">About</a></div>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Rule 69.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A phone</div><div class="view">
+        <p class="x-tiny"><a href="#h">Signals</a><a href="#h">Trends</a><a href="#h">About</a></p>
+      </div></div><figcaption><span class="tag bad">Offending</span> "did you think how this hover feature would work on a mobile phone?!"</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="w" data-outline="Words for the reader">Words serve the reader</h2>
+    <p>A title names its subject in six words at most, and the sentence under it says what the subject is.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A page title</div><div class="view">
+        <h3>The grid</h3><p>Zayn crosses what a person does with the channels an interface uses, and puts the rules in each cell.</p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> The writing rule as amended on 2026-11-14 (ZAYN-SITE-RETHINK-01, ruling 3).</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A page title</div><div class="view">
+        <h3>A map of what a person does, across every channel, with the empty cells left empty.</h3>
+      </div></div><figcaption><span class="tag bad">Offending</span> A title that teases instead of naming: "you describe the grid without citing it".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="m" data-outline="The reader's page">The page speaks for its reader</h2>
+    <p>A public page states what the project is and does, at its true size.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">The download</div><div class="view">
+        <p>Tested on Windows and Linux; built for macOS.</p>
+      </div></div><figcaption><span class="tag ok">Lawful</span> PRINCIPAL-AFFIRM-01; Rule 111.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">The download</div><div class="view">
+        <p>Not yet tested on macOS; nobody has run it there.</p>
+      </div></div><figcaption><span class="tag bad">Offending</span> "this role of transparency that hurts the project image".</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="p" data-outline="The painted result">The painted page is the instrument</h2>
+    <p>A label clears the line it names, which only a look at the drawn result can confirm.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A diagram</div><div class="view">
+        <svg class="s-svg" viewBox="0 0 220 100" width="100%" role="img"><desc>Two nodes joined by a line, its label above the line.</desc>
+          <rect class="node" x="4" y="56" width="56" height="36" rx="6"/><rect class="node" x="160" y="56" width="56" height="36" rx="6"/>
+          <line class="wire" x1="60" y1="74" x2="160" y2="74"/><text x="110" y="58" text-anchor="middle">approves</text></svg>
+      </div></div><figcaption><span class="tag ok">Lawful</span> CENTRAL-PERCEPTGATE-01.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A diagram</div><div class="view">
+        <svg class="s-svg" viewBox="0 0 220 100" width="100%" role="img"><desc>Two nodes joined by a line, its label drawn across the line.</desc>
+          <rect class="node" x="4" y="56" width="56" height="36" rx="6"/><rect class="node" x="160" y="56" width="56" height="36" rx="6"/>
+          <line class="wire" x1="60" y1="74" x2="160" y2="74"/><text x="110" y="80" text-anchor="middle">approves</text></svg>
+      </div></div><figcaption><span class="tag bad">Offending</span> Names laid on wires while every test was green.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="x" data-outline="Decisions stay">Decided stays decided</h2>
+    <p>A checkbox takes its culture's colour; no state of a control is left to the platform.</p>
+    <div class="samples">
+      <figure class="sample"><p class="illus">Illustration</p><div class="window"><div class="strip">A form</div><div class="view">
+        <label class="s-check"><input type="checkbox" checked> Include the archived signals</label>
+      </div></div><figcaption><span class="tag ok">Lawful</span> Article VI.</figcaption></figure>
+      <figure class="sample" data-offending><p class="illus">Illustration</p><div class="window"><div class="strip">A form</div><div class="view">
+        <label class="s-check"><input class="x-platform" type="checkbox" checked> Include the archived signals</label>
+      </div></div><figcaption><span class="tag bad">Offending</span> "checkboxes should be in green not blue in this retro mode!"</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>A lawful and an offending sample for each of the thirteen principles</td><td class="status exists">exists</td></tr>
+        <tr><td>The tokens both samples are drawn with, in the site's own stylesheet, in both cultures</td><td class="status exists">exists</td></tr>
+        <tr><td>The UI audit that reads each principle on a painted page</td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to compare a lawful interface with an offending one.</p>
+<pre class="shot">// samples.zayn
+DEFINE SCREEN samples (
+  SATISFIES [COMPARE, UNDERSTAND],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor compares and understands, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check samples.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- shell:footer -->
+<footer class="site">
+  <div class="narrow">
+    <div class="bar">
+      <div class="row">
+        <a href="../LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <p class="fine">Zayn is a <a href="https://mayouni.github.io/stzsite/index.html">Softanza</a> project.</p>
+    <p class="fine">© 2026 Mansour Ayouni · MIT licence</p>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="stz.js?v=e07737fa"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 <title>UI audit — the audit that measures a painted page against Rules 105, 107, 108 and 114–116</title>
 <meta name="description" content="The UI audit measures every rendered text node of an application UI: its computed size and its true contrast against the composited background. The audit is the enforcement tool for Rule 105 (The Legibility Floor) and Rule 107 (Hierarchy Is Not Miniaturization).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e04a6e'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23241d49' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="../site/stz.css?v=0417b108">
+<link rel="stylesheet" href="../site/stz.css?v=99076cdf">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -64,10 +64,10 @@ td.issue { color: #a33422; font-weight: 700; }
     <div class="menu">
         <a class="brand" href="../index.html">Zayn</a>
     <a href="../site/why.html">Why</a>
+    <a href="../site/generate.html">AI &amp; agents</a>
     <a href="../site/how.html">Language</a>
     <a href="../site/rules.html">Law</a>
-    <a href="../site/adopt.html">Adopt</a>
-    <a class="here" aria-current="true" href="../site/audit.html">Demo</a>
+    <a class="here" aria-current="true" href="../site/adopt.html">Adopt</a>
     </div>
     <div class="tools">
       <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -83,11 +83,10 @@ td.issue { color: #a33422; font-weight: 700; }
 </nav>
 <nav class="band" aria-label="Pages of the section">
   <ul>
-    <li><a href="../site/audit.html">Three ways</a></li>
-    <li><a href="../site/tour.html">The tour</a></li>
-    <li><a aria-current="page" href="ui-audit.html">UI audit</a></li>
-    <li><a href="../site/screenshots.html">Screenshots</a></li>
-    <li><a href="zayn/wasm-proof.html">Wasm proof</a></li>
+    <li><a href="../site/adopt.html">Start</a></li>
+    <li><a href="../site/build.html">Programmers</a></li>
+    <li><a href="../site/web.html">Your product</a></li>
+    <li><a aria-current="true" href="../site/audit.html">Tools</a></li>
   </ul>
 </nav>
 </div>
@@ -97,7 +96,7 @@ td.issue { color: #a33422; font-weight: 700; }
 <header class="page">
   <div class="narrow">
     <!-- shell:trail -->
-<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="../site/audit.html">Demo</a><span class="sep">›</span><span class="here-crumb" aria-current="page">UI audit</span></nav>
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="../site/adopt.html">Adopt</a><span class="sep">›</span><a href="../site/audit.html">Tools</a><span class="sep">›</span><span class="here-crumb" aria-current="page">UI audit</span></nav>
 <!-- /shell:trail -->
     <p class="kicker">The tool · Rules 105, 107, 108, 114–116, measured not guessed</p>
     <h1>The UI audit measures what a browser paints on any page you can serve beside it.</h1>
@@ -112,6 +111,20 @@ td.issue { color: #a33422; font-weight: 700; }
   </div>
 </header>
 
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a href="../site/audit.html">Three ways</a></li>
+    <li><a href="../site/tour.html">The tour</a></li>
+    <li><a aria-current="page" href="ui-audit.html">UI audit</a></li>
+    <li><a href="../site/screenshots.html">Screenshots</a></li>
+    <li><a href="zayn/wasm-proof.html">Wasm proof</a></li>
+    <li><a href="../site/conformance.html">Conformance</a></li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
 <section>
   <div class="wrap">
     <h2>The rules that the audit enforces</h2>
@@ -189,6 +202,8 @@ td.issue { color: #a33422; font-weight: 700; }
         <tr><td class="n"></td><td class="where">/site/gotchas/navigation.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/gotchas/navigation.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/gotchas/intelligence.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/gotchas/intelligence.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/vibes.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/vibes.html"></td></tr>
+        <tr><td class="n"></td><td class="where">/site/design.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/design.html"></td></tr>
+        <tr><td class="n"></td><td class="where">/site/samples.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/samples.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/positioning.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/positioning.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/practices.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/practices.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/frameworks.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/frameworks.html"></td></tr>
@@ -227,7 +242,7 @@ td.issue { color: #a33422; font-weight: 700; }
     </div>
     <div class="controls">
       <label class="opt"><input type="checkbox" id="system">
-        <span>System: also read Zayn's design system, checks K01 to K33 of doc/design/DESIGN-SYSTEM.md, at five widths (375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
+        <span>System: also read Zayn's design system, checks K01 to K33 of doc/design/DESIGN-SYSTEM.md, at six widths (320, 375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
     </div>
     <p class="caption">The floor is <b>16px</b> (Rule 105), and this site reads at
     <b>18px</b>. When Strict is unchecked, the audit reports only text that breaks the
@@ -254,6 +269,8 @@ td.issue { color: #a33422; font-weight: 700; }
     protocol forbids them.</p>
   </div>
 </section>
+</main>
+</div>
 
 <!-- shell:footer -->
 <footer class="site">
@@ -709,10 +726,11 @@ function loadAndAudit(entry, strict) {
 /* ==========================================================================
    Zayn's design system, read on the painted page: checks K01 to K33 of doc/design/DESIGN-SYSTEM.md section 7.
    Each check reads EVERY element that has the property it judges, never a list of element kinds; the run repeats at five widths
-   (375, 768, 1085, 1440, 1900 px) in both cultures, and a finding seen more than once is reported once, with where it was seen.
+   (320, 375, 768, 1085, 1440, 1900 px) in both cultures, and a finding seen more than once is reported once, with where it was seen.
    K18 to K21 read the files and live in site-shell; K15 is read here on the stylesheets as well.
    ========================================================================== */
-const SYS_WIDTHS = [375, 768, 1085, 1440, 1900];
+/* 320 px, the narrowest phone in use, added 2026-11-14: the Zayn session found ten pages past a 320 px window that no width here read */
+const SYS_WIDTHS = [320, 375, 768, 1085, 1440, 1900];
 const SYS_CULTURES = [['curator', 'Modern'], ['guardian', 'Retro']];
 const SYS_SIZES = [18, 21, 24, 28, 34];       /* --size-small, -reading, -lead, -section, -title, in px */
 const SYS_HERO_MAX = 41.6;                    /* --size-hero: up to 2.6rem, the front page's hero only */
@@ -871,7 +889,7 @@ async function auditSystem(doc, win, label, width) {
     const r = el.getBoundingClientRect();
     if (p.sides.length && !el.matches(LINE_OK)) add('K07', el, ownText(el) || el.textContent.trim(), 'a ' + (p.sides.length === 4 ? 'box' : p.sides.join('/').toLowerCase() + ' line') + ' around something that is not a table, a field, a drawing, a code block, a sample or a bar [K07 LINE_DRAWS]');
     if (el.tagName === 'HR' && !el.matches('.draws')) add('K07', el, '', 'a rule between blocks: space separates groups [K07 LINE_DRAWS]');
-    if ((p.sides.length === 4 || p.fill) && r.width > 160 && r.width < 0.95 * vw && !el.matches('table, thead, tbody, tr, th, td, input, select, textarea, button, .btn, .tag, nav, nav *, img, svg, canvas, video, iframe, .pane, .pane *, .vibe-pane, .vibe-pane *, .window, .window > .strip')) {
+    if ((p.sides.length === 4 || p.fill) && r.width > 160 && r.width < 0.95 * vw && !el.matches('table, thead, tbody, tr, th, td, input, select, textarea, button, .btn, .tag, nav, nav *, img, svg, canvas, video, iframe, .pane, .pane *, .vibe-pane, .vibe-pane *, .window, .window > .strip, .sketch, .sketch *')) {
       const cs = p.cs, inner = r.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - parseFloat(cs.borderLeftWidth) - parseFloat(cs.borderRightWidth);
       const rg = doc.createRange(); rg.selectNodeContents(el);
       let lo = Infinity, hi = -Infinity;
@@ -955,7 +973,15 @@ async function auditSystem(doc, win, label, width) {
     const d = doc.documentElement, cw = d.clientWidth, over = d.scrollWidth - cw;
     if (over > 1) {
       const past = all.filter(e => { const r = e.getBoundingClientRect(); return r.width > 1 && r.right > cw + 1; });
-      const leaf = past.find(e => !past.some(o => o !== e && e.contains(o)));
+      let leaf = past.find(e => !past.some(o => o !== e && e.contains(o)));
+      /* no element past the edge: a word too long for its line runs out of its box, so the text is read */
+      if (!leaf) {
+        const tw = doc.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+        for (let n = tw.nextNode(); n && !leaf; n = tw.nextNode()) {
+          const rg = doc.createRange(); rg.selectNodeContents(n);
+          for (const b of rg.getClientRects()) if (b.right > cw + 1) { leaf = n.parentElement; break; }
+        }
+      }
       add('K13', leaf || d, leaf ? (ownText(leaf) || leaf.textContent.trim()) : '', 'the page is ' + over + ' px wider than its window, so the whole page scrolls sideways' + (leaf ? ': this element reaches past the edge' : '') + ' [K13 ONE_SCROLL]');
     }
   }
@@ -1143,7 +1169,7 @@ async function auditSystem(doc, win, label, width) {
 
   /* an image is waited for as a reader waits: a lazy one is forced to load, then its own load or error is awaited, six seconds at most */
   const imageReady = im => {
-    if (im.complete && im.naturalWidth) return Promise.resolve();
+    if (im.complete && (im.naturalWidth || im.currentSrc)) return Promise.resolve();   /* loaded, or already broken */
     if (im.loading === 'lazy') im.loading = 'eager';
     return new Promise(r => { im.addEventListener('load', r, { once: true }); im.addEventListener('error', r, { once: true }); setTimeout(r, 6000); });
   };
@@ -1234,7 +1260,9 @@ function loadSystemFrame(entry, width, culture) {
     try { localStorage.setItem('stzzui-vibe', culture); } catch (e) { /* storage may be blocked */ }
     const frame = document.createElement('iframe');
     frame.style.cssText = 'width:' + width + 'px;height:' + (width <= 760 ? 812 : 900) + 'px;position:fixed;left:-99999px;top:0;border:0';
-    frame.src = path + (path.includes('?') ? '&' : '?') + 'audit=' + Date.now();
+    /* the frame is attached before the page is addressed, so the page loads at the width it is measured at, as a reader's window has its
+       width from the start: a frame addressed before it had a width chose its photograph for a width of 0, and the request ended broken
+       (found by K32 and K33 on the front page, 2026-11-15) */
     let done = false;
     const finish = () => {
       if (done) return; done = true;
@@ -1249,8 +1277,11 @@ function loadSystemFrame(entry, width, culture) {
         frame.remove(); resolve(out);
       }, 700);
     };
-    frame.onload = finish; setTimeout(finish, 6000);
     document.body.appendChild(frame);
+    /* the blank page an attached frame holds before its address is not the page */
+    frame.onload = () => { try { if (frame.contentWindow.location.href === 'about:blank') return; } catch (e) { /* another origin: the page itself */ } finish(); };
+    setTimeout(finish, 6000);
+    frame.src = path + (path.includes('?') ? '&' : '?') + 'audit=' + Date.now();
   });
 }
 /* a finding seen at several widths or in both cultures is one finding, with where it was seen */
