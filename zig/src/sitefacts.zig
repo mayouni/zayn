@@ -425,7 +425,7 @@ fn ahead(t: []const u8, at: usize, units: usize) usize {
 fn unchecked(a: Allocator, html0: []const u8) !List {
     var html = try re.sub(a, html0, "<a [^>]*#rule-\\d+[^>]*>\\d+<\\/a>", "g", " ");
     // a table drawn from its data by tools/site-grid.js is checked there, against the files that hold its figures
-    html = try re.sub(a, html, "<!-- (grid|channels|ideas|verbs):table -->[\\s\\S]*?<!-- \\/\\1:table -->", "g", " ");
+    html = try re.sub(a, html, "<!-- (grid|channels|ideas|verbs|release):table -->[\\s\\S]*?<!-- \\/\\1:table -->", "g", " ");
     // a figure inside a mock interface is a specimen, not a claim; it says so
     html = try re.sub(a, html, "<([a-z0-9]+)\\b[^>]*\\sdata-specimen\\b[^>]*>[^<]*<\\/\\1>", "g", " ");
     var t = try lf(a, html);

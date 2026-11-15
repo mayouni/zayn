@@ -93,7 +93,8 @@ const pages = [_]Page{
     // the landing is one page, so the menu never points a level deeper than it shows (Rule 116); the command reference and the
     // recipes from any language stand under Programmers
     .{ .file = "site/adopt.html", .section = "use", .label = "Start", .rail = true, .term = "start" },
-    .{ .file = "site/designers.html", .section = "use", .label = "Designers", .rail = true, .term = "designer" },
+    .{ .file = "site/designers.html", .section = "use", .family = "Designers", .label = "Overview", .rail = true, .term = "designer" },
+    .{ .file = "site/testbench.html", .section = "use", .label = "Testbench", .parent = "site/designers.html", .rail = true, .term = "testbench" },
     .{ .file = "site/build.html", .section = "use", .family = "Programmers", .label = "Build", .rail = true, .term = "build" },
     .{ .file = "site/commands.html", .section = "use", .label = "Command reference", .parent = "site/build.html", .rail = true, .term = "command" },
     .{ .file = "site/calling.html", .section = "use", .label = "From any language", .parent = "site/build.html", .rail = true, .term = "any language" },
@@ -1251,7 +1252,7 @@ fn checkOwed(a: Allocator, notes: *List) !void {
 // ---- the rethought site (ZAYN-SITE-RETHINK-01): FRONT_PLATE, TITLE6 and SKETCH_LABEL (checkFront, checkTitles and checkSketches in
 // tools/site-shell.js, finding for finding) ------------------------------------------------------------------------------
 
-const rethought = [_][]const u8{ "index.html", "site/design.html", "site/samples.html", "site/adopt.html", "site/designers.html", "site/commands.html", "site/calling.html" };
+const rethought = [_][]const u8{ "index.html", "site/design.html", "site/samples.html", "site/adopt.html", "site/designers.html", "site/commands.html", "site/calling.html", "site/testbench.html" };
 const title_max = 6;
 const TitleAllowed = struct { file: []const u8, words: []const u8, reason: []const u8 };
 const title_allowed = [_]TitleAllowed{

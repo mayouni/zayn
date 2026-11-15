@@ -717,6 +717,13 @@ table.pairs thead th { background: var(--tint); font-weight: var(--weight-strong
 table.pairs tbody th { font-weight: var(--weight-strong); white-space: nowrap; }
 table.pairs td { overflow-wrap: anywhere; }
 table.pairs.verbs td { font-family: var(--mono); }
+/* on a phone a pair table gives up some padding and its row heads may wrap, so it fits the window (K13) */
+@media (max-width: 640px) {
+  table.pairs th, table.pairs td { padding: .35rem .4rem; }
+  table.pairs tbody th { white-space: normal; }
+  /* a file keeps its words whole: its name breaks only after a hyphen (<wbr>) */
+  table.pairs.release td { overflow-wrap: normal; }
+}
 [data-vibe="guardian"] table.pairs.verbs td { font-family: var(--font); }
 table.mini { border-collapse: collapse; margin: 0 0 .7rem; font-variant-numeric: tabular-nums; background: var(--surface); }
 table.mini th, table.mini td { border: var(--hairline) solid var(--line); padding: .3rem .6rem; text-align: center; font-size: var(--size-small); }
@@ -899,6 +906,39 @@ form.try button[disabled] { opacity: .6; cursor: wait; }
 #try-result .try-verdict.good { color: var(--success); }
 #try-result ul { margin: 0; padding-left: 1.2rem; }
 #try-result li { margin: 0 0 .6rem; overflow-wrap: anywhere; }
+/* ---- the testbench (site/testbench.html, the Designers page): a simple IDE, a bar of controls over two panes, the code on the left
+   and the verifier's report on the right, stacked under 900 px (the Principal, 2026-11-15: "add a testbench of the languuage in the
+   browser, in the form of well designed simple IDE with code to left and output to right"). The code grows with its lines and the
+   report with its findings, so neither scrolls inside the page (K13). ---- */
+form.try.ide { margin: var(--space-2) 0; border: var(--hairline) solid var(--edge); border-radius: var(--radius); background: var(--surface); }
+form.try.ide .ide-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1.2rem; margin: 0; padding: .6rem .9rem;
+  background: var(--tint); border-bottom: var(--hairline) solid var(--line); border-radius: var(--radius) var(--radius) 0 0; }
+form.try.ide .ide-bar label { display: inline; margin: 0 .4rem 0 0; font-size: var(--size-small); }
+form.try.ide .ide-bar > span { display: inline-flex; align-items: center; min-width: 0; max-width: 100%; }
+form.try.ide .ide-bar select { min-width: 0; max-width: 100%; }
+.ide-panes { display: grid; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 900px) {
+  .ide-panes { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .ide-out { border-left: var(--hairline) solid var(--line); }
+}
+@media (max-width: 899px) { .ide-out { border-top: var(--hairline) solid var(--line); } }
+.ide-pane { min-width: 0; display: flex; flex-direction: column; }
+.ide-head { display: flex; justify-content: space-between; gap: 1rem; padding: .45rem .9rem; font: var(--weight-strong) var(--size-small) var(--font);
+  color: var(--ink-2); border-bottom: var(--hairline) solid var(--line); }
+form.try.ide .ide-head label { display: inline; margin: 0; font-weight: inherit; }
+.ide-edit { display: flex; align-items: stretch; flex: 1; }
+.ide-edit textarea { flex: 1; min-width: 0; }
+.ide-gutter { flex: none; padding: .9rem .6rem .9rem .9rem; font: var(--size-small)/1.55 var(--mono); color: var(--ink-2); text-align: right; white-space: pre;
+  user-select: none; border-right: var(--hairline) solid var(--line); }
+form.try.ide textarea { border: 0; border-radius: 0; min-height: 15rem; resize: none; overflow: hidden; padding: .9rem 1rem; white-space: pre-wrap; background: transparent; }
+form.try.ide textarea:focus-visible { outline: var(--ring) solid var(--edge); outline-offset: -2px; }
+form.try.ide #try-result { margin: 0; padding: .9rem 1rem; }
+.ide-report { margin: 0; font: var(--size-small)/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink); }
+.ide-report .bad { color: var(--danger); } .ide-report .good { color: var(--success); } .ide-report .dim { color: var(--ink-2); }
+.ide-report a.ide-line { color: var(--link); }
+[data-vibe="guardian"] .ide-gutter, [data-vibe="guardian"] .ide-report { font-family: var(--font); }
+/* on a phone the code's lines may wrap, so the gutter's numbers would stand beside the wrong line: the gutter steps aside */
+@media (max-width: 640px) { .ide-gutter { display: none; } }
 /* ---- the sample frame: a live UI sample in a window, the lawful one beside the offending one, each citing its rule (DESIGN-SYSTEM.md
    section 6.4; M3 item 3). The frame draws a window, so its edge and its title strip are lines that draw something (K07). ---- */
 .samples { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); margin: var(--space-3) 0; max-width: 60rem; }

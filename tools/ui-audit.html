@@ -6,7 +6,7 @@
 <title>UI audit — the audit that measures a painted page against Rules 105, 107, 108 and 114–116</title>
 <meta name="description" content="The UI audit measures every rendered text node of an application UI: its computed size and its true contrast against the composited background. The audit is the enforcement tool for Rule 105 (The Legibility Floor) and Rule 107 (Hierarchy Is Not Miniaturization).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e04a6e'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23241d49' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="../site/stz.css?v=2fd791ce">
+<link rel="stylesheet" href="../site/stz.css?v=f3e608c3">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -215,6 +215,7 @@ td.issue { color: #a33422; font-weight: 700; }
         <tr><td class="n"></td><td class="where">/site/designers.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/designers.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/commands.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/commands.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/calling.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/calling.html"></td></tr>
+        <tr><td class="n"></td><td class="where">/site/testbench.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/testbench.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/ports.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/ports.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/softanza.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/softanza.html"></td></tr>
         <tr><td class="n"></td><td class="where">/site/stack.html</td><td class="act"><input type="checkbox" class="take" checked aria-label="Audit /site/stack.html"></td></tr>
@@ -290,7 +291,7 @@ td.issue { color: #a33422; font-weight: 700; }
 </footer>
 <!-- /shell:footer -->
 
-<script src="../site/stz.js?v=7c57cb1d"></script>
+<script src="../site/stz.js?v=212bbe63"></script>
 <script>
 'use strict';
 /* ==========================================================================
@@ -884,7 +885,9 @@ async function auditSystem(doc, win, label, width) {
   }
 
   /* K04 BOX_FILL and K07 LINE_DRAWS: what a box or a line claims */
-  const LINE_OK = 'table, thead, tbody, tfoot, tr, th, td, input, select, textarea, button, .btn, .tag, .status, pre, code, kbd, figure, svg, img, nav, nav *, [role="button"], hr.draws, .window, .window *, .pane, .pane *, .vibe-pane, .vibe-pane *, figure.plate *, figure.loop *, .sketch, .sketch *';
+  /* the testbench (form.ide, site/testbench.html) draws a tool's window: its frame, its bar of controls and its two panes are the
+     drawing of an editor beside its output, as a sample's window is (the Principal, 2026-11-15: "well designed simple IDE") */
+  const LINE_OK = 'table, thead, tbody, tfoot, tr, th, td, input, select, textarea, button, .btn, .tag, .status, pre, code, kbd, figure, svg, img, nav, nav *, [role="button"], hr.draws, .window, .window *, .pane, .pane *, .vibe-pane, .vibe-pane *, figure.plate *, figure.loop *, .sketch, .sketch *, form.ide, form.ide *';
   /* a plate, a loop and a sketch are figures that draw their own grid and their screens' outlines (REVIEW.md section 8, ruled with
      ZAYN-SITE-RETHINK-01: "a figure draws its own grid"), so their lines draw something */
   for (const el of all) {

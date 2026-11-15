@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-vibe="curator">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testbench — the Zayn language in the browser, code on the left and the verifier's report on the right</title>
+<meta name="description" content="A testbench of the Zayn language in the browser: write a declaration on the left, and the verifier compiled to WebAssembly answers on the right as you type, with nothing installed.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stz.css?v=f3e608c3">
+<!-- shell:vibe -->
+<script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
+<!-- /shell:vibe -->
+</head>
+<body data-archetype="article">
+
+<!-- shell:menu -->
+<div class="bars">
+<nav class="site" aria-label="Main menu">
+  <div class="wrap">
+    <div class="menu">
+        <a class="brand" href="../index.html">Zayn</a>
+    <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
+    <a href="how.html">Language</a>
+    <a href="rules.html">Law</a>
+    <a class="here" aria-current="true" href="adopt.html">Adopt</a>
+    </div>
+    <div class="tools">
+      <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <div class="vibe-picker">
+        <label for="vibe-select">Theme</label>
+        <select id="vibe-select">
+          <option value="curator">Modern</option>
+          <option value="guardian">Retro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="band" aria-label="Pages of the section">
+  <ul>
+    <li><a href="adopt.html">Start</a></li>
+    <li><a aria-current="true" href="designers.html">Designers</a></li>
+    <li><a href="build.html">Programmers</a></li>
+    <li><a href="web.html">Your product</a></li>
+    <li><a href="audit.html">Tools</a></li>
+  </ul>
+</nav>
+</div>
+<!-- /shell:menu -->
+
+<!-- Adopt > Designers > Testbench (the Principal, 2026-11-15: "add a testbench of the languuage in the browser, in the form of well designed
+     simple IDE with code to left and output to right"). The verifier is the wasm built from the zayn command's code (try.js, zayn-wasm.js);
+     each example is a declaration whose report the zayn command gives the same. -->
+<header class="page">
+  <div class="narrow">
+    <!-- shell:trail -->
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><a href="designers.html">Designers</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Testbench</span></nav>
+<!-- /shell:trail -->
+    <h1>The Zayn testbench</h1>
+    <p class="sub">The testbench runs the language in this page: write a declaration on the left, and the verifier answers on the right as you type.</p>
+  </div>
+</header>
+
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a href="designers.html">Overview</a></li>
+    <li><a aria-current="page" href="testbench.html">Testbench</a>
+      <ul class="sub">
+        <li><a href="#bench">Code and report</a></li>
+        <li><a href="#report">The report</a></li>
+        <li><a href="#what-exists">What exists today</a></li>
+        <li><a href="#this-page">This page, declared</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
+
+<section>
+  <div class="narrow">
+    <h2 id="bench" data-outline="Code and report">Code, and the verifier's answer</h2>
+    <form class="try ide" id="try-form" data-wasm="zayn.wasm?v=070f1626">
+      <div class="ide-bar">
+        <span><label for="try-example">Example</label>
+        <select id="try-example">
+          <option data-file="payments.zayn" data-src="DEFINE INTENT_FLOW approve_payment (\n  SATISFIES [SELECT, CONFIRM, ACT]\n)" selected>A payment with no way back</option>
+          <option data-file="lawful.zayn" data-src="DEFINE INTENT_FLOW approve_payment (\n  SATISFIES [SELECT, CONFIRM, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL]\n)">The same payment, lawful</option>
+          <option data-file="account.zayn" data-src="DEFINE WIZARD account_opening (\n  SATISFIES [UNDERSTAND, CONFIRM, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL],\n  STEPS [identity, funding, review],\n  ACTOR applicant\n)">A wizard with no way out</option>
+          <option data-file="order.zayn" data-src="DEFINE VIBE order_voice (\n  SURFACE_AS voice\n)\n\nDEFINE INTENT_FLOW order_by_voice (\n  SATISFIES [SELECT, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL, EXIT],\n  ACTOR customer\n)">An order by voice: choosing is buying</option>
+          <option data-file="reader.zayn" data-src="DEFINE SCREEN invoice_reader (\n  SATISFIES [READ, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL, EXIT],\n  ACTOR clerk\n)">A screen for reading that acts</option>
+          <option data-file="invoices.zayn" data-src="DEFINE SCREEN invoices (\n  SATISFIES [DISCOVER, FILTER, COMPARE],\n  ALWAYS_REACHABLE [EXIT]\n)">A screen to find and compare</option>
+        </select></span>
+        <span><label for="try-level">Level</label>
+        <select id="try-level">
+          <option value="1">1</option>
+          <option value="2" selected>2, the default</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select></span>
+        <button type="submit" class="btn primary" disabled>Check</button>
+      </div>
+      <div class="ide-panes">
+        <div class="ide-pane ide-code">
+          <div class="ide-head"><label for="try-source" class="ide-file">payments.zayn</label><span>the code</span></div>
+          <div class="ide-edit">
+            <div class="ide-gutter" id="try-lines" aria-hidden="true">1
+2
+3</div>
+            <textarea id="try-source" spellcheck="false" autocapitalize="off" autocomplete="off">DEFINE INTENT_FLOW approve_payment (
+  SATISFIES [SELECT, CONFIRM, ACT]
+)</textarea>
+          </div>
+        </div>
+        <div class="ide-pane ide-out">
+          <div class="ide-head"><span>The verifier's report</span><span>in this page</span></div>
+          <div id="try-result" role="status" aria-live="polite"><p class="try-wait">The verifier is loading.</p></div>
+        </div>
+      </div>
+    </form>
+    <p>Each change is checked as you type, and Ctrl+Enter checks at once. A finding's place, such as <code>payments.zayn:2</code>, selects that line in the code. Nothing you type leaves the page.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="report" data-outline="The report">How the report reads</h2>
+    <table class="pairs">
+      <thead><tr><th scope="col">In the report</th><th scope="col">What it says</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">the place</th><td>The file and the line the refusal is read at.</td></tr>
+        <tr><th scope="row">error or warning</th><td>An error refuses the declaration; a warning names what to look at.</td></tr>
+        <tr><th scope="row">the code</th><td>The violation's name, the same in the zayn command and in its JSON report.</td></tr>
+        <tr><th scope="row">cites</th><td>What the refusal rests on: the rule, then the article and the right it protects.</td></tr>
+        <tr><th scope="row">clean</th><td>Nothing to refuse at the level chosen.</td></tr>
+      </tbody>
+    </table>
+    <p><a href="commands.html">The same report from the zayn command, field by field ↗</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>The verifier in this page, compiled to WebAssembly from the same code as the zayn command</td><td class="status exists">exists</td></tr>
+        <tr><td>Checking as you type, at the four levels</td><td class="status exists">exists</td></tr>
+        <tr><td>The examples, each a declaration the zayn command reports the same way</td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to select an example, edit it and compare the answers.</p>
+<pre class="shot">// testbench.zayn
+DEFINE SCREEN testbench (
+  SATISFIES [SELECT, COMPARE, UNDERSTAND],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor selects, compares and understands, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check testbench.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- shell:footer -->
+<footer class="site">
+  <div class="narrow">
+    <div class="bar">
+      <div class="row">
+        <a href="../LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <p class="fine">Zayn is a <a href="https://mayouni.github.io/stzsite/index.html">Softanza</a> project.</p>
+    <p class="fine">© 2026 Mansour Ayouni · MIT licence</p>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="stz.js?v=212bbe63"></script>
+<script src="zayn-wasm.js?v=30454a74"></script>
+<script src="try.js?v=489fc0d1"></script>
+</body>
+</html>

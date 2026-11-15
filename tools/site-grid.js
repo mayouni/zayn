@@ -12,6 +12,7 @@
      site/media.html  <!-- channels:table -->  the ten channels and their properties: conformance/media.json
      index.html       <!-- ideas:table -->     the front page's plate of intent, the channels and the grid: the same two sources
      site/designers.html <!-- verbs:table -->  the verbs by activity, the designers' grammar: coverage-count.js
+     site/adopt.html, site/audit.html <!-- release:table -->  the files of the release: build.zig.zon and build.zig
    The check is run by tools/site-facts.js, so one command fails when either page drifts from its data.
    ========================================================================== */
 const fs = require('fs');
@@ -151,11 +152,45 @@ function verbsFigure() {
   return `<table class="pairs verbs">\n  <thead><tr><th scope="col">Activity</th><th scope="col">Its verbs</th></tr></thead>\n  <tbody>\n${rows}\n  </tbody>\n</table>`;
 }
 
+/* The files of the release the site offers (the Principal, 2026-11-15: "you must prioritse the use of zayn through a dedicated zayn CLI
+   executable raeady to be donwalded not to build", and "this information should also be displayed in a grid!"): a row per file, drawn
+   from the version in build.zig.zon and the targets `zig build release` publishes (release_targets in build.zig), so the table names
+   the files that build writes and never an older name. */
+const RELEASE_SYSTEMS = {
+  /* x86-64 carries a non-breaking hyphen, so the name never breaks in two on a phone */
+  'x86_64-windows': ['Windows', 'x86‑64'], 'x86_64-linux': ['Linux', 'x86‑64'],
+  'aarch64-linux': ['Linux', 'Arm (aarch64)'], 'x86_64-macos': ['macOS', 'Intel'], 'aarch64-macos': ['macOS', 'Apple silicon']
+};
+function releaseTable() {
+  const version = /\.version = "([^"]+)"/.exec(fs.readFileSync(R('build.zig.zon'), 'utf8'))[1];
+  const b = fs.readFileSync(R('build.zig'), 'utf8').replace(/\r\n/g, '\n');
+  const block = b.slice(b.indexOf('const release_targets'), b.indexOf('};', b.indexOf('const release_targets')));
+  const targets = [...block.matchAll(/\.name = "([^"]+)"/g)].map(m => m[1]);
+  const base = `https://github.com/mayouni/zayn/releases/download/v${version}/`;
+  /* the system and its processor share a cell, and a file's name may break only after a hyphen, so the table fits a phone */
+  const row = (sys, cpu, file) => `    <tr><th scope="row">${esc(sys)}, ${esc(cpu)}</th><td><a href="${base}${file}"><code>${esc(file).replace(/-/g, '-<wbr>')}</code></a></td></tr>`;
+  const rows = targets.map(t => {
+    const [sys, cpu] = RELEASE_SYSTEMS[t] || [t, ''];
+    return row(sys, cpu, `zayn-${version}-${t}${t.endsWith('-windows') ? '.exe' : ''}`);
+  });
+  rows.push(row('A browser', 'WebAssembly', `zayn-${version}.wasm`));
+  return `<table class="pairs release">
+  <caption>Zayn ${esc(version)}, as published on <a href="https://github.com/mayouni/zayn/releases/tag/v${version}">its release page</a>.</caption>
+  <thead><tr><th scope="col">System</th><th scope="col">The file</th></tr></thead>
+  <tbody>
+${rows.join('\n')}
+  </tbody>
+</table>
+<p>Each file's SHA-256 hash is in <a href="${base}SHA256SUMS"><code>SHA256SUMS</code></a> beside it, and <a href="https://github.com/mayouni/zayn/blob/v${version}/doc/releases/v${version}.md">the release notes</a> say how to check one.</p>`;
+}
+
 const BLOCKS = [
   { file: 'site/grid.html', name: 'grid:table', make: gridTable },
   { file: 'site/media.html', name: 'channels:table', make: channelsTable },
   { file: 'index.html', name: 'ideas:table', make: ideasFigure },
-  { file: 'site/designers.html', name: 'verbs:table', make: verbsFigure }
+  { file: 'site/designers.html', name: 'verbs:table', make: verbsFigure },
+  { file: 'site/adopt.html', name: 'release:table', make: releaseTable },
+  { file: 'site/audit.html', name: 'release:table', make: releaseTable }
 ];
 
 function main(argv) {
@@ -180,4 +215,4 @@ function main(argv) {
   return 0;
 }
 if (require.main === module) process.exitCode = main(process.argv.slice(2));
-module.exports = { gridTable, channelsTable, ideasFigure, verbsFigure };
+module.exports = { gridTable, channelsTable, ideasFigure, verbsFigure, releaseTable };

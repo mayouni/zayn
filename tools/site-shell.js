@@ -102,7 +102,8 @@ const PAGES = [
   /* Adopt: Start, Designers, Programmers, Your product, Tools (step 3: the three ways in). The landing is one page, so the menu never
      points a level deeper than it shows (Rule 116); the command reference and the recipes from any language stand under Programmers */
   { file: 'site/adopt.html', section: 'use', label: 'Start', rail: true, term: 'start' },
-  { file: 'site/designers.html', section: 'use', label: 'Designers', rail: true, term: 'designer' },
+  { file: 'site/designers.html', section: 'use', family: 'Designers', label: 'Overview', rail: true, term: 'designer' },
+  { file: 'site/testbench.html', section: 'use', label: 'Testbench', parent: 'site/designers.html', rail: true, term: 'testbench' },
   { file: 'site/build.html', section: 'use', family: 'Programmers', label: 'Build', rail: true, term: 'build' },
   { file: 'site/commands.html', section: 'use', label: 'Command reference', parent: 'site/build.html', rail: true, term: 'command' },
   { file: 'site/calling.html', section: 'use', label: 'From any language', parent: 'site/build.html', rail: true, term: 'any language' },
@@ -829,7 +830,7 @@ function checkOwed(notes) {
    them all in and retires the list. TITLE_ALLOWED excuses a title by its words, each entry with its reason; an entry that matches no title
    fails. SKETCH_LABEL: a sketch of a screen (an element of class sketch, or a figure.sample) opens on its label, a <p class="illus">
    beginning "Illustration", because Zayn checks a declaration and does not draw the screen (ruling 6). */
-const RETHOUGHT = ['index.html', 'site/design.html', 'site/samples.html', 'site/adopt.html', 'site/designers.html', 'site/commands.html', 'site/calling.html'];
+const RETHOUGHT = ['index.html', 'site/design.html', 'site/samples.html', 'site/adopt.html', 'site/designers.html', 'site/commands.html', 'site/calling.html', 'site/testbench.html'];
 const TITLE_MAX = 6;
 const TITLE_ALLOWED = [
   { file: 'index.html', words: 'Declare what a user is doing. The law refuses the rest.',

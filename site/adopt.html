@@ -6,7 +6,7 @@
 <title>Start — the zayn command, a first check and a first refusal</title>
 <meta name="description" content="Start with one file: build the zayn command, check a first declaration, read its first refusal, and make a build fail on it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=2fd791ce">
+<link rel="stylesheet" href="stz.css?v=f3e608c3">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -57,7 +57,7 @@
 <nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Start</span></nav>
 <!-- /shell:trail -->
     <h1>Start with Zayn</h1>
-    <p class="sub">Start with one file: the zayn command checks a declaration, names what the law refuses in it, and fails a build on a refusal.</p>
+    <p class="sub">Start with one file to download: the zayn command checks a declaration, names what the law refuses in it, and fails a build on a refusal.</p>
   </div>
 </header>
 
@@ -66,11 +66,12 @@
 <nav class="list3 sections" aria-label="Sections of this page">
   <p class="outline-title">On this page</p>
   <ul>
-    <li><a href="#the-command">The command</a></li>
+    <li><a href="#download">Download</a></li>
     <li><a href="#first-check">A first check</a></li>
     <li><a href="#first-refusal">A first refusal</a></li>
     <li><a href="#fail-the-build">Fail the build</a></li>
     <li><a href="#next">Next, by craft</a></li>
+    <li><a href="#build-it">Build it</a></li>
     <li><a href="#what-exists">What exists today</a></li>
     <li><a href="#this-page">This page, declared</a></li>
   </ul>
@@ -80,12 +81,27 @@
 
 <section>
   <div class="narrow">
-    <h2 id="the-command" data-outline="The command">One file, built from this repository</h2>
-    <p>The zayn command is one file with nothing to install beside it. The repository builds it for Windows, Linux and macOS, and for a browser as WebAssembly, with the compiler <code>zig 0.15.2</code>.</p>
-<pre class="code">cd zig
-zig build release</pre>
-    <p class="gloss"><b>In words:</b> the release build writes one file for each system into <code>zig-out/release/</code>, and the same build on two machines gives the same files.</p>
-    <p>A designer can start with nothing installed: <a href="build.html">the verifier also runs in the browser ↗</a>.</p>
+    <h2 id="download" data-outline="Download">Download the zayn command</h2>
+    <p>The zayn command is one file with nothing to install beside it. Download the file for your system and save it as <code>zayn</code>, or <code>zayn.exe</code> on Windows.</p>
+<!-- release:table -->
+<table class="pairs release">
+  <caption>Zayn 0.2.0, as published on <a href="https://github.com/mayouni/zayn/releases/tag/v0.2.0">its release page</a>.</caption>
+  <thead><tr><th scope="col">System</th><th scope="col">The file</th></tr></thead>
+  <tbody>
+    <tr><th scope="row">Windows, x86‑64</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0-x86_64-windows.exe"><code>zayn-<wbr>0.2.0-<wbr>x86_64-<wbr>windows.exe</code></a></td></tr>
+    <tr><th scope="row">Linux, x86‑64</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0-x86_64-linux"><code>zayn-<wbr>0.2.0-<wbr>x86_64-<wbr>linux</code></a></td></tr>
+    <tr><th scope="row">Linux, Arm (aarch64)</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0-aarch64-linux"><code>zayn-<wbr>0.2.0-<wbr>aarch64-<wbr>linux</code></a></td></tr>
+    <tr><th scope="row">macOS, Intel</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0-x86_64-macos"><code>zayn-<wbr>0.2.0-<wbr>x86_64-<wbr>macos</code></a></td></tr>
+    <tr><th scope="row">macOS, Apple silicon</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0-aarch64-macos"><code>zayn-<wbr>0.2.0-<wbr>aarch64-<wbr>macos</code></a></td></tr>
+    <tr><th scope="row">A browser, WebAssembly</th><td><a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/zayn-0.2.0.wasm"><code>zayn-<wbr>0.2.0.wasm</code></a></td></tr>
+  </tbody>
+</table>
+<p>Each file's SHA-256 hash is in <a href="https://github.com/mayouni/zayn/releases/download/v0.2.0/SHA256SUMS"><code>SHA256SUMS</code></a> beside it, and <a href="https://github.com/mayouni/zayn/blob/v0.2.0/doc/releases/v0.2.0.md">the release notes</a> say how to check one.</p>
+<!-- /release:table -->
+<pre class="code">chmod +x zayn
+./zayn --version</pre>
+    <p class="gloss"><b>In words:</b> on Linux and macOS the file is marked as a program, then asked its version, and it answers <code>zayn 0.2.0</code>; on Windows, <code>zayn.exe --version</code> answers the same.</p>
+    <p>A designer can start with nothing installed: <a href="testbench.html">the testbench runs the language in the browser ↗</a>.</p>
   </div>
 </section>
 
@@ -139,11 +155,23 @@ payments.zayn:2  <span class="bad">error  MISSING_CANCEL</span>  approve_payment
 <section>
   <div class="narrow">
     <h2 id="next" data-outline="Next, by craft">Next, by what you do</h2>
-    <ul>
-      <li><a href="designers.html">You design interfaces: declare in the browser and read the grammar ↗</a></li>
-      <li><a href="commands.html">You write software: every command, option and exit code ↗</a></li>
-      <li><a href="web.html">You have a product: a web application, a mobile app, a screen-free interface ↗</a></li>
-    </ul>
+    <table class="pairs">
+      <thead><tr><th scope="col">You</th><th scope="col">Where to go next</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">design interfaces</th><td><a href="designers.html">Declare in the browser and read the grammar ↗</a></td></tr>
+        <tr><th scope="row">write software</th><td><a href="commands.html">Every command, option and exit code ↗</a></td></tr>
+        <tr><th scope="row">have a product</th><td><a href="web.html">A web application, a mobile app, a screen-free interface ↗</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="build-it" data-outline="Build it">Build it from this repository</h2>
+    <p>The same files come from the repository itself, with the compiler <code>zig 0.15.2</code>.</p>
+<pre class="code">zig build release</pre>
+    <p class="gloss"><b>In words:</b> run at the repository's root, the release build writes one file for each system into <code>zig-out/release/</code>, and the same build on two machines gives the same files.</p>
   </div>
 </section>
 
@@ -154,7 +182,8 @@ payments.zayn:2  <span class="bad">error  MISSING_CANCEL</span>  approve_payment
     <table class="board">
       <thead><tr><th>The part</th><th>Its state</th></tr></thead>
       <tbody>
-        <tr><td>The zayn command, built from this repository for Windows, Linux and macOS</td><td class="status exists">exists</td></tr>
+        <tr><td>The zayn command, one file to download for Windows, Linux and macOS</td><td class="status exists">exists</td></tr>
+        <tr><td>The testbench, the language in the browser with nothing installed</td><td class="status exists">exists</td></tr>
         <tr><td>The verifier in the browser, compiled to WebAssembly from the same code</td><td class="status exists">exists</td></tr>
         <tr><td>Exit codes a build reads: 0 lawful, 1 refused, 2 a usage or read error</td><td class="status exists">exists</td></tr>
       </tbody>
@@ -194,6 +223,6 @@ DEFINE SCREEN start (
 </footer>
 <!-- /shell:footer -->
 
-<script src="stz.js?v=7c57cb1d"></script>
+<script src="stz.js?v=212bbe63"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 //!   zayn serve [--root DIR | --app DIR] [--port N]     the site, the Reader and the audit, or another site beside the audit
 //!   zayn site facts|shell|grid [--write]               this site's own build checks, run from the repository's root
 //!   zayn version                                       the law, the language, the contract, the build
-//!   zayn --version                                     the release's version: zayn 0.1.0
+//!   zayn --version                                     the release's version: zayn 0.2.0
 //!
 //! Stage S1 carries `check` and `version`; stage S2 adds `conformance`, `pack`, `cross-medium` and `audit-facts`; stage S3
 //! builds the same core for a browser (wasm.zig, the report in report.zig); stage S4 adds serve; stage S5 adds site,

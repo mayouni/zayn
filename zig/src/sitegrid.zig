@@ -5,6 +5,8 @@
 //!   site/grid.html   <!-- grid:table -->      the coverage grid: a row per channel, a column per activity
 //!   site/media.html  <!-- channels:table -->  the ten channels and their properties, from conformance/media.json
 //!   index.html       <!-- ideas:table -->     the front page's plate of intent, the channels and the grid
+//!   site/designers.html <!-- verbs:table -->  the verbs by activity
+//!   site/adopt.html, site/audit.html <!-- release:table -->  the files of the release, from build.zig.zon and build.zig
 //!
 //! Like `zayn pack`, it reads the tree it is run in (the repository's root): the placement file, the law, media.json,
 //! violations.json, the manifest and the fixtures, never the copies built into the binary. The counts are those of
@@ -381,12 +383,64 @@ fn verbsFigure(a: Allocator) anyerror![]const u8 {
     return w.written();
 }
 
+/// The files of the release the site offers (releaseTable in tools/site-grid.js, byte for byte): the version in build.zig.zon and the
+/// targets of release_targets in build.zig, a row per file and one for the browser's module.
+const ReleaseSystem = struct { target: []const u8, sys: []const u8, cpu: []const u8 };
+const release_systems = [_]ReleaseSystem{
+    // x86-64 carries a non-breaking hyphen (U+2011), so the name never breaks in two on a phone
+    .{ .target = "x86_64-windows", .sys = "Windows", .cpu = "x86\u{2011}64" },
+    .{ .target = "x86_64-linux", .sys = "Linux", .cpu = "x86\u{2011}64" },
+    .{ .target = "aarch64-linux", .sys = "Linux", .cpu = "Arm (aarch64)" },
+    .{ .target = "x86_64-macos", .sys = "macOS", .cpu = "Intel" },
+    .{ .target = "aarch64-macos", .sys = "macOS", .cpu = "Apple silicon" },
+};
+fn quotedAfter(text: []const u8, from: usize, key: []const u8) ?struct { value: []const u8, end: usize } {
+    const k = std.mem.indexOfPos(u8, text, from, key) orelse return null;
+    const s = k + key.len;
+    const e = std.mem.indexOfScalarPos(u8, text, s, '"') orelse return null;
+    return .{ .value = text[s..e], .end = e + 1 };
+}
+fn releaseRow(a: Allocator, o: *std.Io.Writer, base: []const u8, sys: []const u8, cpu: []const u8, file: []const u8) !void {
+    // the system and its processor share a cell, and a file's name may break only after a hyphen, so the table fits a phone
+    const shown = try std.mem.replaceOwned(u8, a, try esc(a, file), "-", "-<wbr>");
+    try o.writeAll(try js.fmt(a, "    <tr><th scope=\"row\">{s}, {s}</th><td><a href=\"{s}{s}\"><code>{s}</code></a></td></tr>", .{ try esc(a, sys), try esc(a, cpu), base, file, shown }));
+}
+fn releaseTable(a: Allocator) anyerror![]const u8 {
+    const zon = try readFile(a, "build.zig.zon");
+    const version = (quotedAfter(zon, 0, ".version = \"") orelse return error.NoVersion).value;
+    const b = try std.mem.replaceOwned(u8, a, try readFile(a, "build.zig"), "\r\n", "\n");
+    const start = std.mem.indexOf(u8, b, "const release_targets") orelse return error.NoTargets;
+    const stop = std.mem.indexOfPos(u8, b, start, "};") orelse return error.NoTargets;
+    const block = b[start..stop];
+    const base = try js.fmt(a, "https://github.com/mayouni/zayn/releases/download/v{s}/", .{version});
+    var w: std.Io.Writer.Allocating = .init(a);
+    const o = &w.writer;
+    try o.writeAll(try js.fmt(a, "<table class=\"pairs release\">\n  <caption>Zayn {s}, as published on <a href=\"https://github.com/mayouni/zayn/releases/tag/v{s}\">its release page</a>.</caption>\n  <thead><tr><th scope=\"col\">System</th><th scope=\"col\">The file</th></tr></thead>\n  <tbody>\n", .{ try esc(a, version), version }));
+    var pos: usize = 0;
+    while (quotedAfter(block, pos, ".name = \"")) |q| : (pos = q.end) {
+        var sys: []const u8 = q.value;
+        var cpu: []const u8 = "";
+        for (release_systems) |r| if (std.mem.eql(u8, r.target, q.value)) {
+            sys = r.sys;
+            cpu = r.cpu;
+        };
+        const exe = if (std.mem.endsWith(u8, q.value, "-windows")) ".exe" else "";
+        try releaseRow(a, o, base, sys, cpu, try js.fmt(a, "zayn-{s}-{s}{s}", .{ version, q.value, exe }));
+        try o.writeByte('\n');
+    }
+    try releaseRow(a, o, base, "A browser", "WebAssembly", try js.fmt(a, "zayn-{s}.wasm", .{version}));
+    try o.writeAll(try js.fmt(a, "\n  </tbody>\n</table>\n<p>Each file's SHA-256 hash is in <a href=\"{s}SHA256SUMS\"><code>SHA256SUMS</code></a> beside it, and <a href=\"https://github.com/mayouni/zayn/blob/v{s}/doc/releases/v{s}.md\">the release notes</a> say how to check one.</p>", .{ base, version, version }));
+    return w.written();
+}
+
 const Block = struct { file: []const u8, name: []const u8, make: *const fn (Allocator) anyerror![]const u8 };
 const blocks = [_]Block{
     .{ .file = "site/grid.html", .name = "grid:table", .make = &gridTable },
     .{ .file = "site/media.html", .name = "channels:table", .make = &channelsTable },
     .{ .file = "index.html", .name = "ideas:table", .make = &ideasFigure },
     .{ .file = "site/designers.html", .name = "verbs:table", .make = &verbsFigure },
+    .{ .file = "site/adopt.html", .name = "release:table", .make = &releaseTable },
+    .{ .file = "site/audit.html", .name = "release:table", .make = &releaseTable },
 };
 
 /// The problems of the check (each line without its "PROBLEM " prefix), or, with `write`, the tables drawn.

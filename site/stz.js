@@ -43,7 +43,7 @@
      Principal, 2026-11-11: "when space is available stretch the tables to be more readable. it's the same think we stated for code
      snippets when they need more space and to avoid horizontal bars. in both cases, they should not be restricted to the test left and
      right limits"; K24 WIDE_ROOM in tools/ui-audit.html). A sample frame keeps its own size. */
-  const WIDE = 'main table.board, main table.evidence, main table.gridmap, main .shot, main .term, main .excerpt, main .recipe, main pre.code';
+  const WIDE = 'main table.board, main table.evidence, main table.gridmap, main .shot, main .term, main .excerpt, main .recipe, main pre.code, main form.try.ide, main table.pairs';
   const KEEP = '.samples, figure.sample, .window, .pane, .vibe-pane, .offense, [data-offending]';
   const outline = document.querySelector('.layout.has-list > nav.list3');
   function widen() {

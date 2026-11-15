@@ -128,7 +128,7 @@ const siteLines = [];
   const htmlUnder = d => { const out = []; const w = x => { for (const e of fs.readdirSync(P(x), { withFileTypes: true })) { const q = x + '/' + e.name; if (e.isDirectory()) w(q); else if (q.endsWith('.html')) out.push(q); } }; w(d); return out; };
   /* every file the three tools write (the pages, site/facts.json) and every file a case breaks, read once; and the one file a case creates */
   const KEEP = [...new Set(['index.html', ...htmlUnder('site'), ...htmlUnder('tools'), ...htmlUnder('constitution/reader'), 'site/facts.json',
-    'site/stz.css', 'site/gotchas.css', 'site/stz.js', 'haro/twin-expected.csv', 'doc/design/coverage-placement.json', 'README.md', 'doc/releases/v0.1.0.md', 'site/menu.zayn'])];
+    'site/stz.css', 'site/gotchas.css', 'site/stz.js', 'haro/twin-expected.csv', 'doc/design/coverage-placement.json', 'README.md', 'doc/releases/v0.2.0.md', 'build.zig.zon', 'site/menu.zayn'])];
   const NEW = ['site/extra.html'];
   const ALL = [...KEEP, ...NEW];
   const missing = KEEP.filter(f => !fs.existsSync(P(f)));
@@ -212,7 +212,7 @@ const siteLines = [];
       ['shell', 'README.md tells the reader to run node', () => edit('README.md', t => t + '\nRun `node tools/zayn/cli.js check x.zayn`.\n'), CHECK, 'fail', 'README.md:'],
       ['shell', 'a page links a release with no notes', () => before('site/web.html', '</main>', '<p><a href="https://github.com/mayouni/zayn/releases/tag/v9.9.9">The release</a>.</p>\n'), CHECK, 'fail', 'links the release v9.9.9 and doc/releases/v9.9.9.md does not exist'],
       ['shell', 'README.md links a file of a release with no notes', () => edit('README.md', t => t + '\n[zayn](https://github.com/mayouni/zayn/releases/download/v0.0.9/zayn-0.0.9.wasm)\n'), CHECK, 'fail', 'README.md:'],
-      ['shell', 'the notes of the release the site offers missing', () => drop(P('doc/releases/v0.1.0.md')), CHECK, 'fail', 'doc/releases/v0.1.0.md does not exist'],
+      ['shell', 'the notes of the release the site offers missing', () => drop(P('doc/releases/v0.2.0.md')), CHECK, 'fail', 'doc/releases/v0.2.0.md does not exist'],
       ['shell', 'the menu declaration missing', () => drop(P('site/menu.zayn')), [[], ['--write']], 'fail', 'site/menu.zayn: missing'],
       ['shell', 'the menu declaration edited away from the registry', () => sub1('site/menu.zayn', '(LABEL "Channels",', '(LABEL "Media",'), [[], ['--write']], 'fail', 'site/menu.zayn: differs from the menu'],
       ['shell', 'a landing label repeating its section', () => sub1('site/menu.zayn', '(LABEL "The problem",', '(LABEL "why",'), CHECK, 'fail', 'MENU_LABEL_REPEATS_PARENT'],
@@ -268,6 +268,8 @@ const siteLines = [];
       ['grid', 'a cell of the grid table drifted', gridCell, [[], ['--write']], 'fail', 'the grid:table differs from the data'],
       ['grid', 'a row of the channels table drifted', channelsRow, [[], ['--write']], 'fail', 'the channels:table differs from the data'],
       ['grid', 'a cell of the front page\'s grid drifted', () => sub1('index.html', /(<!-- ideas:table -->[\s\S]*?<td class="g-has"><b>)(\d+)/, (m, k, n) => k + (+n + 1)), [[], ['--write']], 'fail', 'the ideas:table differs from the data'],
+      ['grid', 'a file of the release table under a former name', () => sub1('site/audit.html', /(<!-- release:table -->[\s\S]*?<code>)zayn-/, (m, k) => k + 'zane-'), [[], ['--write']], 'fail', 'the release:table differs from the data'],
+      ['grid', 'the version moved on in build.zig.zon', () => sub1('build.zig.zon', '.version = "0.2.0"', '.version = "0.2.1"'), [[], ['--write']], 'fail', 'site/adopt.html: the release:table differs from the data'],
       ['grid', 'the ideas fence gone', () => sub1('index.html', '<!-- ideas:table -->', '<!-- ideas table -->'), CHECK, 'fail', 'no <!-- ideas:table --> fence'],
       ['grid', 'a drifted cell on a page in CRLF', () => { gridCell(); edit('site/grid.html', t => t.replace(/\r?\n/g, '\r\n')); }, [[], ['--write']], 'fail', 'the grid:table differs from the data'],
       ['grid', 'the grid fence gone', () => sub1('site/grid.html', '<!-- grid:table -->', '<!-- grid table -->'), CHECK, 'fail', 'no <!-- grid:table --> fence'],

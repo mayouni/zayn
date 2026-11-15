@@ -80,10 +80,17 @@ DEFINE NAV_GRAPH samples (LABEL "Samples", TARGET samples)
 DEFINE NAV_GRAPH use (
   LABEL "Adopt",
   TARGET adopt,
-  ENTRIES [adopt, designers, build_family, web_family, audit_family]
+  ENTRIES [adopt, designers_family, build_family, web_family, audit_family]
 )
 DEFINE NAV_GRAPH adopt (LABEL "Start", TARGET adopt)
-DEFINE NAV_GRAPH designers (LABEL "Designers", TARGET designers)
+
+DEFINE NAV_GRAPH designers_family (
+  LABEL "Designers",
+  TARGET designers,
+  ENTRIES [designers, testbench]
+)
+DEFINE NAV_GRAPH designers (LABEL "Overview", TARGET designers)
+DEFINE NAV_GRAPH testbench (LABEL "Testbench", TARGET testbench)
 
 DEFINE NAV_GRAPH build_family (
   LABEL "Programmers",

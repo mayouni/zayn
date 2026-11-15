@@ -262,7 +262,9 @@ function verifyCommands(problems) {
    whose first line is "$ " and how the program is run, the rest what it printed. The program is written to NAME in a folder of its own,
    with the page's payments.zayn (the declaration of the page's pair for that file) and a copy of the zayn this repository built
    (zig-out/bin), that folder first on the PATH; it is run as RECIPE_RUN says, and what it prints must be what the page shows. A language
-   whose program this machine lacks is named as not run here, never counted as run: a scoped run prints what it skipped (PX). */
+   whose program this machine lacks is named as not run here, never counted as run: a scoped run prints what it skipped (PX).
+   This reference has no binary of its own, so it needs the one `zig build` installs at zig-out/bin; `zig build release` alone writes
+   none there, and the recipes are then named as not run, while `zayn site facts` runs them with its own file. */
 const RECIPE_RUN = { shell: ['sh'], python: ['python'], javascript: ['node'], go: ['go', 'run'], powershell: ['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File'] };
 function verifyRecipes(problems) {
   const exe = process.platform === 'win32' ? '.exe' : '';
@@ -346,7 +348,7 @@ function verifyStatuses(problems) {
 function unchecked(html) {
   html = html.replace(/<a [^>]*#rule-\d+[^>]*>\d+<\/a>/g, ' ');
   /* a table drawn from its data by tools/site-grid.js is checked there, against the files that hold its figures */
-  html = html.replace(/<!-- (grid|channels|ideas|verbs):table -->[\s\S]*?<!-- \/\1:table -->/g, ' ');
+  html = html.replace(/<!-- (grid|channels|ideas|verbs|release):table -->[\s\S]*?<!-- \/\1:table -->/g, ' ');
   /* a figure inside a mock interface (the invoice a gotcha deletes, the tile it pokes) is a specimen, not a claim; it says so */
   html = html.replace(/<([a-z0-9]+)\b[^>]*\sdata-specimen\b[^>]*>[^<]*<\/\1>/g, ' ');
   let t = html.replace(/\r\n/g, '\n').replace(/<(script|style|pre|code)\b[\s\S]*?<\/\1>/g, ' ')
