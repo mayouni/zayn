@@ -327,7 +327,6 @@ nav.list3.sections { border-right: 0; padding-right: 0; }
 nav.list3.sections .outline-title { padding: 0; margin: 0 0 1rem; }
 nav.list3.sections > ul { border-right: var(--hairline) solid var(--line); padding-right: .9rem; }
 nav.list3 .sub { margin: 0 0 .3rem; }
-nav.list3 .sub a { padding-left: 1.4rem; }
 @media (max-height: 640px) { nav.list3 { position: static; } }
 html { scroll-padding-top: calc(var(--bars-h, 6rem) + .5rem); }
 @media (max-width: 900px) {
@@ -544,21 +543,65 @@ table.rules-audited + p { max-width: var(--measure-min); text-wrap: balance; }
 }
 
 /* ---- the front page (ZAYN-SITE-RETHINK-01 step 1; doc/design/DESIGN-SYSTEM.md sections 6.4 and 6.5) ---- */
-/* The first screen shows the claim before it argues it: the kicker, the tagline the Principal ruled, one lede, then the plate, a
-   declaration and the verifier's verdict on it (the Principal, 2026-11-14: "I approve the six rulings on the site rethink"). The
-   photograph left the first screen for the section that explains the name. The bars are the bars of every page. */
-.hero { padding: var(--space-4) 0 var(--space-2); }
-.hero .kicker { font-size: var(--size-small); color: var(--ink-2); margin: 0 0 var(--space-1); max-width: none; }
-.hero h1 { font-size: var(--size-hero); line-height: var(--leading-title); font-weight: var(--weight-strong); color: var(--ink);
-  margin: 0; max-width: 42rem; letter-spacing: -.01em; }
-.hero .sub { font-size: var(--size-lead); color: var(--ink); max-width: 46rem; margin: var(--space-2) 0 0; }
+/* The first screen shows the photograph and the claim, then the plate: a declaration and the verifier's verdict on it. The photograph is
+   pass 1's hero, restored (the Principal, 2026-11-14: "(b) I never asked you to remove the photo or to move it in the bottom of ther
+   page!!!!"; ZAYN-SITE-PHOTO-04 reverses ruling 5 of PRINCIPAL-ZAYNSITE-01): the National Museum of Niamey, provided by the author, by day
+   for Modern (2026-11-04) and by night for Retro (2026-11-06), each in widths the browser chooses from, the one the theme shows fetched at
+   once in the first viewport and the other only when its theme is chosen:
+     by day   1699 px 318,130 bytes, 1280 px 200,812, 800 px 94,424; quality 72
+     by night 1380 px 48,156 bytes, 800 px 24,680; quality 78
+   It is a band, not the whole window, so the tagline and the start of the plate share the first screen with it (1440 by 900, 375 by 812);
+   its height is the desk's proposal, for the Principal to rule on. The ground under it is the bar's colour, so a photograph still on its way
+   shows a tinted frame and never an empty space. */
+/* contrast: #FFFFFF | #121413 at 80% | 10.1 | hero text over the brightest pixel of the photograph (pure white, measured on the file) */
+.hero { padding: 0 0 var(--space-2); }
+/* the band holds the title block in its own flow, at its foot, with the menu's height kept clear above it, so the block never slides
+   under the menu (K14) and the band grows where a narrow window makes the block taller */
+.hero .photo { position: relative; display: flex; align-items: flex-end; min-height: min(62svh, 40rem); background: var(--bar); overflow: hidden;
+  padding: calc(var(--bars-h, 4.5rem) + 1.5rem) 0 2rem max(1.4rem, 4vw); box-sizing: border-box; }
+.hero .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+/* Modern shows the museum by day, Retro by night; the night photograph's door stands left of its centre, so it is drawn from further left */
+.hero .photo img.night { display: none; object-position: 12% 50%; }
+[data-vibe="guardian"] .hero .photo img.day { display: none; }
+[data-vibe="guardian"] .hero .photo img.night { display: block; }
+/* the title block over the photograph, on the left half, never over the museum's door at its centre (the author, 2026-11-05) */
+.hero .panel { position: relative; box-sizing: border-box;
+  width: max(22rem, min(40rem, calc(50vw - max(1.4rem, 4vw) - 1rem)));
+  background: color-mix(in srgb, var(--bar) 82%, transparent); color: var(--on-bar); border-radius: 14px; padding: 1.4rem 1.8rem; }
+.hero .panel .kicker { font-size: var(--size-small); color: var(--on-bar); margin: 0 0 var(--space-1); max-width: none; }
+.hero .panel h1 { font-size: var(--size-hero); line-height: var(--leading-title); font-weight: var(--weight-strong); color: var(--on-bar);
+  margin: 0; letter-spacing: -.01em; }
+.hero .panel .sub { font-size: var(--size-lead); line-height: 1.45; color: var(--on-bar); max-width: none; margin: .7rem 0 0; }
+.hero .photo-cap { font-size: var(--size-small); color: var(--ink-2); margin: .5rem 0 0; max-width: var(--measure-max); }
 .hero .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); margin: var(--space-3) 0 0; }
 .hero .actions .btn.primary { color: var(--on-action); }
 .hero .actions a { display: inline-flex; align-items: center; min-height: var(--target-phone); }
 /* the tagline's two sentences each stay whole on a line where both do not fit one (K11: no rendered line ends one sentence and starts the
    next); each wraps inside itself only where the window is narrower than it */
 .hero h1 .whole { display: inline-block; }
-@media (max-width: 760px) { .hero { padding-top: var(--space-3); } .hero h1 { font-size: var(--size-title); } }
+/* the menu lies over the photograph and lets a quarter of it through, as pass 1 had it (the author, 2026-11-05); measured on the file, the
+   brightest pixel under the menu's top 76 px is rgb(249,255,245), so the bar's own opacity carries the contrast: 7.0 to 1 in Modern and 9.4
+   in Retro at that pixel */
+/* contrast: #FFFFFF | #241d49 at 75% over rgb(249,255,245) | 7.0 | the front page's menu over the photograph's brightest pixel, Modern */
+/* contrast: #FFFFFF | #060b07 at 75% over rgb(249,255,245) | 9.4 | the same, Retro */
+@media (min-width: 761px) {
+  .front .bars { position: fixed; left: 0; right: 0; }
+  .front nav.site { background: color-mix(in srgb, var(--bar) 75%, transparent); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  /* on the front page no entry is current, so the brand keeps the bar's white over the photograph (K02) */
+  .front nav.site .brand, .front nav.site a:not(.brand) { color: var(--on-bar); }
+}
+/* on a phone the bars stand above the photograph, a shorter band, and the title block follows it as text, so the plate still begins on
+   the first screen */
+@media (max-width: 760px) {
+  .hero .photo { display: block; height: auto; min-height: 0; padding: 0; background: transparent; overflow: visible; }
+  .hero .photo img { position: static; display: block; height: 22svh; min-height: 9rem; background: var(--bar); }
+  [data-vibe="guardian"] .hero .photo img.day { display: none; }
+  .hero .panel { position: static; width: auto; background: none; color: var(--ink); padding: var(--space-2) var(--gutter) 0; border-radius: 0; }
+  .hero .panel .kicker { color: var(--ink-2); }
+  .hero .panel h1, .hero .panel .sub { color: var(--ink); }
+  .hero .panel h1 { font-size: var(--size-title); }
+  .hero .panel .sub { font-size: var(--size-reading); line-height: var(--leading-reading); }
+}
 
 /* The plate (DESIGN-SYSTEM.md section 6.4): the page's claim as three cells, the declaration, the verifier's verdict and a sketch of
    what a user meets, inside one thin line in --line, with one line between cells (the card grid's line, K25). A plate with two states
@@ -688,13 +731,6 @@ table.mini .g-none, table.mini .g-closed { color: var(--ink-2); }
   table.mini thead th + th { writing-mode: vertical-rl; writing-mode: sideways-lr; text-align: left; vertical-align: bottom; line-height: 1.1; padding: .5rem .15rem; }
 }
 
-/* the name, where the photograph now stands: the National Museum of Niamey, by day in Modern and by night in Retro */
-figure.name-photo { margin: var(--space-2) 0 0; max-width: 46rem; }
-figure.name-photo img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
-figure.name-photo img.night { display: none; }
-[data-vibe="guardian"] figure.name-photo img.day { display: none; }
-[data-vibe="guardian"] figure.name-photo img.night { display: block; }
-figure.name-photo figcaption { font-size: var(--size-small); color: var(--ink-2); margin-top: .5rem; max-width: var(--measure-max); }
 .messages { display: grid; grid-template-columns: minmax(0, 1fr); margin: 2.2rem 0 1.6rem; }
 @media (min-width: 1085px) { :root:not([data-vibe="guardian"]) .messages { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 /* two or four cards go two to a row, so no row is left with a hole (the author, 2026-11-06) */

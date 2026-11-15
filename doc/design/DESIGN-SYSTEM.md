@@ -14,7 +14,7 @@ after reading milestone 1 the Principal asked that it show rather than describe 
 **What this is.** Six things, in order:
 
 1. **Six root laws** of perception, attention, action and language, from which every principle derives (section 2).
-2. **The corpus**: every UI correction the Principal made in every project, 480 of them in 26 projects, each with its source,
+2. **The corpus**: every UI correction the Principal made in every project, 482 of them in 26 projects, each with its source,
    classified by the root cause that produced it (sections 3 and 4; [`corpus/CORPUS.md`](corpus/CORPUS.md), generated from
    [`corpus/corpus.json`](corpus/corpus.json)), with the theory under each cause, cited.
 3. **The predecessors**: Zin's design system, Refine's PX design and Zing's PX discipline, set beside this one: what each decided,
@@ -47,7 +47,7 @@ The same day, a hover on the radar became a tooltip, a reading panel, a tooltip,
 behaviour; separators were added, thickened and removed everywhere; links became bold, then lost the bold. The Zayn site shows the
 same chains: the hero panel was too wide, then a tall narrow box, then a box that hid the museum's door (Z372, Z373, Z374); a
 repeated menu label was "fixed" by deleting the landing page, which the Principal then had to restore (Z169, Z170); a line-balance
-fix covered a list of element kinds, and the defect came back that afternoon on a kind not in the list (Z444, Z446).
+fix covered a list of element kinds, and the defect came back that afternoon on a kind not in the list (Z445, Z447).
 
 **Four properties are missing from a correction that oscillates, and the system gives every rule all four:**
 
@@ -82,20 +82,20 @@ section 7 measures what a law says the person perceives.
 
 ## 3. The corpus
 
-**480 distinct corrections, made in 26 projects between February and November 2026.** 227 quote the Principal's own words; 253 are a
+**482 distinct corrections, made in 26 projects between February and November 2026.** 229 quote the Principal's own words; 253 are a
 session's or a commit's paraphrase, marked as such. 217 more records were the same remark found again in another file or another
-repository and are listed under the record they repeat. **170 of the 480 name an earlier correction of the same defect**, and 18
+repository and are listed under the record they repeat. **170 of the 482 name an earlier correction of the same defect**, and 18
 carry the Principal's own words of repetition or fatigue: *"I told you a thousand times"* (Z273), *"as usual: text is very small and
-unreadable!!!"* (Z270), *"the issue of equilibrated text on a line again and again!"* (Z443), *"I'm tired of talking to you of visual
+unreadable!!!"* (Z270), *"the issue of equilibrated text on a line again and again!"* (Z444), *"I'm tired of talking to you of visual
 equlibrium!"* (Z373), *"don't go back to the card UI system in small screens ... This is the power of dogmatic influence you got from
-your training data."* (Z399), *"how many times I told you to avoid this ugly word taking its own line!!!"* (Z446). The pace rose
+your training data."* (Z399), *"how many times I told you to avoid this ugly word taking its own line!!!"* (Z447). The pace rose
 month by month, 82 in August, 126 in October and 116 in the first nine days of November, 42 of them on 2026-11-09 alone: the last,
-*"bad line cuts AGAIN and AGAIN and AGAIN!!!!!!!!!!"* (Z447), came at 15:31 that day.
+*"bad line cuts AGAIN and AGAIN and AGAIN!!!!!!!!!!"* (Z448), came at 15:31 that day.
 
 **Sources.** Six read-only sweeps on 2026-11-09, merged and classified by hand, beside Central's compiled corpus (softanza 614d795).
 The first four read where corrections were relayed: softanza's memos, conclusions, mailboxes and perception law; the stzlib desk's
 memory (232 files); every other project's memory and Lookout's rulings of the day; this repository's docket, harvest, law, inbox,
-outbox and history. A fifth source, Central's notes, gave three records: Radar's title cut across its sentences, the menu's Use and Try, too alike to tell apart, and the Reader's menu bar, drawn at the left edge while every other page centres it (both 2026-11-10); the Principal's word in this desk's chat gave twelve more, tables drawn like running text, tables and code held to the text's edges, a wide block breaking the left edge, a page head moved off the menu's container, a Why page that held the case, and, the same evening, two lines beside the outline, the filigree missing from a page opened from the disk, and the brand and the current entry alike (2026-11-11), and four on 2026-11-12: columns where one flow reads, a paragraph balanced short of its measure, code coloured by hand and wrapped back to the edge, and a title cut before its dash, and Central's relay of the same day a third, four cards laid out as a grid with no grid drawn. For the site rethink of 2026-11-13 and 14, the review the Principal asked for gave twelve more, the review as a whole and the eleven defects it found, and the Principal's remarks of 2026-11-14 five, the fifth a front page that says one thing four times on one screen; the four on the Why branch in Retro are a link's arrow that points right, an outline read as a paragraph, a declaration and its report set one after the other for a reader who does not write code, and a front page that hides intent, the grid, the channels and the agents. The sixth, sweep F, read **the repositories
+outbox and history. A fifth source, Central's notes, gave three records: Radar's title cut across its sentences, the menu's Use and Try, too alike to tell apart, and the Reader's menu bar, drawn at the left edge while every other page centres it (both 2026-11-10); the Principal's word in this desk's chat gave twelve more, tables drawn like running text, tables and code held to the text's edges, a wide block breaking the left edge, a page head moved off the menu's container, a Why page that held the case, and, the same evening, two lines beside the outline, the filigree missing from a page opened from the disk, and the brand and the current entry alike (2026-11-11), and four on 2026-11-12: columns where one flow reads, a paragraph balanced short of its measure, code coloured by hand and wrapped back to the edge, and a title cut before its dash, and Central's relay of the same day a third, four cards laid out as a grid with no grid drawn. For the site rethink of 2026-11-13 and 14, the review the Principal asked for gave twelve more, the review as a whole and the eleven defects it found, and the Principal's remarks of 2026-11-14 five, the fifth a front page that says one thing four times on one screen; the four on the Why branch in Retro are a link's arrow that points right, an outline read as a paragraph, a declaration and its report set one after the other for a reader who does not write code, and a front page that hides intent, the grid, the channels and the agents. On the published site the same evening the Principal found two more: a rail's cue struck through its entries, and the photograph taken off the first screen, which they had never asked for. The sixth, sweep F, read **the repositories
 themselves**, on the Principal's question of 2026-11-09 (*"did you included the d/github/zin , ../refine and other repos of real world
 projects (and also /zing) to the corupus???"*): their design documents, stylesheets, tokens and the commit messages that answer a
 remark. Every record cites its file and line or its commit; the method and every record are in [`corpus/CORPUS.md`](corpus/CORPUS.md).
@@ -120,13 +120,13 @@ draws nothing (I, 19 to 36: the same 60-word paragraph opening 3,126 reference p
 archetype (section 6.5) from Refine's and Zing's shells.
 
 **Classified by root cause, not by symptom.** A root cause is the default that produced the defect: the thing the generator does
-when nothing stops it. Thirteen causes cover all 480, in five groups:
+when nothing stops it. Thirteen causes cover all 482, in five groups:
 
 | group | root cause | corrections | projects | name an earlier one |
 |---|---|---|---|---|
-| **Perception**: the eye groups by space, size and contrast before it reads (146) | **T** Type sized by convention, not for reading | 28 | 12 | 20 |
+| **Perception**: the eye groups by space, size and contrast before it reads (147) | **T** Type sized by convention, not for reading | 28 | 12 | 20 |
 | | **S** Width taken from the container; space treated as filler | 28 | 9 | 16 |
-| | **I** Ink and boxes that draw nothing | 39 | 15 | 12 |
+| | **I** Ink and boxes that draw nothing | 40 | 15 | 12 |
 | | **E** Emphasis added, never budgeted | 29 | 12 | 9 |
 | | **B** Balance left to chance | 22 | 10 | 12 |
 | **Meaning**: a form and a place each mean one thing (89) | **F** One form carrying two meanings | 40 | 11 | 15 |
@@ -135,14 +135,14 @@ when nothing stops it. Thirteen causes cover all 480, in five groups:
 | | **H** A pointer is assumed | 2 | 2 | 1 |
 | **Voice**: the words serve the reader (121) | **W** Words written for the writer, not the reader | 76 | 18 | 25 |
 | | **M** The page speaks for its maker, not its reader | 45 | 16 | 13 |
-| **Fidelity**: the painted result and the decisions already made are what count (81) | **P** The model is checked, not the paint | 52 | 11 | 15 |
-| | **X** A decision already made is replaced by a default | 29 | 13 | 7 |
+| **Fidelity**: the painted result and the decisions already made are what count (82) | **P** The model is checked, not the paint | 52 | 11 | 15 |
+| | **X** A decision already made is replaced by a default | 30 | 13 | 7 |
 
 **What the counts say.** Type repeats the most: 20 of its 28 corrections name an earlier one, because a reading size is undone every
 time a template or a new project starts from the web's defaults; balance follows at 11 of 20. Words for the writer is the largest
 class and spans eighteen projects. Ink, space and emphasis together (89) are one family the Lookout desk named in a sentence: *"the
 generator reads free space as a defect to fill and a border as a neutral way to make sections."* Touch has two records because touch
-was rarely tested, not because touch is right: Z480 found a hover design ruled four times that day on a desktop only.
+was rarely tested, not because touch is right: Z482 found a hover design ruled four times that day on a desktop only.
 
 **Rulings that point opposite ways, and how the system reconciles them** (a system that picks one side re-opens the other):
 
@@ -179,7 +179,7 @@ so nothing requires shrinking to rank.
 **The principle.** *Every text is set for reading.* Six sizes and no others; nothing below the small size (18 px); every text at
 7:1 against what is painted under it; rank by weight, position and the next size up, never by shrinking or greying. A title is at
 most 1.7 times the reading size, so a heading never shouts. **Reading text never shrinks to fit a layout**: when room runs out,
-spacing and display text give way first, and the reading size holds (Z447).
+spacing and display text give way first, and the reading size holds (Z448).
 **Checks**: K01 TYPE_SCALE (at every width, so a size that scales with the window fails), K02 TEXT_CONTRAST.
 
 ### S · Width taken from the container; space treated as filler (28)
@@ -204,10 +204,10 @@ column's width, and a text block its measure; **every block on a page starts at 
 text's right edge**: it takes the room its content needs to its right, into the page's margin, up to the window less the gutter, and wraps
 only past that; the outline stands on the left so the right is free (Z386, ZANE-LEFTEDGE-01: *"so things are alligned at the left while
 differring to the right"*; and Z385, and its own words: "they
-should not be restricted to the test left and right limits"); (Z447, a title held to 20 characters).
+should not be restricted to the test left and right limits"); (Z448, a title held to 20 characters).
 **Checks**: K03 MEASURE, K04 BOX_FILL, K05 CONTROL_NEAR, K06 GROUP_RATIO, K24 WIDE_ROOM.
 
-### I · Ink and boxes that draw nothing (39)
+### I · Ink and boxes that draw nothing (40)
 
 **From law 2, every visible difference is read as a meaning; and 1, an enclosure claims a group.**
 **The default.** Sections are made with borders, cards, tiles, bands and widgets, and one fact is drawn twice. **Evidence**:
@@ -245,8 +245,8 @@ state the user caused, and never accompanies navigation.
 
 **From law 1, the eye prefers the simplest, most regular figure.**
 **The default.** Line breaks fall where the width happens to end, or are placed by hand and outlive their text; rows of controls
-wrap with one item alone. **Evidence**: Z443, Z444, Z446 above; *"the page still have space move the last combo on the same line as
-the others"* (Z445); *"'spatial equilibrium' ... they represent the same logical level"* (Z433). Radar's title *"AI changes every week. Softanza hears what concerns it the same week."* broke as *"AI changes every / week. Softanza / hears what concerns / it the same week."* for three reasons at once: the title was held to 20 characters while its column had room, balancing ran across both sentences, and the paragraph under it had shrunk with the window to fit the hero (Z447).
+wrap with one item alone. **Evidence**: Z444, Z445, Z447 above; *"the page still have space move the last combo on the same line as
+the others"* (Z446); *"'spatial equilibrium' ... they represent the same logical level"* (Z434). Radar's title *"AI changes every week. Softanza hears what concerns it the same week."* broke as *"AI changes every / week. Softanza / hears what concerns / it the same week."* for three reasons at once: the title was held to 20 characters while its column had room, balancing ran across both sentences, and the paragraph under it had shrunk with the window to fit the hero (Z448).
 **Theory.** The eye reads a figure as a whole and prefers the simplest, most regular one (the Gestalt law of Prägnanz; Arnheim
 1954 on visual balance); a short last line is the typographer's widow, refused for that reason (Bringhurst 1992). Browsers balance
 lines natively (CSS Text Level 4, `text-wrap: balance` and `pretty`), so the rule costs nothing when it is on by default.
@@ -324,7 +324,7 @@ so many times : avoid colomnar layout for what can be set in a normal vertical f
 
 **From law 6, the hand has a floor; and 4, the loop must close for every input.**
 **The default.** The design is made and judged with a mouse on a desktop. **Evidence**: *"did you think how this hover feature would
-work on a mobile phone?!"* (Z480, after four rulings of the same feature on a desktop); a restaurant app's touch targets, overflow
+work on a mobile phone?!"* (Z482, after four rulings of the same feature on a desktop); a restaurant app's touch targets, overflow
 and back button, found on a real phone (2026-07-03).
 **Theory.** A thumb's target needs about 9 mm (Parhi, Karlson and Bederson 2006); WCAG sets 24 by 24 CSS pixels as the minimum
 (2.5.8) and 44 by 44 as the enhanced level (2.5.5), which is also the platforms' own figure. Most phone use is one-handed (Hoober
@@ -389,15 +389,15 @@ widths readers use (375, 768, 1085, 1440 and 1900 px; 1085 is the Principal's wi
 a person can open, and the perception is recorded with its verdict.
 **Checks**: all of K01 to K17 run on the paint; the perceptual row is the gate no check replaces.
 
-### X · A decision already made is replaced by a default (29)
+### X · A decision already made is replaced by a default (30)
 
 **From law 3, what is learned by place and look; and 4, the user stays in control.**
 **The default.** The generator's own default overrides a decision the house already made: the platform's blue, a pattern invented
 instead of the house's, a sibling site copied blindly, the author's text rewritten, a change nobody asked for. **Evidence**: *"the
-selected background of the combo should embrace the current theme ... not the standard browser them (that ugly blue)"* (Z474);
-*"checkboxes should be in green not blue in this retro mode!"* (Z476); *"this navigation system is not ours!"* (Z478); *"why did you
-make Start with a coloured background? don't change things without notifying me"* (Z467); *"I never asked you to make the labels
-of the slices clickable!!!"* (Z475); *"bring back this same text"* (Z473).
+selected background of the combo should embrace the current theme ... not the standard browser them (that ugly blue)"* (Z475);
+*"checkboxes should be in green not blue in this retro mode!"* (Z477); *"this navigation system is not ours!"* (Z479); *"why did you
+make Start with a coloured background? don't change things without notifying me"* (Z468); *"I never asked you to make the labels
+of the slices clickable!!!"* (Z476); *"bring back this same text"* (Z474).
 **Theory.** Users need to feel in control of the interface, not managed by it (Shneiderman 1987, rule 7; Nielsen 1994, heuristic 3).
 Expertise rests on spatial and visual stability: a control that moves or changes look resets what the user learned (Scarr,
 Cockburn, Gutwin and Quinn 2011).
@@ -440,12 +440,12 @@ evidence of real, recurring harm; a closed vocabulary the generator may not exte
 | measure | none; containers of 600 to 1200 px | 60 to 75 characters | Z384, Z379; law 1 |
 | status colours | four in the tokens, five in the demo | five and one neutral | Rule 118; Z333 (Zin's own ruling) |
 | the second navigation level | vertical and lateral (Z130) | a horizontal band under the bar | the later rulings of 2026-10-16 and 2026-11-04 (section 3) |
-| tooltips and hover cards | the rendering of UNDERSTAND and PREVIEW | none; a status line in the flow | Z325, Z329, Z480; and Zin's own floating label on hover (Z295), overruled by Z480 |
+| tooltips and hover cards | the rendering of UNDERSTAND and PREVIEW | none; a status line in the flow | Z325, Z329, Z482; and Zin's own floating label on hover (Z295), overruled by Z482 |
 | cards | for READ, SCAN and SELECT, with hover shadows | running text is never carded; records are a table | Z178 (Zin's own ruling, 2026-04), Z396, Z399, Z213 |
 | scroll | one inner workspace between fixed bars; generated tables in `overflow-x: auto` | on a page only the document scrolls; panes only in the application archetype, never nested; never sideways | Z323, Z327, Z328 |
 | motion | pulsing halos and a 420 ms zoom while Zin's own limit is 200 ms | 150 ms to report a change the user made; nothing pulses | Z340, Z346, Z347; Zin's own Article I |
 | sound | a chime confirms a successful act | sound corroborates a state already visible and never acknowledges a click | Rule 125, from the sound plane's corrections (Z082 to Z085) |
-| the console | ASCII only (Z128) | the box-drawing glyphs are Softanza's display system | Z456, the later ruling |
+| the console | ASCII only (Z128) | the box-drawing glyphs are Softanza's display system | Z457, the later ruling |
 | a culture | a vibe changes density, navigation, feedback and input, "not a theme" | a culture changes colour, font, radius and shadow, and **now also its interaction vocabulary** (below); never a size, a space or a meaning | Article VI; Zayn takes Zin's broader reading |
 
 **What Zayn takes from Zin.** Twelve decisions enter the system, each in the place named:
@@ -465,7 +465,7 @@ evidence of real, recurring harm; a closed vocabulary the generator may not exte
    parallax (`--motion-report`).
 9. **A field is as wide as what it holds**, in three widths, every input of one height (S); the `field` component.
 10. **Chart rules** for the `figure`: units on every axis, at most seven colour categories, every mark bound to data.
-11. **A 48 px target on a phone** (Zin's one-handed figure, and 48 to 62 px asked from a real phone, Z479), replacing M1's 44 px.
+11. **A 48 px target on a phone** (Zin's one-handed figure, and 48 to 62 px asked from a real phone, Z481), replacing M1's 44 px.
 12. **A change to a token names the intent it serves** (Zin's ZIN-C001-ZPT), the compiled form of "decided stays decided" (X).
 13. And a vibe in Zin's sense: **a culture may set its interaction vocabulary**, Retro keyboard-first with instant feedback, Modern
     pointer-first, as long as every input still reaches everything (H).
@@ -497,11 +497,11 @@ button radius of 8 px.
 | reading size | the IDE's body 14 px; the site's 18 px | 21 px | Z263 (the Principal zoomed Refine's own site to 120%), Z289 |
 | smallest size | 11.5 to 14 px in the IDE; 9.5 px labels on the site | 18 px | Z269, Z271, Z281, Z284 |
 | secondary text | told by muted colour at 5.5 to 5.8:1; the faintest ink at 2.6:1 | 7:1, quieter by tone and weight only | Z263, Z271 |
-| sizes | the site's comment promises five; the file declares 28, four of them scaling with the window | six fixed tokens; a size never scales with the window | K01; Z447 |
+| sizes | the site's comment promises five; the file declares 28, four of them scaling with the window | six fixed tokens; a size never scales with the window | K01; Z448 |
 | a title against the reading size | up to 3.2 on the site; KPI numbers at 2.2 | at most 1.7 | Z282 |
 | colour of the main action | the same green as success | `--action` and `--success` are two tokens | Z182 |
 | the cost meter | a progress bar beside the number it repeats | one fact, one encoding | Z397 |
-| help | on hover, in the status bar and in the diagrams | in the flow, reachable by tap and focus | Z480, Z325, Z329 |
+| help | on hover, in the status bar and in the diagrams | in the flow, reachable by tap and focus | Z482, Z325, Z329 |
 | scroll | panes and site ribbons scroll on their own, sideways included; smooth scrolling | panes in the application archetype only, never nested, never sideways; navigation is instant | Z323, Z327, Z328, Z346 |
 | site cards | react to the pointer like links | a container never reacts | Z178, Z213 |
 
@@ -538,7 +538,7 @@ that grow with their label and rows that wrap; no decorative motion; nothing flo
 **Where they differ, and why Zayn departs.** Zing's 12 px floor is below every later ruling, its own parent's included (Refine's site
 had moved to 18 px, Z263), so it is read as **superseded in its value and kept in its principle**: size never ranks. The Studio ranks
 secondary text by greying it, 68 times at 3.4 to 3.6:1, the defect Z271 names. Its status bar is fed by the pointer only, with no tap
-path (Z480), and its panes scroll inside a page that does not (Z323, Z328). The site's hero reaches 4.6 times the reading size (Z282),
+path (Z482), and its panes scroll inside a page that does not (Z323, Z328). The site's hero reaches 4.6 times the reading size (Z282),
 and its reader still carries tooltips (Z325). The brief's "Honest boundaries" on every commercial page (Z220) is the origin of the
 negative marketing the Principal later refused (Z253); PRINCIPAL-AFFIRM-01 replaces it.
 
@@ -554,7 +554,7 @@ negative marketing the Principal later refused (Z253); PRINCIPAL-AFFIRM-01 repla
 5. **Print keeps paper colours** in every culture.
 6. **Numbers in ink, in tabular figures**; the `table` component.
 7. **A refusal shown with its source's message, line and caret**, on one surface for every language; the `notice` component.
-8. **External links marked as such** (Z185) and **scrollbars in the culture's colours** (Z457): K09 reads the scrollbar too.
+8. **External links marked as such** (Z185) and **scrollbars in the culture's colours** (Z458): K09 reads the scrollbar too.
 
 ### 5.4 What the predecessors change in the system
 
@@ -664,7 +664,7 @@ A container (a section, a row, a sample frame) is none of the four and never cha
 | **button**, **link**, **tag**, **field** | the four shapes of section 6.3 | as there; a link that ends in an arrow ends in the one that points up and to the right (↗), a right arrow being kept for a sequence the page draws, and a link that leaves the site names its destination in its words (LINK_ARROW); a field is as wide as what it holds, in three widths, every input of one height, and an active filter shows its value | F, S |
 | **notice** | the result of an act | a line in the page's flow, in a semantic colour, in space reserved for it, appearing within 100 ms; a refusal, an error or an empty state says what happened, why, what to do next and where to learn more, and a refusal shows its source's message, line and caret; an undoable act offers its undo for a visible grace period | L |
 | **footer** | the project line | one line: the project, ©2020-the current year Mansour Ayouni, MIT, the Softanza link; `--size-small`, regular, `--ink-2` | M, E |
-| **hero** | the front page only | the kicker that names Zayn, the tagline the Principal ruled, one lede, then the plate: the claim is shown on the first screen before it is argued (ZAYN-SITE-RETHINK-01, ruling 1; FRONT_PLATE); the photograph stands lower, captioned, where the name is explained | S, M |
+| **hero** | the front page only | the photograph on the first screen, as a band on the bar's tinted ground, the one the theme shows fetched at once, with its caption under it (the Principal, 2026-11-14, reversing ruling 5, ZAYN-SITE-PHOTO-04; K32 PHOTO_FIRST); over it, on the panel, the kicker that names Zayn, the tagline the Principal ruled and one lede; then the plate, so the claim is shown on the first screen before it is argued (ZAYN-SITE-RETHINK-01, ruling 1; FRONT_PLATE) | S, M |
 | **plate** | a claim shown: a declaration, the verifier's answer, and what a user meets | one thin line in `--line` around it and between its cells; the declaration's lines numbered and the line the report cites marked in `--danger`; an "In words" sentence beside every code block (IN_WORDS), the declaration, its sentence and the report reading in one order; two states (as first written, corrected) sharing one place, the hidden one still measured, switched by radio buttons that work without a script; on the front page a third state, the reader's own declaration, checked as it is typed by the verifier compiled to wasm; every report a real run, re-run by site-facts | M, P, W |
 | **sketch** | a screen, a voice line or a machine surface, drawn to show what a declaration promises | drawn in HTML with real words and one ink line, controls as outlined shapes; colour only where the law speaks, a missing control a dashed outline in `--danger` with its rule, a restored one in `--success`; it opens on its label, "Illustration" (SKETCH_LABEL), because Zayn checks the declaration and does not draw the screen | M, P |
 | **slide** | the tour | one message, one sample, at most three lines | W |
@@ -680,7 +680,7 @@ application's screen, taken from Refine's directional flow and Zing's shell (sec
 
 | archetype | pages | order of regions |
 |---|---|---|
-| **front** | `index.html` | hero (kicker, tagline, lede, the plate); intent, the channels and the grid, drawn from the law's data; a user, a person or an agent (the three readers); the ways in; the loop of a generator; why a law; the name; what exists today; this page, declared |
+| **front** | `index.html` | hero (the photograph, with the kicker, tagline and lede over it, its caption, then the plate); intent, the channels and the grid, drawn from the law's data; a user, a person or an agent (the three readers); the ways in; the loop of a generator; why a law; the name; what exists today; this page, declared |
 | **landing** | each section's first page | page head; the same four steps at the section's scale; the section's pages in a table, one line each |
 | **article** | a concept page | page head; outline (three or more sections); for each section: a statement, a sample frame (lawful beside offending), points |
 | **reference** | the Reader, rules, conformance | page head; one table |
@@ -696,7 +696,7 @@ application's screen, taken from Refine's directional flow and Zing's shell (sec
 | a culture's colours, font, radius and shadow, under the tokens' names | the meaning of a colour; a sixth status colour; a hue outside the tokens |
 | the number of sections, rows and samples | the order of an archetype's regions; the four shapes and their meanings |
 | which component holds which content, within the list | a component outside the list; a navigation pattern of its own |
-| the photograph where the name is explained | a box wider than its content; a line that draws nothing; a scroll inside a scroll; a tooltip; a hover-only reveal; a layout that moves |
+| the hero's photograph | a box wider than its content; a line that draws nothing; a scroll inside a scroll; a tooltip; a hover-only reveal; a layout that moves |
 | a culture's interaction vocabulary (keyboard-first or pointer-first) | a path that one input cannot take |
 | | a platform default in any state of any control |
 
@@ -747,8 +747,11 @@ runs at 375, 768, 1085, 1440 and 1900 px in Modern and in Retro.
 | K28 LINE_START | every rendered line of running text, on any site | a line that starts with a dash or a closing sign (; : ! ? » %) that followed a word and a space | B | new |
 | K29 LINK_LIST | every list whose items each hold one link, the two bars aside | an entry that paints no cue of its own (an underline, a marker, a rule at its left), so the list reads as a paragraph | F | new |
 | K30 SAY_ONCE | the files: the first 150 words a reader meets under the menu, its prose only | two content words in a row (the function words and the name Zayn aside) that stand twice, inside a sentence or a block: a statement made twice on one screen (ZAYN-SAYITONCE-01) | W, M | new |
+| K31 CUE_CLEAR | every link that draws a cue before it (the short rule of a list of links) | the cue ends less than 4 px before the link's first character: it strikes through the words (ZAYN-SITE-FIX-03) | I, F | new |
+| K32 PHOTO_FIRST | the front page's first viewport | no photograph painted and loaded in it (ZAYN-SITE-PHOTO-04: the photograph belongs to the first screen) | X | new |
+| K33 IMG_LOADED | every image a page paints, a lazy one forced to load | an image that did not load: a blank box where a picture belongs (ZAYN-SITE-FIX-03) | P | new |
 
-**Twenty-five checks are new and five extend checks that exist.** None of them is a list of element kinds: each reads every element
+**Twenty-eight checks are new and five extend checks that exist.** None of them is a list of element kinds: each reads every element
 that has the property it judges.
 
 **The site rethink adds five checks on the files** (ZAYN-SITE-RETHINK-01 and its addendum, 2026-11-14), in `zayn site shell` and its
@@ -769,17 +772,17 @@ F-1 to F-5) are folded in where they belong.
 |---|---|---|---|
 | 1 | 105 The Legibility Floor | the reading size is 21 px (section 9 (a)); the floor becomes 18 px for every text, footers included, and 7:1 for every text including control labels; rank by the token scale, never by shrinking; reading text never shrinks to fit a layout | T, 28 corrections in 12 projects (Z263-Z290) |
 | 2 | new, Article I | **Width Belongs to the Content**: measure 60-75 characters; a box at most a third empty; a control beside its content; a title takes its column, never a fixed character count; one left edge for every block, and a table or a code block takes the room free to its right (ZANE-SPACEMEANING-01; docket F-3; Z385; Z386) | S, 28 (Z361-Z388) |
-| 3 | 2 White Space Is Structural | **space groups and a line draws something real**: the gap between groups at least twice the gap inside; borders only where they draw; **a grid of peer regions draws its grid**, one thin line around and between its cells, which frames a real cell and so keeps Width Belongs to the Content (ZANE-NOLINES-01, ZANE-READINGLEVELS-01, ZANE-CARDGRID-01) | I, 39 (Z389-Z427), and S |
+| 3 | 2 White Space Is Structural | **space groups and a line draws something real**: the gap between groups at least twice the gap inside; borders only where they draw; **a grid of peer regions draws its grid**, one thin line around and between its cells, which frames a real cell and so keeps Width Belongs to the Content (ZANE-NOLINES-01, ZANE-READINGLEVELS-01, ZANE-CARDGRID-01) | I, 40 (Z389-Z428), and S |
 | 4 | new, Article I | **One Emphasis per Element, One Critical per View** (ZANE-ONEEMPHASIS-01; Rules 3, 87, 118 cross-cited) | E, 29 (Z332-Z360) |
-| 5 | new, Article I | **Balance Is On by Default**, never for a list of element kinds; no line crosses a sentence in a title; control rows equal (docket F-1; ZANE-LINEBALANCE-01; ZANE-CONTROLROW-01) | B, 22 (Z428-Z449) |
+| 5 | new, Article I | **Balance Is On by Default**, never for a list of element kinds; no line crosses a sentence in a title; control rows equal (docket F-1; ZANE-LINEBALANCE-01; ZANE-CONTROLROW-01) | B, 22 (Z429-Z450) |
 | 6 | 114 Room Before Scrollbars | widened to **One Scroll**: nothing scrolls inside the page in either direction; a sheet freezes the page under it | L, the scroll records (Z305, Z311, Z323, Z324, Z328) |
-| 7 | 69 The Hand Is Not a Mouse | **every hover has a tap path; no content only on hover; no tooltip** (ZANE-TOUCHTWIN-01; WRITING.md rule 11 enters the law) | H and L (Z325, Z480) |
+| 7 | 69 The Hand Is Not a Mouse | **every hover has a tap path; no content only on hover; no tooltip** (ZANE-TOUCHTWIN-01; WRITING.md rule 11 enters the law) | H and L (Z325, Z482) |
 | 8 | 119 A Card Is Not a Button | widened to **One Shape, One Meaning**: four shapes; a container never reacts; one fill, one meaning (ZANE-ONELINK-01) | F, 40 (Z178-Z217) |
 | 9 | 108, 115, 116 | the trail check reads any path line, a kicker included (ZANE-TRAIL-KICKER-01); an outline by default on pages of three or more sections (ZANE-OUTLINE-01) | N, 49 (Z129-Z177) |
-| 10 | Article VI, as a rule of tier `tool` | **A Culture Owns Its Defaults**: no state of any control is left to the platform | X (Z474, Z476) and Article VI's own evidence |
+| 10 | Article VI, as a rule of tier `tool` | **A Culture Owns Its Defaults**: no state of any control is left to the platform | X (Z475, Z477) and Article VI's own evidence |
 | 11 | 111 The Stranger's First Screen | the README order for a front page and a landing; affirmative voice on every public surface (PRINCIPAL-AFFIRM-01; docket F-2, F-4, F-5) | M, 45 (Z218-Z262), and W, 70 (Z001-Z076) |
 | 12 | 125 Sound Corroborates | sound plays at its true rate and in step with its picture within the ITU-R BT.1359 window | P, the four sound records (Z082-Z085) |
-| 13 | Article VII | **a correction enters the law as its cause, bounded on both sides, with a check on the painted result by default for every element** | the chains of section 1; 170 of 480 corrections name an earlier one |
+| 13 | Article VII | **a correction enters the law as its cause, bounded on both sides, with a check on the painted result by default for every element** | the chains of section 1; 170 of 482 corrections name an earlier one |
 | 14 | new, Article II | **The Application Shell**: panes in the directional flow, each scrolling by itself and never one inside another; a view bar per view; a status line in the layout as the one channel for what a control does; dialogs only for creating and for irreversible acts (Refine, Zing, section 5) | L, the nested-scroll and status-line records (Z327, Z328, Z329), S (Z377) |
 | 15 | new, Article I | **One Flow**: what can be read one part after another is set in the page's vertical flow, never in columns side by side; a row of regions is for peers in a grid (amendment 3) and for samples compared; running text fills its measure, its last line held to a third of its widest (the Principal, 2026-11-12, in this desk's chat: *"we said it so many times : avoid colomnar layout for what can be set in a normal vertical flow"*, *"the snalsot shows also a bad use of space"*, *"check it everywhere and ntify it to the constituin"*) | L, the records that set code and panels in one column (two code snippets never side by side; one primary axis, no side-by-side panels), and S |
 | 16 | new, Article I | **Code Reads as Code**: code is coloured in four roles from the culture's tokens, a keyword, a string or listed value, a comment, a verdict, given by rule and never by hand; a code line too long for its block hangs under its own indentation and never wraps back to the block's edge (the Principal, 2026-11-12, in this desk's chat: *"theme of code should be more professionnal with keywords coloring so the code is read easily"*, *"adjust strings or long lines that does not fit beautifully in the layout"*, *"generalise this issue and fix in the constitution"*) | L, B, and section 9 (d) |

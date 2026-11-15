@@ -7,7 +7,7 @@
   "C": "every other project's memory folder (private client studies skipped) and lookout at ad302aa with softanza mailbox/lookout.md",
   "D": "stzzui at 1d3448e: doc/AMENDMENT-DOCKET.md, doc/HARVEST-2026-08.md, constitution/rules.json, .central/ inbox and outbox, doc/design/, git log, memory",
   "central": "softanza dashboard/zane-ui-corpus-2026-11-09.md (softanza 614d795), read beside the four sweeps",
-  "E": "addenda after the sweeps: relayed by Central and read in .central/inbox.md (the line cut again, 2026-11-09 15:31; the menu's Use and Try, 2026-11-10 03:56; the Reader's menu bar at the left edge, 2026-11-10 04:09; the four cards with no grid drawn, 2026-11-11 13:17), and given in the desk's own chat (tables drawn like running text; tables and code held to the text's edges; a wide block breaking the left edge; the page head moved off the menu's container; a Why page that held the case; two lines beside the outline; the filigree missing from a page opened from the disk; the brand and the current entry alike, all 2026-11-11; columns where one flow reads, a balanced paragraph short of its measure, code coloured by hand and wrapped back to the edge, a title cut before its dash, all 2026-11-12); and, for the site rethink (ZAYN-SITE-RETHINK-01), the review of the whole site and the eleven defects it found (2026-11-13), and four remarks on the Why branch in Retro (2026-11-14, and the front page that says one thing four times on one screen (2026-11-14))",
+  "E": "addenda after the sweeps: relayed by Central and read in .central/inbox.md (the line cut again, 2026-11-09 15:31; the menu's Use and Try, 2026-11-10 03:56; the Reader's menu bar at the left edge, 2026-11-10 04:09; the four cards with no grid drawn, 2026-11-11 13:17), and given in the desk's own chat (tables drawn like running text; tables and code held to the text's edges; a wide block breaking the left edge; the page head moved off the menu's container; a Why page that held the case; two lines beside the outline; the filigree missing from a page opened from the disk; the brand and the current entry alike, all 2026-11-11; columns where one flow reads, a balanced paragraph short of its measure, code coloured by hand and wrapped back to the edge, a title cut before its dash, all 2026-11-12); and, for the site rethink (ZAYN-SITE-RETHINK-01), the review of the whole site and the eleven defects it found (2026-11-13), and four remarks on the Why branch in Retro (2026-11-14, and the front page that says one thing four times on one screen (2026-11-14), and on the published site a rail's cue struck through its entries and the photograph taken off the first screen (2026-11-14))",
   "F": "the repositories themselves (M1b, 2026-11-09): zin at cc98126, refine (no git; files), zing at e2573a9 and zing-studio at 95f36de, the product repositories (organizium and its variants, the restaurant app, orgdesk, zindara, zin-one, zin-website, zin-prototypes, ringface) and the estate sites (stzsite, harobanda, ayouni, lookout, ringserv, ringflex, microring, stz-observer and others); each record cites its file:line or commit"
  },
  "causes": {
@@ -7231,7 +7231,7 @@
    "source": "softanza/vision/zayn-site/REVIEW.md section 3, the review of the site the Principal asked for (relayed in softanza/mailbox/zayn.md, 2026-11-14 01:16)",
    "words": "[review, row 9] The photograph says nothing a visitor can read; it has no caption, and the first screen is spent on it.",
    "wrong": "the first screen at 1440 by 900 is the photograph",
-   "required": "the photograph captioned, where the name is explained",
+   "required": "the photograph captioned; it stays on the first screen (ruling 5 of the review, which moved it down, was reversed by the Principal on 2026-11-14, ZAYN-SITE-PHOTO-04)",
    "sense": "see (first screen)",
    "ruling": "PRINCIPAL-ZAYNSITE-01",
    "verbatim": false,
@@ -7239,6 +7239,22 @@
   },
   {
    "n": "Z428",
+   "sweep": "E36",
+   "also": [],
+   "cause": "I",
+   "date": "2026-11-14",
+   "project": "stzzui",
+   "source": "the Principal, with a screenshot of the rail of site/positioning.html on the published site (mayouni/zayn 2a21f81), relayed in softanza/mailbox/zayn.md, 2026-11-14 19:08",
+   "words": "\"Yes, but the photo in the frontapeg is not displaued! and you got bullets not displayed correctly in some sub-left menus\"",
+   "wrong": "the short rule drawn before each entry of a rail struck through the first letters of every nested entry: 27 entries on 6 pages, an older rule having pulled their text back under the cue",
+   "required": "a cue clears the text it marks by 4 px at least, the nesting indent kept, read on the painted page (K31 CUE_CLEAR)",
+   "sense": "see (rail)",
+   "ruling": "ZAYN-SITE-FIX-03",
+   "verbatim": true,
+   "repeat": false
+  },
+  {
+   "n": "Z429",
    "sweep": "F2-06",
    "also": [],
    "cause": "B",
@@ -7254,7 +7270,7 @@
    "repeat": false
   },
   {
-   "n": "Z429",
+   "n": "Z430",
    "sweep": "F1-04",
    "also": [],
    "cause": "B",
@@ -7270,7 +7286,7 @@
    "repeat": false
   },
   {
-   "n": "Z430",
+   "n": "Z431",
    "sweep": "F4-16",
    "also": [],
    "cause": "B",
@@ -7286,7 +7302,7 @@
    "repeat": false
   },
   {
-   "n": "Z431",
+   "n": "Z432",
    "sweep": "F3-19",
    "also": [],
    "cause": "B",
@@ -7302,7 +7318,7 @@
    "repeat": false
   },
   {
-   "n": "Z432",
+   "n": "Z433",
    "sweep": "B16",
    "also": [],
    "cause": "B",
@@ -7318,7 +7334,7 @@
    "repeat": true
   },
   {
-   "n": "Z433",
+   "n": "Z434",
    "sweep": "B18",
    "also": [],
    "cause": "B",
@@ -7334,7 +7350,7 @@
    "repeat": true
   },
   {
-   "n": "Z434",
+   "n": "Z435",
    "sweep": "F5-55",
    "also": [],
    "cause": "B",
@@ -7350,7 +7366,7 @@
    "repeat": false
   },
   {
-   "n": "Z435",
+   "n": "Z436",
    "sweep": "C52",
    "also": [],
    "cause": "B",
@@ -7366,7 +7382,7 @@
    "repeat": true
   },
   {
-   "n": "Z436",
+   "n": "Z437",
    "sweep": "A52",
    "also": [
     "C57",
@@ -7385,7 +7401,7 @@
    "repeat": ""
   },
   {
-   "n": "Z437",
+   "n": "Z438",
    "sweep": "C71",
    "also": [
     "F5-119"
@@ -7403,7 +7419,7 @@
    "repeat": true
   },
   {
-   "n": "Z438",
+   "n": "Z439",
    "sweep": "C78",
    "also": [],
    "cause": "B",
@@ -7419,7 +7435,7 @@
    "repeat": true
   },
   {
-   "n": "Z439",
+   "n": "Z440",
    "sweep": "F5-34",
    "also": [],
    "cause": "B",
@@ -7435,7 +7451,7 @@
    "repeat": false
   },
   {
-   "n": "Z440",
+   "n": "Z441",
    "sweep": "F5-38",
    "also": [],
    "cause": "B",
@@ -7451,7 +7467,7 @@
    "repeat": false
   },
   {
-   "n": "Z441",
+   "n": "Z442",
    "sweep": "D49",
    "also": [],
    "cause": "B",
@@ -7467,7 +7483,7 @@
    "repeat": true
   },
   {
-   "n": "Z442",
+   "n": "Z443",
    "sweep": "D32",
    "also": [
     "A85"
@@ -7485,7 +7501,7 @@
    "repeat": false
   },
   {
-   "n": "Z443",
+   "n": "Z444",
    "sweep": "D52",
    "also": [
     "A94",
@@ -7504,7 +7520,7 @@
    "repeat": true
   },
   {
-   "n": "Z444",
+   "n": "Z445",
    "sweep": "C119",
    "also": [
     "A113",
@@ -7523,7 +7539,7 @@
    "repeat": true
   },
   {
-   "n": "Z445",
+   "n": "Z446",
    "sweep": "C121",
    "also": [
     "A115",
@@ -7542,7 +7558,7 @@
    "repeat": true
   },
   {
-   "n": "Z446",
+   "n": "Z447",
    "sweep": "C130",
    "also": [
     "A123",
@@ -7562,7 +7578,7 @@
    "repeat": true
   },
   {
-   "n": "Z447",
+   "n": "Z448",
    "sweep": "E01",
    "also": [
     "F5-90"
@@ -7580,7 +7596,7 @@
    "repeat": true
   },
   {
-   "n": "Z448",
+   "n": "Z449",
    "sweep": "E15",
    "also": [],
    "cause": "B",
@@ -7596,7 +7612,7 @@
    "repeat": false
   },
   {
-   "n": "Z449",
+   "n": "Z450",
    "sweep": "E16",
    "also": [],
    "cause": "B",
@@ -7612,7 +7628,7 @@
    "repeat": true
   },
   {
-   "n": "Z450",
+   "n": "Z451",
    "sweep": "F4-55",
    "also": [],
    "cause": "X",
@@ -7628,7 +7644,7 @@
    "repeat": false
   },
   {
-   "n": "Z451",
+   "n": "Z452",
    "sweep": "F3-07",
    "also": [],
    "cause": "X",
@@ -7644,7 +7660,7 @@
    "repeat": false
   },
   {
-   "n": "Z452",
+   "n": "Z453",
    "sweep": "F3-08",
    "also": [],
    "cause": "X",
@@ -7660,7 +7676,7 @@
    "repeat": false
   },
   {
-   "n": "Z453",
+   "n": "Z454",
    "sweep": "C18",
    "also": [
     "F4-09"
@@ -7678,7 +7694,7 @@
    "repeat": true
   },
   {
-   "n": "Z454",
+   "n": "Z455",
    "sweep": "F4-14",
    "also": [],
    "cause": "X",
@@ -7694,7 +7710,7 @@
    "repeat": false
   },
   {
-   "n": "Z455",
+   "n": "Z456",
    "sweep": "F4-17",
    "also": [],
    "cause": "X",
@@ -7710,7 +7726,7 @@
    "repeat": false
   },
   {
-   "n": "Z456",
+   "n": "Z457",
    "sweep": "B02",
    "also": [],
    "cause": "X",
@@ -7726,7 +7742,7 @@
    "repeat": false
   },
   {
-   "n": "Z457",
+   "n": "Z458",
    "sweep": "F3-20",
    "also": [],
    "cause": "X",
@@ -7742,7 +7758,7 @@
    "repeat": false
   },
   {
-   "n": "Z458",
+   "n": "Z459",
    "sweep": "F3-27",
    "also": [],
    "cause": "X",
@@ -7758,7 +7774,7 @@
    "repeat": true
   },
   {
-   "n": "Z459",
+   "n": "Z460",
    "sweep": "F3-35",
    "also": [],
    "cause": "X",
@@ -7774,7 +7790,7 @@
    "repeat": false
   },
   {
-   "n": "Z460",
+   "n": "Z461",
    "sweep": "F3-36",
    "also": [],
    "cause": "X",
@@ -7790,7 +7806,7 @@
    "repeat": false
   },
   {
-   "n": "Z461",
+   "n": "Z462",
    "sweep": "F5-92",
    "also": [],
    "cause": "X",
@@ -7806,7 +7822,7 @@
    "repeat": false
   },
   {
-   "n": "Z462",
+   "n": "Z463",
    "sweep": "F5-96",
    "also": [],
    "cause": "X",
@@ -7822,7 +7838,7 @@
    "repeat": false
   },
   {
-   "n": "Z463",
+   "n": "Z464",
    "sweep": "F5-47",
    "also": [],
    "cause": "X",
@@ -7838,7 +7854,7 @@
    "repeat": false
   },
   {
-   "n": "Z464",
+   "n": "Z465",
    "sweep": "A56",
    "also": [
     "F5-74"
@@ -7856,7 +7872,7 @@
    "repeat": ""
   },
   {
-   "n": "Z465",
+   "n": "Z466",
    "sweep": "C75",
    "also": [
     "F5-114"
@@ -7874,7 +7890,7 @@
    "repeat": false
   },
   {
-   "n": "Z466",
+   "n": "Z467",
    "sweep": "F5-76",
    "also": [],
    "cause": "X",
@@ -7890,7 +7906,7 @@
    "repeat": false
   },
   {
-   "n": "Z467",
+   "n": "Z468",
    "sweep": "B36",
    "also": [
     "F5-32"
@@ -7908,7 +7924,7 @@
    "repeat": false
   },
   {
-   "n": "Z468",
+   "n": "Z469",
    "sweep": "F4-26",
    "also": [],
    "cause": "X",
@@ -7924,7 +7940,7 @@
    "repeat": false
   },
   {
-   "n": "Z469",
+   "n": "Z470",
    "sweep": "F4-29",
    "also": [],
    "cause": "X",
@@ -7940,7 +7956,7 @@
    "repeat": false
   },
   {
-   "n": "Z470",
+   "n": "Z471",
    "sweep": "F5-110",
    "also": [],
    "cause": "X",
@@ -7956,7 +7972,7 @@
    "repeat": true
   },
   {
-   "n": "Z471",
+   "n": "Z472",
    "sweep": "D34",
    "also": [
     "A87"
@@ -7974,7 +7990,7 @@
    "repeat": false
   },
   {
-   "n": "Z472",
+   "n": "Z473",
    "sweep": "D59",
    "also": [],
    "cause": "X",
@@ -7990,7 +8006,7 @@
    "repeat": true
   },
   {
-   "n": "Z473",
+   "n": "Z474",
    "sweep": "D54",
    "also": [
     "A96"
@@ -8008,7 +8024,7 @@
    "repeat": false
   },
   {
-   "n": "Z474",
+   "n": "Z475",
    "sweep": "D87",
    "also": [],
    "cause": "X",
@@ -8024,7 +8040,7 @@
    "repeat": false
   },
   {
-   "n": "Z475",
+   "n": "Z476",
    "sweep": "B59",
    "also": [],
    "cause": "X",
@@ -8040,7 +8056,7 @@
    "repeat": true
   },
   {
-   "n": "Z476",
+   "n": "Z477",
    "sweep": "D93",
    "also": [
     "C112"
@@ -8058,7 +8074,7 @@
    "repeat": true
   },
   {
-   "n": "Z477",
+   "n": "Z478",
    "sweep": "F5-83",
    "also": [],
    "cause": "X",
@@ -8074,7 +8090,7 @@
    "repeat": false
   },
   {
-   "n": "Z478",
+   "n": "Z479",
    "sweep": "C132",
    "also": [
     "B56",
@@ -8094,7 +8110,23 @@
    "repeat": true
   },
   {
-   "n": "Z479",
+   "n": "Z480",
+   "sweep": "E37",
+   "also": [],
+   "cause": "X",
+   "date": "2026-11-14",
+   "project": "stzzui",
+   "source": "the Principal, answering whether the photograph they missed was a blank box under \"The name\" or the photograph gone from the first screen, relayed in softanza/mailbox/zayn.md, 2026-11-14 20:23",
+   "words": "\"(b) I never asked you to remove the photo or to move it in the bottom of ther page!!!!\"",
+   "wrong": "the photograph the Principal had put on the front page taken off its first screen by ruling 5 of a review, a removal batched into the approval of five other rulings",
+   "required": "the photograph on the front page's first screen, as pass 1 had it, the plate under it; a removal the Principal did not ask for is never batched into another approval (K32 PHOTO_FIRST)",
+   "sense": "see (front page)",
+   "ruling": "ZAYN-SITE-PHOTO-04",
+   "verbatim": true,
+   "repeat": false
+  },
+  {
+   "n": "Z481",
    "sweep": "C16",
    "also": [
     "F4-12"
@@ -8112,7 +8144,7 @@
    "repeat": false
   },
   {
-   "n": "Z480",
+   "n": "Z482",
    "sweep": "C134",
    "also": [
     "A126",

@@ -6,7 +6,7 @@
 <title>UI audit — the audit that measures a painted page against Rules 105, 107, 108 and 114–116</title>
 <meta name="description" content="The UI audit measures every rendered text node of an application UI: its computed size and its true contrast against the composited background. The audit is the enforcement tool for Rule 105 (The Legibility Floor) and Rule 107 (Hierarchy Is Not Miniaturization).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e04a6e'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23241d49' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="../site/stz.css?v=0ec8a1e4">
+<link rel="stylesheet" href="../site/stz.css?v=0417b108">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -227,7 +227,7 @@ td.issue { color: #a33422; font-weight: 700; }
     </div>
     <div class="controls">
       <label class="opt"><input type="checkbox" id="system">
-        <span>System: also read Zayn's design system, checks K01 to K29 of doc/design/DESIGN-SYSTEM.md, at five widths (375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
+        <span>System: also read Zayn's design system, checks K01 to K33 of doc/design/DESIGN-SYSTEM.md, at five widths (375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
     </div>
     <p class="caption">The floor is <b>16px</b> (Rule 105), and this site reads at
     <b>18px</b>. When Strict is unchecked, the audit reports only text that breaks the
@@ -707,7 +707,7 @@ function loadAndAudit(entry, strict) {
 }
 
 /* ==========================================================================
-   Zayn's design system, read on the painted page: checks K01 to K29 of doc/design/DESIGN-SYSTEM.md section 7.
+   Zayn's design system, read on the painted page: checks K01 to K33 of doc/design/DESIGN-SYSTEM.md section 7.
    Each check reads EVERY element that has the property it judges, never a list of element kinds; the run repeats at five widths
    (375, 768, 1085, 1440, 1900 px) in both cultures, and a finding seen more than once is reported once, with where it was seen.
    K18 to K21 read the files and live in site-shell; K15 is read here on the stylesheets as well.
@@ -719,7 +719,7 @@ const SYS_HERO_MAX = 41.6;                    /* --size-hero: up to 2.6rem, the 
 const SYS_CHECKS = {
   K01: 'TYPE_SCALE', K02: 'TEXT_CONTRAST', K03: 'MEASURE', K04: 'BOX_FILL', K05: 'CONTROL_NEAR', K06: 'GROUP_RATIO',
   K07: 'LINE_DRAWS', K08: 'ONE_EMPHASIS', K09: 'PALETTE', K10: 'ONE_CRITICAL', K11: 'BALANCE', K12: 'ROW_FULL',
-  K13: 'ONE_SCROLL', K14: 'NO_FLOAT', K15: 'NO_HOVER_ONLY', K16: 'SHAPE', K17: 'TARGET', K22: 'LAYOUT_STILL', K23: 'BAR_ALIGN', K24: 'WIDE_ROOM', K25: 'GRID_SHOWN', K26: 'ONE_FLOW', K27: 'CODE_HANG', K28: 'LINE_START', K29: 'LINK_LIST'
+  K13: 'ONE_SCROLL', K14: 'NO_FLOAT', K15: 'NO_HOVER_ONLY', K16: 'SHAPE', K17: 'TARGET', K22: 'LAYOUT_STILL', K23: 'BAR_ALIGN', K24: 'WIDE_ROOM', K25: 'GRID_SHOWN', K26: 'ONE_FLOW', K27: 'CODE_HANG', K28: 'LINE_START', K29: 'LINK_LIST', K31: 'CUE_CLEAR', K32: 'PHOTO_FIRST', K33: 'IMG_LOADED'
 };
 /* K23 BAR_ALIGN: the menu and the band stand at the same place on every page (ZANE-READER-MENUPOS-01; the Principal, 2026-11-10: "the menue
    bar in this page must keep it's position as the other pages and not move to the left"). Each frame records where its brand and its band's
@@ -1139,6 +1139,46 @@ async function auditSystem(doc, win, label, width) {
       const bare = items.filter((li, i) => !cue(li, win) && !cue(links[i], win));
       if (bare.length) add('K29', list, links[0].textContent.trim().slice(0, 40), bare.length + ' of ' + items.length + ' entries of a list of links paint no cue of their own (an underline, a marker, a rule at the left): the list reads as a paragraph [K29 LINK_LIST]');
     }
+  }
+
+  /* an image is waited for as a reader waits: a lazy one is forced to load, then its own load or error is awaited, six seconds at most */
+  const imageReady = im => {
+    if (im.complete && im.naturalWidth) return Promise.resolve();
+    if (im.loading === 'lazy') im.loading = 'eager';
+    return new Promise(r => { im.addEventListener('load', r, { once: true }); im.addEventListener('error', r, { once: true }); setTimeout(r, 6000); });
+  };
+
+  /* K31 CUE_CLEAR: a cue drawn before a link (the short rule of a list of links) ends at least 4 px before the link's first character, so
+     it never strikes through the words (the Principal, 2026-11-14, on the rail of the Comparison family: "you got bullets not displayed
+     correctly in some sub-left menus"; ZAYN-SITE-FIX-03: a nested entry's cue covered its first 12 px, and K29 read only that a cue exists) */
+  for (const a of all.filter(e => e.tagName === 'A')) {
+    const ps = win.getComputedStyle(a, '::before');
+    if (!ps.content || ps.content === 'none' || ps.content === 'normal' || ps.position !== 'absolute') continue;
+    const bw = parseFloat(ps.borderTopWidth) || 0, lw = parseFloat(ps.width) || 0;
+    if (!(bw > 0 || ps.content !== '""') || lw <= 0) continue;
+    const r = a.getBoundingClientRect(), cueRight = r.left + (parseFloat(ps.left) || 0) + lw + (parseFloat(ps.borderLeftWidth) || 0) + (parseFloat(ps.borderRightWidth) || 0);
+    const tw = doc.createTreeWalker(a, NodeFilter.SHOW_TEXT);
+    let first = null;
+    for (let n = tw.nextNode(); n && !first; n = tw.nextNode()) if (n.nodeValue.trim()) { const rg = doc.createRange(); rg.selectNodeContents(n); first = [...rg.getClientRects()].find(b => b.width > 0); }
+    if (!first) continue;
+    const gap = first.left - cueRight;
+    if (gap < 4) add('K31', a, a.textContent.trim(), 'its cue ends ' + (gap < 0 ? Math.round(-gap) + ' px inside the words' : Math.round(gap) + ' px before them, under 4') + ': a cue clears the text it marks [K31 CUE_CLEAR]');
+  }
+
+  /* K32 PHOTO_FIRST: the front page's first screen holds a painted photograph (the Principal, 2026-11-14: "(b) I never asked you to remove
+     the photo or to move it in the bottom of ther page!!!!"; ZAYN-SITE-PHOTO-04): an <img> inside the first viewport that has loaded */
+  if (body.dataset.archetype === 'front') {
+    const firstScreen = [...doc.images].filter(im => im.getClientRects().length && win.getComputedStyle(im).display !== 'none' && win.getComputedStyle(im).visibility !== 'hidden'
+      && (r => r.width > 1 && r.height > 1 && r.top < win.innerHeight && r.bottom > 0)(im.getBoundingClientRect()));
+    for (const im of firstScreen) await imageReady(im);
+    if (!firstScreen.some(im => im.complete && im.naturalWidth > 0)) add('K32', body, '', 'the front page paints no photograph in its first ' + win.innerHeight + ' px: the photograph belongs to the first screen [K32 PHOTO_FIRST]');
+  }
+
+  /* K33 IMG_LOADED: every image a page paints has loaded, a lazy one forced to load as a reader's scroll would (ZAYN-SITE-FIX-03): a blank
+     box where a picture belongs is a defect no other check reads */
+  for (const im of [...doc.images].filter(x => x.getClientRects().length && win.getComputedStyle(x).display !== 'none')) {
+    await imageReady(im);
+    if (!im.naturalWidth) add('K33', im, im.alt || im.currentSrc || im.src, 'an image the page paints did not load (' + (im.currentSrc || im.src).split('/').pop() + '): a blank box where a picture belongs [K33 IMG_LOADED]');
   }
 
   /* K22 LAYOUT_STILL: nothing moved because something else appeared, grew or went */

@@ -33,10 +33,12 @@ time because it lived only in a promise, so it is written here and part of it is
 7. **A title's line breaks belong to the browser, which balances them; the page never places one by hand.** A title holds no
    `<br>` and no piece set as a block, and `node tools/site-shell.js` fails one that does (the front page's title once broke as
    *"Zayn is the / compilable language / for user interfaces."* for this reason).
-8. **The front page's hero holds the claim.** Its kicker names Zayn, its title is the tagline the Principal ruled, "Declare what a
-   user is doing. The law refuses the rest." (ZAYN-SITE-RETHINK-01, ruling 4), and its lede's first sentence names Zayn; the check reads
-   the kicker beside the title, and allows the tagline by name over six words. Until 2026-11-14 the hero was a photograph and its
-   panel, exempt from the strict register and judged on its first content section. The hero's title still keeps rule 7. Asked by the Principal on 2026-11-05: *"don't apply the strict sentence
+8. **The front page's hero holds the photograph and the claim over it.** Its kicker names Zayn, its title is the tagline the
+   Principal ruled, "Declare what a user is doing. The law refuses the rest." (ZAYN-SITE-RETHINK-01, ruling 4), and its lede's first
+   sentence names Zayn; the check reads the kicker beside the title, and allows the tagline by name over six words. The photograph stays
+   on the first screen (the Principal, 2026-11-14: *"I never asked you to remove the photo or to move it in the bottom of ther
+   page!!!!"*, ZAYN-SITE-PHOTO-04, reversing ruling 5). Until 2026-11-14 the panel over the photograph held a short tagline and one line,
+   exempt from the strict register and judged on its first content section. The hero's title still keeps rule 7. Asked by the Principal on 2026-11-05: *"don't apply the strict sentence
    style to the hero zones"*.
 9. **The Zayn site does not name Zing.** `node tools/site-shell.js` fails on the word in any page, comment or JSON file, and in
    README.md, the repository's front page, with its file and line. Ruled by the Principal on 2026-11-06: *"do not reference Zing in the Zane site"*.

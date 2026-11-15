@@ -6,7 +6,7 @@
 <title>Zayn — the compilable language for user interfaces</title>
 <meta name="description" content="Zayn is a compilable language for user interfaces. You declare what a user, a person or an agent, is doing; a verifier reads the declaration against a law and refuses what the law forbids, by name, before anything is drawn.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3Ctext x='16' y='24' font-family='system-ui' font-weight='900' font-size='22' text-anchor='middle' fill='%23e04a6e'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="site/stz.css?v=0ec8a1e4">
+<link rel="stylesheet" href="site/stz.css?v=0417b108">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -41,14 +41,31 @@
 <!-- /shell:menu -->
 
 <main id="main">
-<!-- The first screen shows the claim before it argues it (ZAYN-SITE-RETHINK-01, ruling 1): the tagline the Principal ruled (ruling 4),
-     one lede, and the plate, a declaration with the verifier's report on it, in two states. Every report on this page is a real run,
-     re-run by tools/site-facts.js. -->
+<!-- The first screen shows the photograph and the claim (ZAYN-SITE-RETHINK-01, ruling 1; the Principal, 2026-11-14, reversing ruling 5:
+     "(b) I never asked you to remove the photo or to move it in the bottom of ther page!!!!", ZAYN-SITE-PHOTO-04): pass 1's hero restored,
+     the National Museum of Niamey by day in Modern and by night in Retro, both provided by the author (2026-11-04 and 2026-11-06), with the
+     title block over it; then the plate, a declaration with the verifier's report on it, in two states. Each photograph comes in widths the
+     browser chooses from (srcset); both are lazy, so the one the theme shows, which stands in the first viewport, is fetched at once and the
+     other only when its theme is chosen. Every report on this page is a real run, re-run by tools/site-facts.js. -->
 <header class="hero">
+  <div class="photo">
+    <img class="day" src="site/assets/niamey-national-museum.webp" width="1699" height="926" loading="lazy" fetchpriority="high"
+         srcset="site/assets/niamey-national-museum-800.webp 800w, site/assets/niamey-national-museum-1280.webp 1280w, site/assets/niamey-national-museum.webp 1699w" sizes="100vw"
+         alt="The National Museum of Niamey: a white facade with blue geometric reliefs and a blue door, above terraced stone steps with blue flower pots.">
+    <img class="night" src="site/assets/niamey-national-museum-night.webp" width="1380" height="752" loading="lazy" fetchpriority="high"
+         srcset="site/assets/niamey-national-museum-night-800.webp 800w, site/assets/niamey-national-museum-night.webp 1380w" sizes="100vw"
+         alt="The National Museum of Niamey at night: the white facade with its blue reliefs under a deep blue sky, the lit door, and lanterns on the stone steps.">
+    <!-- the photograph the reader's theme shows is fetched at once, before the first frame; the other keeps waiting, lazy and unshown,
+         until its theme is chosen (ZAYN-SITE-PHOTO-04) -->
+    <script>(function(){var g=document.documentElement.dataset.vibe==='guardian',i=document.querySelector('.hero .photo img.'+(g?'night':'day'));if(i)i.loading='eager';})();</script>
+    <div class="panel claim">
+      <p class="kicker">Zayn, the compilable language for user interfaces</p>
+      <h1><span class="whole">Declare what a user is doing.</span> <span class="whole">The law refuses the rest.</span></h1>
+      <p class="sub">A declaration in Zayn names the action, and the verifier checks it against <span data-law="rules">123</span> rules before a screen exists; its answer is the rule the declaration breaks, by name and number.</p>
+    </div>
+  </div>
   <div class="narrow">
-    <p class="kicker">Zayn, the compilable language for user interfaces</p>
-    <h1><span class="whole">Declare what a user is doing.</span> <span class="whole">The law refuses the rest.</span></h1>
-    <p class="sub">A declaration in Zayn names the action, and the verifier checks it against <span data-law="rules">123</span> rules before a screen exists; its answer is the rule the declaration breaks, by name and number.</p>
+    <p class="photo-cap">The National Museum of Niamey, by day in the Modern theme and by night in the Retro theme. Photographs provided by the author.</p>
 
     <figure class="plate" id="plate" data-wasm="site/zayn.wasm?v=070f1626">
       <div class="plate-head">
@@ -341,7 +358,7 @@ check_balance.zayn:5  <span class="bad">error  VERB_NOT_CARRIED</span>  ZOOM in 
 <section>
   <div class="narrow">
     <h2 id="why-a-law">Why a law, and why now</h2>
-    <p>Interfaces built with AI assistants repeat the same defects after explicit instruction. The author of Zayn corrected <span data-fact="corpus.corrections">480</span> of them across <span data-fact="corpus.projects">26</span> projects, and <span data-fact="corpus.repeats">170</span> of those corrections name an earlier one: the same defect, made again after it was corrected.</p>
+    <p>Interfaces built with AI assistants repeat the same defects after explicit instruction. The author of Zayn corrected <span data-fact="corpus.corrections">482</span> of them across <span data-fact="corpus.projects">26</span> projects, and <span data-fact="corpus.repeats">170</span> of those corrections name an earlier one: the same defect, made again after it was corrected.</p>
     <p><a href="site/why.html">The problem, its cost and the decision ↗</a></p>
   </div>
 </section>
@@ -350,15 +367,6 @@ check_balance.zayn:5  <span class="bad">error  VERB_NOT_CARRIED</span>  ZOOM in 
   <div class="narrow">
     <h2 id="the-name">The name</h2>
     <p>Zayn comes from the Arabic <span lang="ar" dir="rtl">زَيْن</span>, beauty and adornment.</p>
-    <figure class="name-photo">
-      <img class="day" src="site/assets/niamey-national-museum.webp" width="1699" height="926" loading="lazy"
-           srcset="site/assets/niamey-national-museum-800.webp 800w, site/assets/niamey-national-museum-1280.webp 1280w, site/assets/niamey-national-museum.webp 1699w" sizes="(max-width: 760px) 100vw, 46rem"
-           alt="The National Museum of Niamey: a white facade with blue geometric reliefs and a blue door, above terraced stone steps with blue flower pots.">
-      <img class="night" src="site/assets/niamey-national-museum-night.webp" width="1380" height="752" loading="lazy"
-           srcset="site/assets/niamey-national-museum-night-800.webp 800w, site/assets/niamey-national-museum-night.webp 1380w" sizes="(max-width: 760px) 100vw, 46rem"
-           alt="The National Museum of Niamey at night: the white facade with its blue reliefs under a deep blue sky, the lit door, and lanterns on the stone steps.">
-      <figcaption>The National Museum of Niamey, by day in the Modern theme and by night in the Retro theme. Photographs provided by the author.</figcaption>
-    </figure>
   </div>
 </section>
 
