@@ -7,7 +7,7 @@
   "C": "every other project's memory folder (private client studies skipped) and lookout at ad302aa with softanza mailbox/lookout.md",
   "D": "stzzui at 1d3448e: doc/AMENDMENT-DOCKET.md, doc/HARVEST-2026-08.md, constitution/rules.json, .central/ inbox and outbox, doc/design/, git log, memory",
   "central": "softanza dashboard/zane-ui-corpus-2026-11-09.md (softanza 614d795), read beside the four sweeps",
-  "E": "addenda after the sweeps: relayed by Central and read in .central/inbox.md (the line cut again, 2026-11-09 15:31; the menu's Use and Try, 2026-11-10 03:56; the Reader's menu bar at the left edge, 2026-11-10 04:09; the four cards with no grid drawn, 2026-11-11 13:17), and given in the desk's own chat (tables drawn like running text; tables and code held to the text's edges; a wide block breaking the left edge; the page head moved off the menu's container; a Why page that held the case; two lines beside the outline; the filigree missing from a page opened from the disk; the brand and the current entry alike, all 2026-11-11; columns where one flow reads, a balanced paragraph short of its measure, code coloured by hand and wrapped back to the edge, a title cut before its dash, all 2026-11-12); and, for the site rethink (ZAYN-SITE-RETHINK-01), the review of the whole site and the eleven defects it found (2026-11-13), and four remarks on the Why branch in Retro (2026-11-14, and the front page that says one thing four times on one screen (2026-11-14), and on the published site a rail's cue struck through its entries and the photograph taken off the first screen (2026-11-14), the design system and its samples left outside the menu, and the front page wider than a phone's window (2026-11-14))",
+  "E": "addenda after the sweeps: relayed by Central and read in .central/inbox.md (the line cut again, 2026-11-09 15:31; the menu's Use and Try, 2026-11-10 03:56; the Reader's menu bar at the left edge, 2026-11-10 04:09; the four cards with no grid drawn, 2026-11-11 13:17), and given in the desk's own chat (tables drawn like running text; tables and code held to the text's edges; a wide block breaking the left edge; the page head moved off the menu's container; a Why page that held the case; two lines beside the outline; the filigree missing from a page opened from the disk; the brand and the current entry alike, all 2026-11-11; columns where one flow reads, a balanced paragraph short of its measure, code coloured by hand and wrapped back to the edge, a title cut before its dash, all 2026-11-12); and, for the site rethink (ZAYN-SITE-RETHINK-01), the review of the whole site and the eleven defects it found (2026-11-13), and four remarks on the Why branch in Retro (2026-11-14, and the front page that says one thing four times on one screen (2026-11-14), and on the published site a rail's cue struck through its entries and the photograph taken off the first screen (2026-11-14), the design system and its samples left outside the menu, and the front page wider than a phone's window (2026-11-14), and the photograph restored as a band instead of the full view (2026-11-15))",
   "F": "the repositories themselves (M1b, 2026-11-09): zin at cc98126, refine (no git; files), zing at e2573a9 and zing-studio at 95f36de, the product repositories (organizium and its variants, the restaurant app, orgdesk, zindara, zin-one, zin-website, zin-prototypes, ringface) and the estate sites (stzsite, harobanda, ayouni, lookout, ringserv, ringflex, microring, stz-observer and others); each record cites its file:line or commit"
  },
  "causes": {
@@ -8159,6 +8159,22 @@
   },
   {
    "n": "Z483",
+   "sweep": "E38",
+   "also": [],
+   "cause": "X",
+   "date": "2026-11-15",
+   "project": "stzzui",
+   "source": "the Principal in this desk's chat, after the photograph came back as a band (zayn 48a5952)",
+   "words": "\"Bring the main photo of the mesuem at the main full view of the frontpage like it was intially (i never told you to remove them and put them at the bottom!!!)\"",
+   "wrong": "the photograph restored as a band of 62svh, the desk's own proposal of a height, where pass 1 had it fill the first view",
+   "required": "the photograph fills the first view as pass 1 had it, 100svh on a desk width and 46svh on a phone; a restoration restores, and a size the Principal set is not proposed again",
+   "sense": "see (front page)",
+   "ruling": "ZAYN-SITE-PHOTO-04",
+   "verbatim": true,
+   "repeat": true
+  },
+  {
+   "n": "Z484",
    "sweep": "C16",
    "also": [
     "F4-12"
@@ -8176,7 +8192,7 @@
    "repeat": false
   },
   {
-   "n": "Z484",
+   "n": "Z485",
    "sweep": "C134",
    "also": [
     "A126",

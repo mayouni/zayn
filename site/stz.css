@@ -550,14 +550,15 @@ table.rules-audited + p { max-width: var(--measure-min); text-wrap: balance; }
    once in the first viewport and the other only when its theme is chosen:
      by day   1699 px 318,130 bytes, 1280 px 200,812, 800 px 94,424; quality 72
      by night 1380 px 48,156 bytes, 800 px 24,680; quality 78
-   It is a band, not the whole window, so the tagline and the start of the plate share the first screen with it (1440 by 900, 375 by 812);
-   its height is the desk's proposal, for the Principal to rule on. The ground under it is the bar's colour, so a photograph still on its way
-   shows a tinted frame and never an empty space. */
+   It fills the whole first view, as pass 1 had it (the Principal, 2026-11-15: "Bring the main photo of the mesuem at the main full view of
+   the frontpage like it was intially (i never told you to remove them and put them at the bottom!!!)"): 100svh on a desk width, the title
+   block over it, and the plate below it; on a phone the photograph takes pass 1's 46svh and the title block follows it as text. The ground
+   under it is the bar's colour, so a photograph still on its way shows a tinted frame and never an empty space. */
 /* contrast: #FFFFFF | #121413 at 80% | 10.1 | hero text over the brightest pixel of the photograph (pure white, measured on the file) */
 .hero { padding: 0 0 var(--space-2); }
-/* the band holds the title block in its own flow, at its foot, with the menu's height kept clear above it, so the block never slides
-   under the menu (K14) and the band grows where a narrow window makes the block taller */
-.hero .photo { position: relative; display: flex; align-items: flex-end; min-height: min(62svh, 40rem); background: var(--bar); overflow: hidden;
+/* the photograph holds the title block in its own flow, at its foot, with the menu's height kept clear above it, so the block never slides
+   under the menu (K14), and it grows past the window's height only where a narrow window makes the block taller */
+.hero .photo { position: relative; display: flex; align-items: flex-end; min-height: 100svh; background: var(--bar); overflow: hidden;
   padding: calc(var(--bars-h, 4.5rem) + 1.5rem) 0 2rem max(1.4rem, 4vw); box-sizing: border-box; }
 .hero .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 /* Modern shows the museum by day, Retro by night; the night photograph's door stands left of its centre, so it is drawn from further left */
@@ -590,11 +591,10 @@ table.rules-audited + p { max-width: var(--measure-min); text-wrap: balance; }
   /* on the front page no entry is current, so the brand keeps the bar's white over the photograph (K02) */
   .front nav.site .brand, .front nav.site a:not(.brand) { color: var(--on-bar); }
 }
-/* on a phone the bars stand above the photograph, a shorter band, and the title block follows it as text, so the plate still begins on
-   the first screen */
+/* on a phone the bars stand above the photograph, which takes pass 1's 46svh, and the title block follows it as text */
 @media (max-width: 760px) {
   .hero .photo { display: block; height: auto; min-height: 0; padding: 0; background: transparent; overflow: visible; }
-  .hero .photo img { position: static; display: block; height: 22svh; min-height: 9rem; background: var(--bar); }
+  .hero .photo img { position: static; display: block; height: 46svh; min-height: 260px; background: var(--bar); }
   [data-vibe="guardian"] .hero .photo img.day { display: none; }
   .hero .panel { position: static; width: auto; background: none; color: var(--ink); padding: var(--space-2) var(--gutter) 0; border-radius: 0; }
   .hero .panel .kicker { color: var(--ink-2); }
