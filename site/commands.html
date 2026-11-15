@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-vibe="curator">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Command reference — every command, option, exit code and report field</title>
+<meta name="description" content="The zayn command, entry by entry: each command and its options, the exit codes a build reads, and the JSON report field by field.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stz.css?v=2fd791ce">
+<!-- shell:vibe -->
+<script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
+<!-- /shell:vibe -->
+</head>
+<body data-archetype="article">
+
+<!-- shell:menu -->
+<div class="bars">
+<nav class="site" aria-label="Main menu">
+  <div class="wrap">
+    <div class="menu">
+        <a class="brand" href="../index.html">Zayn</a>
+    <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
+    <a href="how.html">Language</a>
+    <a href="rules.html">Law</a>
+    <a class="here" aria-current="true" href="adopt.html">Adopt</a>
+    </div>
+    <div class="tools">
+      <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <div class="vibe-picker">
+        <label for="vibe-select">Theme</label>
+        <select id="vibe-select">
+          <option value="curator">Modern</option>
+          <option value="guardian">Retro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="band" aria-label="Pages of the section">
+  <ul>
+    <li><a href="adopt.html">Start</a></li>
+    <li><a href="designers.html">Designers</a></li>
+    <li><a aria-current="true" href="build.html">Programmers</a></li>
+    <li><a href="web.html">Your product</a></li>
+    <li><a href="audit.html">Tools</a></li>
+  </ul>
+</nav>
+</div>
+<!-- /shell:menu -->
+
+<!-- Adopt > Programmers > Command reference (ZAYN-SITE-RETHINK-01 step 3). Drawn from zig/src/main.zig and serve.zig; the JSON report
+     below is a real run, re-run by tools/site-facts.js. -->
+<header class="page">
+  <div class="narrow">
+    <!-- shell:trail -->
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><a href="build.html">Programmers</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Command reference</span></nav>
+<!-- /shell:trail -->
+    <h1>The command reference</h1>
+    <p class="sub">Each command zayn answers, with its options, the exit code a build reads and the JSON report a program parses, field by field.</p>
+  </div>
+</header>
+
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a href="build.html">Build</a></li>
+    <li><a aria-current="page" href="commands.html">Command reference</a>
+      <ul class="sub">
+        <li><a href="#commands">The commands</a></li>
+        <li><a href="#options">The options</a></li>
+        <li><a href="#exit-codes">Exit codes</a></li>
+        <li><a href="#json">The JSON report</a></li>
+        <li><a href="#what-exists">What exists today</a></li>
+        <li><a href="#this-page">This page, declared</a></li>
+      </ul>
+    </li>
+    <li><a href="calling.html">From any language</a></li>
+    <li><a href="stack.html">Your stack</a></li>
+    <li><a href="ports.html">Other languages</a></li>
+    <li><a href="softanza.html">Softanza</a></li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
+
+<section>
+  <div class="narrow">
+    <h2 id="commands" data-outline="The commands">The commands</h2>
+    <p>One file answers every command. Run it with no argument, or with <code>-h</code>, and it prints how to call <code>check</code>.</p>
+    <table class="board">
+      <thead><tr><th>The command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>zayn check FILE…</code></td><td>Checks each declaration against the law and reports each refusal with its rule.</td></tr>
+        <tr><td><code>zayn conformance</code></td><td>Runs the conformance suite and its cross-checks in one process.</td></tr>
+        <tr><td><code>zayn pack</code></td><td>Writes the protocol pack's manifest, or with <code>--check</code> verifies it.</td></tr>
+        <tr><td><code>zayn cross-medium [SPEC]</code></td><td>Renders one declaration on two channels and checks both under one law.</td></tr>
+        <tr><td><code>zayn audit-facts [FACTS]</code></td><td>Decides the screenshot audit's rules on the facts read from a picture.</td></tr>
+        <tr><td><code>zayn serve</code></td><td>Serves this site, the Reader and the UI audit from inside the file, or another site beside the audit.</td></tr>
+        <tr><td><code>zayn site facts|shell|grid</code></td><td>Runs this site's own build checks, from the repository's root.</td></tr>
+        <tr><td><code>zayn version</code></td><td>Prints the law, the language, the contract and the build it carries; <code>--version</code> prints the release.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="options" data-outline="The options">The options, command by command</h2>
+    <table class="board">
+      <thead><tr><th>The option</th><th>Its command</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>--level N</code></td><td>check</td><td>The conformance level, from 1 to 4; 2 by default, everything one declaration decides.</td></tr>
+        <tr><td><code>--symbols FILE</code></td><td>check</td><td>A symbol table in JSON, which the checks of level 3 read; without it they are skipped and say so.</td></tr>
+        <tr><td><code>--contract FILE</code></td><td>check</td><td>The list of violations to check against, in place of the one the file carries.</td></tr>
+        <tr><td><code>--json</code></td><td>check</td><td>The report as JSON, for a program to parse.</td></tr>
+        <tr><td><code>--quiet</code></td><td>check</td><td>The findings alone, with no summary line.</td></tr>
+        <tr><td><code>--level N</code></td><td>conformance</td><td>The level of the suite; 4 by default.</td></tr>
+        <tr><td><code>--verbose</code>, <code>-v</code></td><td>conformance, cross-medium</td><td>Each case by name, beside its verdict.</td></tr>
+        <tr><td><code>--check</code></td><td>pack</td><td>Verifies the manifest in place of writing it.</td></tr>
+        <tr><td><code>--rules LIST</code></td><td>audit-facts</td><td>Decides only the rules named, by number, separated by commas.</td></tr>
+        <tr><td><code>--root DIR</code></td><td>serve</td><td>Serves the site from the folder DIR in place of the copy inside the file.</td></tr>
+        <tr><td><code>--app DIR</code></td><td>serve</td><td>Serves another site from DIR, read only, with the UI audit beside it.</td></tr>
+        <tr><td><code>--port N</code>, <code>--host ADDR</code></td><td>serve</td><td>Where it listens: the machine itself by default, another address only when <code>--host</code> names it.</td></tr>
+        <tr><td><code>--write</code></td><td>site</td><td>Writes what the check would compare: the navigation, the tables or the figures.</td></tr>
+        <tr><td><code>-h</code>, <code>--help</code></td><td>check, site</td><td>How to call the command.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="exit-codes" data-outline="Exit codes">The exit codes a build reads</h2>
+    <table class="board">
+      <thead><tr><th>The code</th><th>What it means</th></tr></thead>
+      <tbody>
+        <tr><td><code>0</code></td><td>Every declaration is lawful, or the suite conforms.</td></tr>
+        <tr><td><code>1</code></td><td>A declaration is refused, or a case of the suite does not match.</td></tr>
+        <tr><td><code>2</code></td><td>The command was called wrongly, or a file could not be read.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="json" data-outline="The JSON report">The JSON report, field by field</h2>
+    <p>With <code>--json</code>, <code>check</code> prints one object. This is a real run on a fixture of the suite, an act with no way back.</p>
+    <pre class="term" data-run="zayn check conformance/fixtures/missing-undo.zayn --json"><span class="dim">$ zayn check conformance/fixtures/missing-undo.zayn --json</span>
+{
+  "level": 2,
+  "contract": {
+    "version": "1.11",
+    "constitution": "3.17"
+  },
+  "files": [
+    "conformance/fixtures/missing-undo.zayn"
+  ],
+  "counts": {
+    "errors": 1,
+    "warnings": 0
+  },
+  "diagnostics": [
+    {
+      "code": "MISSING_UNDO",
+      "severity": "error",
+      "message": "An act declares no way back: SATISFIES holds ACT, ALWAYS_REACHABLE lacks UNDO.",
+      "span": {
+        "file": "conformance/fixtures/missing-undo.zayn",
+        "line": 5
+      },
+      "cites": [
+        "rule:79",
+        "article:reversibility",
+        "right:reverse"
+      ],
+      "language": "zayn",
+      "level": 2,
+      "subject": "post_entry"
+    }
+  ]
+}</pre>
+    <p class="gloss"><b>In words:</b> one refusal, MISSING_UNDO, on line 5 of the fixture, resting on Rule 79 and the right to reverse; the command exits 1.</p>
+    <table class="board">
+      <thead><tr><th>The field</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td><code>level</code></td><td>The level the check ran at.</td></tr>
+        <tr><td><code>contract.version</code></td><td>The version of the list of violations the check used.</td></tr>
+        <tr><td><code>contract.constitution</code></td><td>The version of the law that list belongs to.</td></tr>
+        <tr><td><code>files</code></td><td>The files checked, in the order given.</td></tr>
+        <tr><td><code>counts.errors</code>, <code>counts.warnings</code></td><td>How many refusals of each severity; an error makes the exit code 1.</td></tr>
+        <tr><td><code>diagnostics</code></td><td>One entry per refusal, in the order found.</td></tr>
+        <tr><td><code>code</code></td><td>The violation's name, the one a program matches on.</td></tr>
+        <tr><td><code>severity</code></td><td><code>error</code> or <code>warning</code>.</td></tr>
+        <tr><td><code>message</code></td><td>The refusal in one sentence, for a person.</td></tr>
+        <tr><td><code>span.file</code>, <code>span.line</code>, <code>span.col</code></td><td>Where the refusal is: the file, the line, and the column when the check knows it.</td></tr>
+        <tr><td><code>cites</code></td><td>What the refusal rests on: the rule first, then the article and the right it protects.</td></tr>
+        <tr><td><code>language</code></td><td>The language the declaration is written in.</td></tr>
+        <tr><td><code>level</code></td><td>The level the refusal belongs to.</td></tr>
+        <tr><td><code>subject</code></td><td>The name of the declaration refused.</td></tr>
+      </tbody>
+    </table>
+    <p><a href="calling.html">The same report, read from a shell, Python, JavaScript, Go and PowerShell ↗</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>The commands above, in one file for Windows, Linux and macOS</td><td class="status exists">exists</td></tr>
+        <tr><td>The JSON report of <code>check</code>, the same from the command and from the browser</td><td class="status exists">exists</td></tr>
+        <tr><td>Exit codes 0, 1 and 2</td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to locate a command, read its entry and understand its answer.</p>
+<pre class="shot">// commands.zayn
+DEFINE SCREEN commands (
+  SATISFIES [LOCATE, READ, UNDERSTAND],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor locates, reads and understands, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check commands.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- shell:footer -->
+<footer class="site">
+  <div class="narrow">
+    <div class="bar">
+      <div class="row">
+        <a href="../LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <p class="fine">Zayn is a <a href="https://mayouni.github.io/stzsite/index.html">Softanza</a> project.</p>
+    <p class="fine">© 2026 Mansour Ayouni · MIT licence</p>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="stz.js?v=7c57cb1d"></script>
+</body>
+</html>

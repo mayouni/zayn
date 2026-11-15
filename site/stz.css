@@ -373,8 +373,9 @@ li { margin-bottom: .45em; }
 h1, h2, h3, .kicker { text-wrap: balance; }
 li { margin: .3rem 0; }
 
-/* ---- code shots & terminals: a light panel as wide as its content needs, wrapping rather than scrolling ---- */
-.shot, .term, .excerpt {
+/* ---- code shots & terminals: a light panel as wide as its content needs, wrapping rather than scrolling. A recipe in another language
+   (site/calling.html) and a command or a build step (.code) are code blocks too, and wrap the same way (K13 ONE_SCROLL) ---- */
+.shot, .term, .excerpt, .recipe, pre.code {
   background: var(--surface); color: var(--ink); border: var(--hairline) solid var(--line);
   border-radius: var(--radius); padding: .9rem 1.2rem; font: var(--size-small)/1.55 var(--mono); margin: 1.2rem 0;
   width: fit-content; max-width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; box-shadow: none;
@@ -708,13 +709,15 @@ figure.plate.ideas .plate-head { border-bottom: 0; padding: 0 0 .7rem; }
 }
 .idea h4.label { font: var(--weight-strong) var(--size-small) var(--font); color: var(--ink); margin: 0 0 .3rem; max-width: none; }
 .idea .note { font-size: var(--size-small); margin: 0 0 .7rem; max-width: none; }
-dl.verbs { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .3rem 1rem; margin: 0; }
-dl.verbs dt { font-weight: var(--weight-strong); }
-dl.verbs dd { margin: 0; font: var(--size-small)/1.6 var(--mono); }
-[data-vibe="guardian"] dl.verbs dd { font-family: var(--font); }
-dl.chans { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: .3rem 1.2rem; margin: 0; }
-dl.chans dt { font-weight: var(--weight-strong); }
-dl.chans dd { margin: 0 0 .3rem; font-size: var(--size-small); color: var(--ink-2); }
+/* pairs of data, a name and what it holds (the verbs of an activity, a channel and what it is), stand in a table with its lines, never in a
+   list (the Principal, 2026-11-15: "i told you MANY TIMES that tabular data should be presented in tables or grids!!") */
+table.pairs { border-collapse: collapse; width: 100%; margin: 0 0 .7rem; background: var(--surface); }
+table.pairs th, table.pairs td { border: var(--hairline) solid var(--line); padding: .35rem .7rem; text-align: left; vertical-align: top; font-size: var(--size-small); }
+table.pairs thead th { background: var(--tint); font-weight: var(--weight-strong); border-bottom: var(--ring) solid var(--edge); }
+table.pairs tbody th { font-weight: var(--weight-strong); white-space: nowrap; }
+table.pairs td { overflow-wrap: anywhere; }
+table.pairs.verbs td { font-family: var(--mono); }
+[data-vibe="guardian"] table.pairs.verbs td { font-family: var(--font); }
 table.mini { border-collapse: collapse; margin: 0 0 .7rem; font-variant-numeric: tabular-nums; background: var(--surface); }
 table.mini th, table.mini td { border: var(--hairline) solid var(--line); padding: .3rem .6rem; text-align: center; font-size: var(--size-small); }
 table.mini thead th { background: var(--tint); font-weight: var(--weight-strong); border-bottom: var(--ring) solid var(--edge); }

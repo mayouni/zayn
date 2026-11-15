@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ways in — four ways into Zayn from what you already have</title>
-<meta name="description" content="The Adopt section describes four ways to use Zayn on an interface you already have: a web application, a mobile app, an interface with no screen, and your own stack. Each way says what Zayn gives today and what it asks of a team.">
+<title>Start — the zayn command, a first check and a first refusal</title>
+<meta name="description" content="Start with one file: build the zayn command, check a first declaration, read its first refusal, and make a build fail on it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=fab9abd8">
+<link rel="stylesheet" href="stz.css?v=2fd791ce">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -40,6 +40,7 @@
 <nav class="band" aria-label="Pages of the section">
   <ul>
     <li><a aria-current="page" href="adopt.html">Start</a></li>
+    <li><a href="designers.html">Designers</a></li>
     <li><a href="build.html">Programmers</a></li>
     <li><a href="web.html">Your product</a></li>
     <li><a href="audit.html">Tools</a></li>
@@ -48,15 +49,15 @@
 </div>
 <!-- /shell:menu -->
 
+<!-- Start, the landing of Adopt (ZAYN-SITE-RETHINK-01 step 3): the command, a first check, a first refusal, the step that fails a build.
+     Every report on the page is a real run, re-run by tools/site-facts.js. -->
 <header class="page">
   <div class="narrow">
     <!-- shell:trail -->
 <nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><span class="here-crumb" aria-current="page">Start</span></nav>
 <!-- /shell:trail -->
-    <p class="kicker">Use · which way in is yours</p>
-    <h1>The Adopt section describes four ways into Zayn from an interface you already have, and where each way stops.</h1>
-    <p class="sub">This section shows four ways into Zayn from what you already have: a web application in production, a mobile app, an interface with no screen such as a voice line or an agent, or your own language and framework.
-    Each way in is a workflow on a real case, and it lets a person know what Zayn gives today and what it does not before adopting it.</p>
+    <h1>Start with Zayn</h1>
+    <p class="sub">Start with one file: the zayn command checks a declaration, names what the law refuses in it, and fails a build on a refusal.</p>
   </div>
 </header>
 
@@ -65,62 +66,114 @@
 <nav class="list3 sections" aria-label="Sections of this page">
   <p class="outline-title">On this page</p>
   <ul>
-    <li><a href="#four-ways-in">Four ways in</a></li>
-    <li><a href="#you-have-a-web-application">On a web application</a></li>
-    <li><a href="#you-have-a-mobile-app">On a mobile app</a></li>
-    <li><a href="#your-interface-has-no-screen">With no screen</a></li>
-    <li><a href="#you-choose-the-stack">In the stack you use</a></li>
-    <li><a href="#what-every-way-shares">Shared by all four</a></li>
-    <li><a href="#related-parts">Related parts</a></li>
+    <li><a href="#the-command">The command</a></li>
+    <li><a href="#first-check">A first check</a></li>
+    <li><a href="#first-refusal">A first refusal</a></li>
+    <li><a href="#fail-the-build">Fail the build</a></li>
+    <li><a href="#next">Next, by craft</a></li>
+    <li><a href="#what-exists">What exists today</a></li>
+    <li><a href="#this-page">This page, declared</a></li>
   </ul>
 </nav>
 <!-- /shell:layout -->
 <main id="main">
 
-<section id="four-ways-in">
+<section>
   <div class="narrow">
-    <h2 data-outline="Four ways in">The four ways to use Zayn, one card for each</h2>
-
-    <div class="messages">
-      <div class="card"><h2 id="you-have-a-web-application" data-outline="On a web application">Using Zayn on a web application</h2>
-        <p>You declare the application's surfaces, run the verifier, and then run the UI audit on the live pages. The Web apps page works through a real case: the navigation of a site this project does not own.</p>
-        <a href="web.html">Web apps ↗</a></div>
-      <div class="card"><h2 id="you-have-a-mobile-app" data-outline="On a mobile app">Using Zayn on a mobile app</h2>
-        <p>A mobile app has no page to measure. You declare its screens, reduce a screenshot to facts, and judge those facts. The Mobile apps page says what runs today and what each part does.</p>
-        <a href="mobile.html">Mobile apps ↗</a></div>
-      <div class="card"><h2 id="your-interface-has-no-screen" data-outline="With no screen">Using Zayn on an interface with no screen</h2>
-        <p>A voice line, a status chime and an agent that a machine drives are interfaces with no screen. The Beyond screens page says what the verifier decides in each channel and where the law is silent.</p>
-        <a href="beyond.html">Beyond screens ↗</a></div>
-      <div class="card"><h2 id="you-choose-the-stack" data-outline="In the stack you use">Using Zayn in the stack you choose</h2>
-        <p>You can <a href="build.html">build with Zayn</a> in your CI, <a href="generate.html">make a generator declare intent</a> before it draws, <a href="softanza.html">vendor the law inside Softanza</a>, or <a href="ports.html">port Zayn to another language</a>.</p>
-        <a href="stack.html">Your stack ↗</a></div>
-    </div>
-    <p>The <a href="positioning.html">Comparison</a> and <a href="case.html">The case</a> pages give the reasons for Zayn and the case against the practices you already use. <a href="conformance.html#status">The status board</a> lists, part by part, what is built, what is designed and what is held.</p>
+    <h2 id="the-command" data-outline="The command">One file, built from this repository</h2>
+    <p>The zayn command is one file with nothing to install beside it. The repository builds it for Windows, Linux and macOS, and for a browser as WebAssembly, with the compiler <code>zig 0.15.2</code>.</p>
+<pre class="code">cd zig
+zig build release</pre>
+    <p class="gloss"><b>In words:</b> the release build writes one file for each system into <code>zig-out/release/</code>, and the same build on two machines gives the same files.</p>
+    <p>A designer can start with nothing installed: <a href="build.html">the verifier also runs in the browser ↗</a>.</p>
   </div>
 </section>
 
-<section class="alt" id="what-every-way-shares">
+<section>
   <div class="narrow">
-    <h2 data-outline="Shared by all four">What the four ways to use Zayn have in common</h2>
+    <h2 id="first-check" data-outline="A first check">A first declaration, and its check</h2>
+    <p>A declaration says what a user is doing. Here the user approves a payment, with a way back from every step.</p>
+<pre class="shot">// lawful.zayn
+DEFINE INTENT_FLOW approve_payment (
+  SATISFIES [SELECT, CONFIRM, ACT],
+  ALWAYS_REACHABLE [UNDO, CANCEL]
+)</pre>
+    <p class="gloss"><b>In words:</b> the user selects, confirms and acts, and from every step can cancel or undo. The command finds nothing to refuse, and exits 0.</p>
+<pre class="term">$ zayn check lawful.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
 
+<section>
+  <div class="narrow">
+    <h2 id="first-refusal" data-outline="A first refusal">A first refusal, by name and rule</h2>
+    <p>Take the way back out of the same flow, and the command refuses it.</p>
+<pre class="shot">// payments.zayn
+DEFINE INTENT_FLOW approve_payment (
+  SATISFIES [SELECT, CONFIRM, ACT]
+)</pre>
+    <p class="gloss"><b>In words:</b> the same flow with nothing reachable: the user acts and can neither leave nor take it back.</p>
+<pre class="term">$ zayn check payments.zayn
+payments.zayn:2  <span class="bad">error  MISSING_UNDO</span>  approve_payment
+    An act declares no way back: SATISFIES holds ACT, ALWAYS_REACHABLE lacks UNDO.
+    <span class="dim">Rule 79 · The Undo Covenant · Article IV · the right to reverse</span>
+payments.zayn:2  <span class="bad">error  MISSING_CANCEL</span>  approve_payment
+    A flow that acts cannot be abandoned: ALWAYS_REACHABLE lacks CANCEL.
+    <span class="dim">Rule 26 · The Back Button is Holy · Article IV · the right to leave</span>
+
+2 error(s), 0 warning(s) across 1 file(s) at level 2</pre>
+    <p class="gloss"><b>In words:</b> the command read line 2, marked in the declaration, and names two refusals, each with its rule and the right it protects. It exits 1.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="fail-the-build" data-outline="Fail the build">The step that fails a build</h2>
+    <p>The command exits 0 when every declaration is lawful and 1 when one is refused, so one step in a build is enough.</p>
+<pre class="code">- name: Check the declarations
+  run: zayn check specs/*.zayn</pre>
+    <p class="gloss"><b>In words:</b> a build step that runs the command over every declaration of the project; a refusal stops the build, and its log names the rule.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="next" data-outline="Next, by craft">Next, by what you do</h2>
     <ul>
-      <li><b>All four ways use one law, stored as data.</b> The law holds <span data-law="rules">123</span> rules in one versioned file, v<span data-law="version">3.17</span>.</li>
-      <li><b>All four ways use one refusal contract.</b> The contract has <span data-law="diagnostics">40</span> diagnostics, and each diagnostic is bound to the rule, article or right it enforces.</li>
-      <li><b>All four ways use one proof.</b> The proof is <span data-fact="fixtures.total">77</span> fixtures with known verdicts, which let an implementation prove that it agrees with the law instead of asserting it.</li>
-      <li><b>Zayn needs one file and a browser today,</b> and nothing else. The file, <code>zayn</code>, is version 0.1.0, for Windows, Linux and macOS (tested on Windows and Linux; built for macOS), on <a href="https://github.com/mayouni/zayn/releases/tag/v0.1.0">its release page</a>.</li>
+      <li><a href="designers.html">You design interfaces: declare in the browser and read the grammar ↗</a></li>
+      <li><a href="commands.html">You write software: every command, option and exit code ↗</a></li>
+      <li><a href="web.html">You have a product: a web application, a mobile app, a screen-free interface ↗</a></li>
     </ul>
   </div>
 </section>
 
-<section id="related-parts">
+<section>
   <div class="narrow">
-    <h2 data-outline="Related parts">How the four ways relate to the screenshot audit, the channels and the wider design</h2>
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>The zayn command, built from this repository for Windows, Linux and macOS</td><td class="status exists">exists</td></tr>
+        <tr><td>The verifier in the browser, compiled to WebAssembly from the same code</td><td class="status exists">exists</td></tr>
+        <tr><td>Exit codes a build reads: 0 lawful, 1 refused, 2 a usage or read error</td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-    <ul>
-      <li>The <b>screenshot audit</b> has a written fact schema and a checker that decides, from a screenshot's facts, the rules a screenshot can decide.</li>
-      <li>Rules for <b>haptic, luminous, signage, spatial and terminal channels</b> are written when a product that ships in one of these channels is named.</li>
-      <li>This page rests on the ratified law. The wider design, called the Second Founding, is <b>a proposal</b> beside it.</li>
-    </ul>
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to discover the command, understand it and find the next step.</p>
+<pre class="shot">// start.zayn
+DEFINE SCREEN start (
+  SATISFIES [DISCOVER, UNDERSTAND, LOCATE],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor discovers, understands and finds their way on, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check start.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
   </div>
 </section>
 
@@ -141,7 +194,6 @@
 </footer>
 <!-- /shell:footer -->
 
-<script src="stz.js?v=e07737fa"></script>
-<script src="law-numbers.js?v=da2f1afd" data-src="../constitution/rules.json" defer></script>
+<script src="stz.js?v=7c57cb1d"></script>
 </body>
 </html>

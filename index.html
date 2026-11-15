@@ -6,7 +6,7 @@
 <title>Zayn — the compilable language for user interfaces</title>
 <meta name="description" content="Zayn is a compilable language for user interfaces. You declare what a user, a person or an agent, is doing; a verifier reads the declaration against a law and refuses what the law forbids, by name, before anything is drawn.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3Ctext x='16' y='24' font-family='system-ui' font-weight='900' font-size='22' text-anchor='middle' fill='%23e04a6e'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="site/stz.css?v=fab9abd8">
+<link rel="stylesheet" href="site/stz.css?v=2fd791ce">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -156,28 +156,34 @@ DEFINE INTENT_FLOW approve_payment (
     <div class="idea">
       <h4 class="label">1. Intent: what a user is doing</h4>
       <p class="note">A verb belongs to one activity. Perceive and trust hold no verb of their own.</p>
-      <dl class="verbs">
-      <dt>understand</dt><dd>DISCOVER, UNDERSTAND, LOCATE, READ, SCAN, SCROLL, ZOOM, COMPARE</dd>
-      <dt>decide</dt><dd>FOCUS, FILTER, SELECT, HIGHLIGHT, PREVIEW, MARK</dd>
-      <dt>act</dt><dd>ACT, CONFIRM</dd>
-      <dt>recover</dt><dd>CANCEL, UNDO, PAUSE, RESUME, RETRY, EXIT</dd>
-      </dl>
+      <table class="pairs verbs">
+        <thead><tr><th scope="col">Activity</th><th scope="col">Its verbs</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">understand</th><td>DISCOVER, UNDERSTAND, LOCATE, READ, SCAN, SCROLL, ZOOM, COMPARE</td></tr>
+          <tr><th scope="row">decide</th><td>FOCUS, FILTER, SELECT, HIGHLIGHT, PREVIEW, MARK</td></tr>
+          <tr><th scope="row">act</th><td>ACT, CONFIRM</td></tr>
+          <tr><th scope="row">recover</th><td>CANCEL, UNDO, PAUSE, RESUME, RETRY, EXIT</td></tr>
+        </tbody>
+      </table>
     </div>
     <div class="idea">
       <h4 class="label">2. Channels: where it happens</h4>
       <p class="note">One declaration serves any of them, and a verb a channel cannot carry is refused.</p>
-      <dl class="chans">
-      <div><dt>visual</dt><dd>A screen or page</dd></div>
-      <div><dt>auditory</dt><dd>Non-speech sound</dd></div>
-      <div><dt>voice</dt><dd>Speech in and out</dd></div>
-      <div><dt>haptic</dt><dd>Touch and vibration</dd></div>
-      <div><dt>print</dt><dd>The fixed record</dd></div>
-      <div><dt>luminous</dt><dd>Indicator light, lamp, beacon</dd></div>
-      <div><dt>signage</dt><dd>Fixed physical marking</dd></div>
-      <div><dt>machine</dt><dd>Consumed by a program</dd></div>
-      <div><dt>spatial</dt><dd>A world seen from a vantage</dd></div>
-      <div><dt>terminal</dt><dd>A text grid</dd></div>
-      </dl>
+      <table class="pairs">
+        <thead><tr><th scope="col">Channel</th><th scope="col">What it is</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">visual</th><td>A screen or page</td></tr>
+          <tr><th scope="row">auditory</th><td>Non-speech sound</td></tr>
+          <tr><th scope="row">voice</th><td>Speech in and out</td></tr>
+          <tr><th scope="row">haptic</th><td>Touch and vibration</td></tr>
+          <tr><th scope="row">print</th><td>The fixed record</td></tr>
+          <tr><th scope="row">luminous</th><td>Indicator light, lamp, beacon</td></tr>
+          <tr><th scope="row">signage</th><td>Fixed physical marking</td></tr>
+          <tr><th scope="row">machine</th><td>Consumed by a program</td></tr>
+          <tr><th scope="row">spatial</th><td>A world seen from a vantage</td></tr>
+          <tr><th scope="row">terminal</th><td>A text grid</td></tr>
+        </tbody>
+      </table>
     </div>
     <div class="idea">
       <h4 class="label">3. The grid: what the law covers</h4>
@@ -358,7 +364,7 @@ check_balance.zayn:5  <span class="bad">error  VERB_NOT_CARRIED</span>  ZOOM in 
 <section>
   <div class="narrow">
     <h2 id="why-a-law">Why a law, and why now</h2>
-    <p>Interfaces built with AI assistants repeat the same defects after explicit instruction. The author of Zayn corrected <span data-fact="corpus.corrections">485</span> of them across <span data-fact="corpus.projects">26</span> projects, and <span data-fact="corpus.repeats">171</span> of those corrections name an earlier one: the same defect, made again after it was corrected.</p>
+    <p>Interfaces built with AI assistants repeat the same defects after explicit instruction. The author of Zayn corrected <span data-fact="corpus.corrections">486</span> of them across <span data-fact="corpus.projects">26</span> projects, and <span data-fact="corpus.repeats">172</span> of those corrections name an earlier one: the same defect, made again after it was corrected.</p>
     <p><a href="site/why.html">The problem, its cost and the decision ↗</a></p>
   </div>
 </section>
@@ -420,7 +426,7 @@ DEFINE SCREEN front_page (
 </footer>
 <!-- /shell:footer -->
 
-<script src="site/stz.js?v=e07737fa"></script>
+<script src="site/stz.js?v=7c57cb1d"></script>
 <script src="site/zayn-wasm.js?v=30454a74"></script>
 <script src="site/try.js?v=2ed01547"></script>
 </body>

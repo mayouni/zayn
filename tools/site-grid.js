@@ -11,6 +11,7 @@
                                                 the law, media.json and the fixtures) -- a row per channel, a column per activity
      site/media.html  <!-- channels:table -->  the ten channels and their properties: conformance/media.json
      index.html       <!-- ideas:table -->     the front page's plate of intent, the channels and the grid: the same two sources
+     site/designers.html <!-- verbs:table -->  the verbs by activity, the designers' grammar: coverage-count.js
    The check is run by tools/site-facts.js, so one command fails when either page drifts from its data.
    ========================================================================== */
 const fs = require('fs');
@@ -88,8 +89,10 @@ function ideasFigure() {
   const m = JSON.parse(fs.readFileSync(R('conformance/media.json'), 'utf8'));
   const cell = {};
   for (const c of g.cells) cell[c.activity + '|' + c.column] = c;
-  const verbs = g.activities.filter(a => g.verbs[a].length).map(a => `      <dt>${esc(a)}</dt><dd>${g.verbs[a].map(esc).join(', ')}</dd>`).join('\n');
-  const chans = m.media.map(c => `      <div><dt>${esc(c.id)}</dt><dd>${esc(c.title)}</dd></div>`).join('\n');
+  /* the verbs and the channels are pairs, so each is a table with its lines, never a list (the Principal, 2026-11-15: "i told you MANY
+     TIMES that tabular data should be presented in tables or grids!!") */
+  const verbs = g.activities.filter(a => g.verbs[a].length).map(a => `          <tr><th scope="row">${esc(a)}</th><td>${g.verbs[a].map(esc).join(', ')}</td></tr>`).join('\n');
+  const chans = m.media.map(c => `          <tr><th scope="row">${esc(c.id)}</th><td>${esc(c.title)}</td></tr>`).join('\n');
   let has = 0, open = 0, shut = 0;
   const rows = g.columns.map(col => {
     const tds = g.activities.map(a => {
@@ -107,16 +110,22 @@ function ideasFigure() {
     <div class="idea">
       <h4 class="label">1. Intent: what a user is doing</h4>
       <p class="note">A verb belongs to one activity. Perceive and trust hold no verb of their own.</p>
-      <dl class="verbs">
+      <table class="pairs verbs">
+        <thead><tr><th scope="col">Activity</th><th scope="col">Its verbs</th></tr></thead>
+        <tbody>
 ${verbs}
-      </dl>
+        </tbody>
+      </table>
     </div>
     <div class="idea">
       <h4 class="label">2. Channels: where it happens</h4>
       <p class="note">One declaration serves any of them, and a verb a channel cannot carry is refused.</p>
-      <dl class="chans">
+      <table class="pairs">
+        <thead><tr><th scope="col">Channel</th><th scope="col">What it is</th></tr></thead>
+        <tbody>
 ${chans}
-      </dl>
+        </tbody>
+      </table>
     </div>
     <div class="idea">
       <h4 class="label">3. The grid: what the law covers</h4>
@@ -133,10 +142,20 @@ ${rows}
 </figure>`;
 }
 
+/* The designers' page's grammar (ZAYN-SITE-RETHINK-01 step 3): the verbs a user uses, by activity, from the same counts as the grid */
+function verbsFigure() {
+  const r = spawnSync(process.execPath, [R('doc/design/coverage-count.js'), '--json'], { encoding: 'utf8', maxBuffer: 1 << 26 });
+  if (r.status !== 0 && !r.stdout) throw new Error('coverage-count.js failed: ' + r.stderr);
+  const g = JSON.parse(r.stdout).grid;
+  const rows = g.activities.filter(a => g.verbs[a].length).map(a => `    <tr><th scope="row">${esc(a)}</th><td>${g.verbs[a].map(esc).join(', ')}</td></tr>`).join('\n');
+  return `<table class="pairs verbs">\n  <thead><tr><th scope="col">Activity</th><th scope="col">Its verbs</th></tr></thead>\n  <tbody>\n${rows}\n  </tbody>\n</table>`;
+}
+
 const BLOCKS = [
   { file: 'site/grid.html', name: 'grid:table', make: gridTable },
   { file: 'site/media.html', name: 'channels:table', make: channelsTable },
-  { file: 'index.html', name: 'ideas:table', make: ideasFigure }
+  { file: 'index.html', name: 'ideas:table', make: ideasFigure },
+  { file: 'site/designers.html', name: 'verbs:table', make: verbsFigure }
 ];
 
 function main(argv) {
@@ -161,4 +180,4 @@ function main(argv) {
   return 0;
 }
 if (require.main === module) process.exitCode = main(process.argv.slice(2));
-module.exports = { gridTable, channelsTable, ideasFigure };
+module.exports = { gridTable, channelsTable, ideasFigure, verbsFigure };

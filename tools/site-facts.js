@@ -257,6 +257,53 @@ function verifyCommands(problems) {
   return n;
 }
 
+// ---- a recipe shown on a page runs (ZAYN-SITE-RETHINK-01 step 3: calling Zayn from any language) ------------------------
+/* <pre class="recipe" data-lang="LANG" data-file="NAME">the program</pre>, its "In words" line, then <pre class="term" data-recipe="LANG">
+   whose first line is "$ " and how the program is run, the rest what it printed. The program is written to NAME in a folder of its own,
+   with the page's payments.zayn (the declaration of the page's pair for that file) and a copy of the zayn this repository built
+   (zig-out/bin), that folder first on the PATH; it is run as RECIPE_RUN says, and what it prints must be what the page shows. A language
+   whose program this machine lacks is named as not run here, never counted as run: a scoped run prints what it skipped (PX). */
+const RECIPE_RUN = { shell: ['sh'], python: ['python'], javascript: ['node'], go: ['go', 'run'], powershell: ['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-File'] };
+function verifyRecipes(problems) {
+  const exe = process.platform === 'win32' ? '.exe' : '';
+  const bin = R('zig-out/bin/zayn' + exe);
+  const norm = t => t.replace(/\r\n/g, '\n').split('\n').map(l => l.replace(/\s+$/, '')).join('\n').replace(/\n+$/, '');
+  const decls = pairs();
+  const found = [];
+  for (const p of pages()) {
+    const html = fs.readFileSync(R(p), 'utf8').replace(/\r\n/g, '\n');
+    const re = /<pre class="recipe" data-lang="([a-z]+)" data-file="([^"]+)">([\s\S]*?)<\/pre>\s*(?:<p class="(?:label|gloss)[^"]*">(?:<b>[^<]*<\/b>)?[^<]*<\/p>\s*)*<pre class="term" data-recipe="([a-z]+)">([\s\S]*?)<\/pre>/g;
+    let m;
+    while ((m = re.exec(html))) found.push({ page: p, lang: m[1], file: m[2], code: decode(m[3]).replace(/\s+$/, '') + '\n', named: m[4], term: decode(m[5]) });
+  }
+  let ran = 0;
+  const skipped = [];
+  for (const q of found) {
+    const how = RECIPE_RUN[q.lang];
+    if (!how) { problems.push(`${q.page}: a recipe in "${q.lang}", a language this site does not run (${Object.keys(RECIPE_RUN).join(', ')})`); continue; }
+    if (q.named !== q.lang) { problems.push(`${q.page}: the recipe in ${q.lang} is followed by the terminal of ${q.named}`); continue; }
+    const lines = q.term.split('\n');
+    if (lines[0].trim() !== '$ ' + [...how, q.file].join(' ')) problems.push(`${q.page}: the first line of the terminal for the recipe in ${q.lang} is not "$ ${[...how, q.file].join(' ')}"`);
+    const decl = decls.find(d => d.page === q.page && d.file === 'payments.zayn');
+    if (!decl) { problems.push(`${q.page}: a recipe needs the page's payments.zayn, a declaration and the terminal that checked it`); continue; }
+    if (!fs.existsSync(bin)) { skipped.push(q.lang + ' (no zayn built at zig-out/bin)'); continue; }
+    const tmp = fs.mkdtempSync(path.join(require('os').tmpdir(), 'site-recipe-'));
+    fs.writeFileSync(path.join(tmp, 'payments.zayn'), decl.declaration);
+    fs.writeFileSync(path.join(tmp, q.file), q.code);
+    fs.copyFileSync(bin, path.join(tmp, 'zayn' + exe));
+    const env = { ...process.env };
+    const key = Object.keys(env).find(k => k.toUpperCase() === 'PATH') || 'PATH';
+    env[key] = tmp + path.delimiter + (env[key] || '');
+    const r = spawnSync(how[0], [...how.slice(1), q.file], { cwd: tmp, env, encoding: 'utf8' });
+    fs.rmSync(tmp, { recursive: true, force: true });
+    if (r.error && r.error.code === 'ENOENT') { skipped.push(q.lang + ' (no ' + how[0] + ' on this machine)'); continue; }
+    ran++;
+    const got = norm(r.stdout || ''), want = norm(lines.slice(1).join('\n'));
+    if (got !== want) problems.push(`${q.page}: the recipe in ${q.lang} does not print what the page shows.\n--- the page\n${want}\n--- a real run\n${got}`);
+  }
+  return { ran, total: found.length, skipped };
+}
+
 // ---- the head of a reading page has no button --------------------------------------------------------------
 /* A button in the head of a page that is read from top to bottom interrupts the reading and proposes a change of context (the author, 2026-11-04).
    Only the front page keeps its one action. A primary button anywhere else in a page body still may not point into its own page. */
@@ -299,7 +346,7 @@ function verifyStatuses(problems) {
 function unchecked(html) {
   html = html.replace(/<a [^>]*#rule-\d+[^>]*>\d+<\/a>/g, ' ');
   /* a table drawn from its data by tools/site-grid.js is checked there, against the files that hold its figures */
-  html = html.replace(/<!-- (grid|channels|ideas):table -->[\s\S]*?<!-- \/\1:table -->/g, ' ');
+  html = html.replace(/<!-- (grid|channels|ideas|verbs):table -->[\s\S]*?<!-- \/\1:table -->/g, ' ');
   /* a figure inside a mock interface (the invoice a gotcha deletes, the tile it pokes) is a specimen, not a claim; it says so */
   html = html.replace(/<([a-z0-9]+)\b[^>]*\sdata-specimen\b[^>]*>[^<]*<\/\1>/g, ' ');
   let t = html.replace(/\r\n/g, '\n').replace(/<(script|style|pre|code)\b[\s\S]*?<\/\1>/g, ' ')
@@ -359,10 +406,12 @@ function main(argv) {
   const ninety = verifyRuns(problems);
   const excerpts = verifyExcerpts(problems);
   const commands = verifyCommands(problems);
+  const recipes = verifyRecipes(problems);
   { const g = spawnSync(process.execPath, [R('tools/site-grid.js')], { encoding: 'utf8' }); if (g.status !== 0) problems.push(...(g.stdout || '').split('\n').filter(l => l.startsWith('PROBLEM ')).map(l => l.slice(8))); }
   const statuses = verifyStatuses(problems);
   const ctas = verifyCtas(problems);
   console.log(`spans checked: ${spans}; wrong: ${bad}; verifier runs re-run: ${ninety}; commands re-run: ${commands}; status words checked: ${statuses}; buttons checked: ${ctas}; excerpts checked against their files: ${excerpts}`);
+  console.log(`recipes run: ${recipes.ran} of ${recipes.total}` + (recipes.skipped.length ? '; not run here: ' + recipes.skipped.join(', ') : ''));
   console.log(`typed numbers outside a span, not checked: ${total} across ${per.length} page(s)${listUnchecked ? '' : ' (--unchecked lists them)'}`);
   if (listUnchecked || total) per.forEach(l => console.log('  ' + l));
   if (total) problems.push(`${total} typed number(s) outside a span: give each a data-fact or data-law span, a link to its rule, or, inside a mock interface, data-specimen`);

@@ -80,16 +80,19 @@ DEFINE NAV_GRAPH samples (LABEL "Samples", TARGET samples)
 DEFINE NAV_GRAPH use (
   LABEL "Adopt",
   TARGET adopt,
-  ENTRIES [adopt, build_family, web_family, audit_family]
+  ENTRIES [adopt, designers, build_family, web_family, audit_family]
 )
 DEFINE NAV_GRAPH adopt (LABEL "Start", TARGET adopt)
+DEFINE NAV_GRAPH designers (LABEL "Designers", TARGET designers)
 
 DEFINE NAV_GRAPH build_family (
   LABEL "Programmers",
   TARGET build,
-  ENTRIES [build, stack, ports, softanza]
+  ENTRIES [build, commands, calling, stack, ports, softanza]
 )
 DEFINE NAV_GRAPH build (LABEL "Build", TARGET build)
+DEFINE NAV_GRAPH commands (LABEL "Command reference", TARGET commands)
+DEFINE NAV_GRAPH calling (LABEL "From any language", TARGET calling)
 DEFINE NAV_GRAPH stack (LABEL "Your stack", TARGET stack)
 DEFINE NAV_GRAPH ports (LABEL "Other languages", TARGET ports)
 DEFINE NAV_GRAPH softanza (LABEL "Softanza", TARGET softanza)

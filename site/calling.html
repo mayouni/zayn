@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-vibe="curator">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From any language — calling the zayn command from a shell, Python, JavaScript, Go and PowerShell</title>
+<meta name="description" content="Any language that starts a program calls Zayn: one short recipe each for a shell, Python, JavaScript, Go and PowerShell, each run by the site's own check.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stz.css?v=2fd791ce">
+<!-- shell:vibe -->
+<script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
+<!-- /shell:vibe -->
+</head>
+<body data-archetype="article">
+
+<!-- shell:menu -->
+<div class="bars">
+<nav class="site" aria-label="Main menu">
+  <div class="wrap">
+    <div class="menu">
+        <a class="brand" href="../index.html">Zayn</a>
+    <a href="why.html">Why</a>
+    <a href="generate.html">AI &amp; agents</a>
+    <a href="how.html">Language</a>
+    <a href="rules.html">Law</a>
+    <a class="here" aria-current="true" href="adopt.html">Adopt</a>
+    </div>
+    <div class="tools">
+      <a class="github" href="https://github.com/mayouni/zayn">GitHub <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <div class="vibe-picker">
+        <label for="vibe-select">Theme</label>
+        <select id="vibe-select">
+          <option value="curator">Modern</option>
+          <option value="guardian">Retro</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="band" aria-label="Pages of the section">
+  <ul>
+    <li><a href="adopt.html">Start</a></li>
+    <li><a href="designers.html">Designers</a></li>
+    <li><a aria-current="true" href="build.html">Programmers</a></li>
+    <li><a href="web.html">Your product</a></li>
+    <li><a href="audit.html">Tools</a></li>
+  </ul>
+</nav>
+</div>
+<!-- /shell:menu -->
+
+<!-- Adopt > Programmers > From any language (ZAYN-SITE-RETHINK-01 step 3). Each recipe goes through the command, and tools/site-facts.js
+     runs each one beside this page's payments.zayn and fails when what it prints differs from the page. -->
+<header class="page">
+  <div class="narrow">
+    <!-- shell:trail -->
+<nav class="crumbs trail-hidden" aria-label="Breadcrumb"><a href="../index.html">Zayn</a><span class="sep">›</span><a href="adopt.html">Adopt</a><span class="sep">›</span><a href="build.html">Programmers</a><span class="sep">›</span><span class="here-crumb" aria-current="page">From any language</span></nav>
+<!-- /shell:trail -->
+    <h1>Calling Zayn from any language</h1>
+    <p class="sub">A program in any language calls the zayn command and reads its answer; the site runs each recipe below as written.</p>
+  </div>
+</header>
+
+<!-- shell:layout -->
+<div class="layout has-list">
+<nav class="list3" aria-label="Pages of the family">
+  <ul>
+    <li><a href="build.html">Build</a></li>
+    <li><a href="commands.html">Command reference</a></li>
+    <li><a aria-current="page" href="calling.html">From any language</a>
+      <ul class="sub">
+        <li><a href="#declaration">The declaration</a></li>
+        <li><a href="#shell">A shell</a></li>
+        <li><a href="#python">Python</a></li>
+        <li><a href="#javascript">JavaScript</a></li>
+        <li><a href="#go">Go</a></li>
+        <li><a href="#powershell">PowerShell</a></li>
+        <li><a href="#what-exists">What exists today</a></li>
+        <li><a href="#this-page">This page, declared</a></li>
+      </ul>
+    </li>
+    <li><a href="stack.html">Your stack</a></li>
+    <li><a href="ports.html">Other languages</a></li>
+    <li><a href="softanza.html">Softanza</a></li>
+  </ul>
+</nav>
+<!-- /shell:layout -->
+<main id="main">
+
+<section>
+  <div class="narrow">
+    <h2 id="declaration" data-outline="The declaration">The declaration every recipe checks</h2>
+    <p>The law refuses this flow twice, once for each way back it lacks.</p>
+<pre class="shot">// payments.zayn
+DEFINE INTENT_FLOW approve_payment (
+  SATISFIES [SELECT, CONFIRM, ACT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a payment the user approves, with nothing reachable: the user acts and can neither leave nor take it back.</p>
+<pre class="term">$ zayn check payments.zayn
+payments.zayn:2  <span class="bad">error  MISSING_UNDO</span>  approve_payment
+    An act declares no way back: SATISFIES holds ACT, ALWAYS_REACHABLE lacks UNDO.
+    <span class="dim">Rule 79 · The Undo Covenant · Article IV · the right to reverse</span>
+payments.zayn:2  <span class="bad">error  MISSING_CANCEL</span>  approve_payment
+    A flow that acts cannot be abandoned: ALWAYS_REACHABLE lacks CANCEL.
+    <span class="dim">Rule 26 · The Back Button is Holy · Article IV · the right to leave</span>
+
+2 error(s), 0 warning(s) across 1 file(s) at level 2</pre>
+    <p>A program reads two things: the exit code, 0 when lawful and 1 when refused, and with <code>--json</code> <a href="commands.html#json">the report, field by field ↗</a>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="shell" data-outline="A shell">A shell</h2>
+<pre class="recipe" data-lang="shell" data-file="check.sh">if zayn check payments.zayn > /dev/null; then
+  echo "lawful"
+else
+  echo "refused (exit $?)"
+fi</pre>
+    <p class="gloss"><b>In words:</b> the shell hides the report and branches on whether the command succeeded.</p>
+<pre class="term" data-recipe="shell">$ sh check.sh
+refused (exit 1)</pre>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="python" data-outline="Python">Python</h2>
+<pre class="recipe" data-lang="python" data-file="check.py">import json, subprocess
+
+run = subprocess.run(["zayn", "check", "payments.zayn", "--json"], capture_output=True, text=True)
+for d in json.loads(run.stdout)["diagnostics"]:
+    print(d["code"], d["cites"][0], "line", d["span"]["line"])
+print("exit", run.returncode)</pre>
+    <p class="gloss"><b>In words:</b> Python loads the JSON and prints each refusal with its rule and line, then the code the command returned.</p>
+<pre class="term" data-recipe="python">$ python check.py
+MISSING_UNDO rule:79 line 2
+MISSING_CANCEL rule:26 line 2
+exit 1</pre>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="javascript" data-outline="JavaScript">JavaScript</h2>
+<pre class="recipe" data-lang="javascript" data-file="check.js">const { spawnSync } = require('child_process');
+
+const run = spawnSync('zayn', ['check', 'payments.zayn', '--json'], { encoding: 'utf8' });
+for (const d of JSON.parse(run.stdout).diagnostics) console.log(d.code, d.cites[0], 'line', d.span.line);
+console.log('exit', run.status);</pre>
+    <p class="gloss"><b>In words:</b> the same lines from JavaScript, through its module for child processes.</p>
+<pre class="term" data-recipe="javascript">$ node check.js
+MISSING_UNDO rule:79 line 2
+MISSING_CANCEL rule:26 line 2
+exit 1</pre>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="go" data-outline="Go">Go</h2>
+<pre class="recipe" data-lang="go" data-file="check.go">package main
+
+import (
+	"encoding/json"
+	"errors"
+	"fmt"
+	"os/exec"
+)
+
+type report struct {
+	Diagnostics []struct {
+		Code  string
+		Cites []string
+		Span  struct{ Line int }
+	}
+}
+
+func main() {
+	out, err := exec.Command("zayn", "check", "payments.zayn", "--json").Output()
+	code := 0
+	var exit *exec.ExitError
+	if errors.As(err, &amp;exit) {
+		code = exit.ExitCode()
+	}
+	var r report
+	json.Unmarshal(out, &amp;r)
+	for _, d := range r.Diagnostics {
+		fmt.Println(d.Code, d.Cites[0], "line", d.Span.Line)
+	}
+	fmt.Println("exit", code)
+}</pre>
+    <p class="gloss"><b>In words:</b> Go fills a typed structure, whose fields match the JSON by name, and prints the same lines.</p>
+<pre class="term" data-recipe="go">$ go run check.go
+MISSING_UNDO rule:79 line 2
+MISSING_CANCEL rule:26 line 2
+exit 1</pre>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="powershell" data-outline="PowerShell">PowerShell</h2>
+<pre class="recipe" data-lang="powershell" data-file="check.ps1">$json = zayn check payments.zayn --json
+$code = $LASTEXITCODE
+$report = ($json -join "`n") | ConvertFrom-Json
+foreach ($d in $report.diagnostics) { Write-Output "$($d.code) $($d.cites[0]) line $($d.span.line)" }
+Write-Output "exit $code"</pre>
+    <p class="gloss"><b>In words:</b> PowerShell saves $LASTEXITCODE first, since the next command replaces it, then prints the same lines.</p>
+<pre class="term" data-recipe="powershell">$ powershell -NoProfile -ExecutionPolicy Bypass -File check.ps1
+MISSING_UNDO rule:79 line 2
+MISSING_CANCEL rule:26 line 2
+exit 1</pre>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="what-exists" data-outline="What exists today">What exists today</h2>
+    <p>Each part this page speaks of, with its state.</p>
+    <table class="board">
+      <thead><tr><th>The part</th><th>Its state</th></tr></thead>
+      <tbody>
+        <tr><td>The five recipes, each run by the site's own check beside this page's declaration</td><td class="status exists">exists</td></tr>
+        <tr><td>The exit code and the JSON report every recipe reads</td><td class="status exists">exists</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="narrow">
+    <h2 id="this-page" data-outline="This page, declared">This page, declared</h2>
+    <p>This page is a Zayn surface: its visitor comes to locate their language, read its recipe and compare it with the others.</p>
+<pre class="shot">// calling.zayn
+DEFINE SCREEN calling (
+  SATISFIES [LOCATE, READ, COMPARE],
+  ALWAYS_REACHABLE [EXIT]
+)</pre>
+    <p class="gloss"><b>In words:</b> a visitor locates, reads and compares, and can always leave. The verifier passes it.</p>
+<pre class="term">$ zayn check calling.zayn
+<span class="good">clean</span> — 1 file(s), 0 violations at level 2 against Zayn v3.17</pre>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- shell:footer -->
+<footer class="site">
+  <div class="narrow">
+    <div class="bar">
+      <div class="row">
+        <a href="../LICENSE">LICENSE</a>
+      </div>
+    </div>
+    <p class="fine">Zayn is a <a href="https://mayouni.github.io/stzsite/index.html">Softanza</a> project.</p>
+    <p class="fine">© 2026 Mansour Ayouni · MIT licence</p>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="stz.js?v=7c57cb1d"></script>
+</body>
+</html>

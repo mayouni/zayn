@@ -425,7 +425,7 @@ fn ahead(t: []const u8, at: usize, units: usize) usize {
 fn unchecked(a: Allocator, html0: []const u8) !List {
     var html = try re.sub(a, html0, "<a [^>]*#rule-\\d+[^>]*>\\d+<\\/a>", "g", " ");
     // a table drawn from its data by tools/site-grid.js is checked there, against the files that hold its figures
-    html = try re.sub(a, html, "<!-- (grid|channels|ideas):table -->[\\s\\S]*?<!-- \\/\\1:table -->", "g", " ");
+    html = try re.sub(a, html, "<!-- (grid|channels|ideas|verbs):table -->[\\s\\S]*?<!-- \\/\\1:table -->", "g", " ");
     // a figure inside a mock interface is a specimen, not a claim; it says so
     html = try re.sub(a, html, "<([a-z0-9]+)\\b[^>]*\\sdata-specimen\\b[^>]*>[^<]*<\\/\\1>", "g", " ");
     var t = try lf(a, html);
@@ -615,6 +615,93 @@ fn verifyCommands(a: Allocator, all: []const []const u8, problems: *List) !usize
     }
     return count;
 }
+// ---- a recipe shown on a page runs (verifyRecipes in tools/site-facts.js) ----------------------------------------------
+// The program is written to its file in a folder of its own, with the page's payments.zayn and a copy of this binary named zayn, that
+// folder first on the PATH, and run as recipe_run says; a language whose program this machine lacks is named, never counted as run.
+
+const RecipeRun = struct { lang: []const u8, argv: []const []const u8 };
+const recipe_run = [_]RecipeRun{
+    .{ .lang = "shell", .argv = &.{"sh"} },
+    .{ .lang = "python", .argv = &.{"python"} },
+    .{ .lang = "javascript", .argv = &.{"node"} },
+    .{ .lang = "go", .argv = &.{ "go", "run" } },
+    .{ .lang = "powershell", .argv = &.{ "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File" } },
+};
+const Recipes = struct { ran: usize, total: usize, skipped: List };
+fn verifyRecipes(a: Allocator, all: []const []const u8, decls: []const Pair, problems: *List) !Recipes {
+    const exe = if (@import("builtin").os.tag == .windows) ".exe" else "";
+    const r = try re.compile(a, "<pre class=\"recipe\" data-lang=\"([a-z]+)\" data-file=\"([^\"]+)\">([\\s\\S]*?)<\\/pre>\\s*(?:<p class=\"(?:label|gloss)[^\"]*\">(?:<b>[^<]*<\\/b>)?[^<]*<\\/p>\\s*)*<pre class=\"term\" data-recipe=\"([a-z]+)\">([\\s\\S]*?)<\\/pre>", "g");
+    var out: Recipes = .{ .ran = 0, .total = 0, .skipped = .empty };
+    const self = try std.fs.selfExePathAlloc(a);
+    const tmp_root = std.process.getEnvVarOwned(a, "TEMP") catch std.process.getEnvVarOwned(a, "TMPDIR") catch try a.dupe(u8, "/tmp");
+    for (all) |p| {
+        const html = try lf(a, try readPage(a, p));
+        var it = re.iterate(&r, html);
+        while (it.next()) |m| {
+            out.total += 1;
+            const lang = m.get(html, 1).?;
+            const file = m.get(html, 2).?;
+            const named = m.get(html, 4).?;
+            var how: ?[]const []const u8 = null;
+            for (recipe_run) |x| if (std.mem.eql(u8, x.lang, lang)) {
+                how = x.argv;
+            };
+            if (how == null) {
+                var names: List = .empty;
+                for (recipe_run) |x| try names.append(a, x.lang);
+                try problems.append(a, try fmt(a, "{s}: a recipe in \"{s}\", a language this site does not run ({s})", .{ p, lang, try std.mem.join(a, ", ", names.items) }));
+                continue;
+            }
+            if (!std.mem.eql(u8, named, lang)) {
+                try problems.append(a, try fmt(a, "{s}: the recipe in {s} is followed by the terminal of {s}", .{ p, lang, named }));
+                continue;
+            }
+            const term = try decode(a, m.get(html, 5).?);
+            const nl = std.mem.indexOfScalar(u8, term, '\n');
+            const first = if (nl) |i| term[0..i] else term;
+            const run_line = try fmt(a, "$ {s} {s}", .{ try std.mem.join(a, " ", how.?), file });
+            if (!std.mem.eql(u8, re.trim(first), run_line)) try problems.append(a, try fmt(a, "{s}: the first line of the terminal for the recipe in {s} is not \"{s}\"", .{ p, lang, run_line }));
+            var decl: ?[]const u8 = null;
+            for (decls) |d| if (std.mem.eql(u8, d.page, p) and std.mem.eql(u8, d.file, "payments.zayn")) {
+                decl = d.declaration;
+                break;
+            };
+            if (decl == null) {
+                try problems.append(a, try fmt(a, "{s}: a recipe needs the page's payments.zayn, a declaration and the terminal that checked it", .{p}));
+                continue;
+            }
+            var rnd: [8]u8 = undefined;
+            std.crypto.random.bytes(&rnd);
+            const tmp = try std.fs.path.join(a, &.{ tmp_root, try std.fmt.allocPrint(a, "site-recipe-{x}", .{std.mem.readInt(u64, &rnd, .little)}) });
+            try std.fs.cwd().makePath(tmp);
+            defer std.fs.cwd().deleteTree(tmp) catch {};
+            var dir = try std.fs.cwd().openDir(tmp, .{});
+            defer dir.close();
+            try dir.writeFile(.{ .sub_path = "payments.zayn", .data = decl.? });
+            try dir.writeFile(.{ .sub_path = file, .data = try fmt(a, "{s}\n", .{re.trimEnd(try decode(a, m.get(html, 3).?))}) });
+            try std.fs.cwd().copyFile(self, dir, try fmt(a, "zayn{s}", .{exe}), .{});
+            var env = try std.process.getEnvMap(a);
+            const old = env.get("PATH") orelse "";
+            try env.put("PATH", try std.mem.concat(a, u8, &.{ tmp, &[_]u8{std.fs.path.delimiter}, old }));
+            var argv: List = .empty;
+            try argv.appendSlice(a, how.?);
+            try argv.append(a, file);
+            const res = std.process.Child.run(.{ .allocator = a, .argv = argv.items, .cwd = tmp, .env_map = &env, .max_output_bytes = 1 << 20 }) catch |e| {
+                if (e == error.FileNotFound) {
+                    try out.skipped.append(a, try fmt(a, "{s} (no {s} on this machine)", .{ lang, how.?[0] }));
+                    continue;
+                }
+                return e;
+            };
+            out.ran += 1;
+            const got = try norm(a, res.stdout);
+            const want = try norm(a, if (nl) |i| term[i + 1 ..] else "");
+            if (!std.mem.eql(u8, got, want)) try problems.append(a, try fmt(a, "{s}: the recipe in {s} does not print what the page shows.\n--- the page\n{s}\n--- a real run\n{s}", .{ p, lang, want, got }));
+        }
+    }
+    return out;
+}
+
 // ---- the head of a reading page has no button --------------------------------------------------------------------
 
 fn verifyCtas(a: Allocator, all: []const []const u8, problems: *List) !usize {
@@ -754,6 +841,7 @@ pub fn run(a: Allocator, out: *std.Io.Writer, argv: []const []const u8) !u8 {
     const ninety = try verifyRuns(a, ps, &problems);
     const excerpts = try verifyExcerpts(a, all, &problems);
     const commands = try verifyCommands(a, all, &problems);
+    const recipes = try verifyRecipes(a, all, ps, &problems);
     {
         var g: List = .empty;
         try grid.check(a, null, false, &g);
@@ -762,6 +850,7 @@ pub fn run(a: Allocator, out: *std.Io.Writer, argv: []const []const u8) !u8 {
     const statuses = try verifyStatuses(a, all, &problems);
     const ctas = try verifyCtas(a, all, &problems);
     try out.writeAll(try fmt(a, "spans checked: {d}; wrong: {d}; verifier runs re-run: {d}; commands re-run: {d}; status words checked: {d}; buttons checked: {d}; excerpts checked against their files: {d}\n", .{ spans, bad, ninety, commands, statuses, ctas, excerpts }));
+    try out.writeAll(try fmt(a, "recipes run: {d} of {d}{s}{s}\n", .{ recipes.ran, recipes.total, if (recipes.skipped.items.len > 0) "; not run here: " else "", try std.mem.join(a, ", ", recipes.skipped.items) }));
     try out.writeAll(try fmt(a, "typed numbers outside a span, not checked: {d} across {d} page(s){s}\n", .{ total, per.items.len, if (list_unchecked) "" else " (--unchecked lists them)" }));
     if (list_unchecked or total > 0) for (per.items) |l| try out.writeAll(try fmt(a, "  {s}\n", .{l}));
     if (total > 0) try problems.append(a, try fmt(a, "{d} typed number(s) outside a span: give each a data-fact or data-law span, a link to its rule, or, inside a mock interface, data-specimen", .{total}));
