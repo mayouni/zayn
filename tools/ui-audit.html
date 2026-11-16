@@ -6,7 +6,7 @@
 <title>UI audit — the audit that measures a painted page against Rules 105, 107, 108 and 114–116</title>
 <meta name="description" content="The UI audit measures every rendered text node of an application UI: its computed size and its true contrast against the composited background. The audit is the enforcement tool for Rule 105 (The Legibility Floor) and Rule 107 (Hierarchy Is Not Miniaturization).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e04a6e'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23241d49' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="../site/stz.css?v=8f419ef5">
+<link rel="stylesheet" href="../site/stz.css?v=1315c837">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -248,7 +248,7 @@ td.issue { color: #a33422; font-weight: 700; }
     </div>
     <div class="controls">
       <label class="opt"><input type="checkbox" id="system">
-        <span>System: also read Zayn's design system, checks K01 to K36 of doc/design/DESIGN-SYSTEM.md, at six widths (320, 375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
+        <span>System: also read Zayn's design system, checks K01 to K37 of doc/design/DESIGN-SYSTEM.md, at six widths (320, 375, 768, 1085, 1440 and 1900 px) in both cultures</span></label>
     </div>
     <p class="caption">The floor is <b>16px</b> (Rule 105), and this site reads at
     <b>18px</b>. When Strict is unchecked, the audit reports only text that breaks the
@@ -730,7 +730,7 @@ function loadAndAudit(entry, strict) {
 }
 
 /* ==========================================================================
-   Zayn's design system, read on the painted page: checks K01 to K36 of doc/design/DESIGN-SYSTEM.md section 7.
+   Zayn's design system, read on the painted page: checks K01 to K37 of doc/design/DESIGN-SYSTEM.md section 7.
    Each check reads EVERY element that has the property it judges, never a list of element kinds; the run repeats at five widths
    (320, 375, 768, 1085, 1440, 1900 px) in both cultures, and a finding seen more than once is reported once, with where it was seen.
    K18 to K21 read the files and live in site-shell; K15 is read here on the stylesheets as well.
@@ -743,7 +743,7 @@ const SYS_HERO_MAX = 41.6;                    /* --size-hero: up to 2.6rem, the 
 const SYS_CHECKS = {
   K01: 'TYPE_SCALE', K02: 'TEXT_CONTRAST', K03: 'MEASURE', K04: 'BOX_FILL', K05: 'CONTROL_NEAR', K06: 'GROUP_RATIO',
   K07: 'LINE_DRAWS', K08: 'ONE_EMPHASIS', K09: 'PALETTE', K10: 'ONE_CRITICAL', K11: 'BALANCE', K12: 'ROW_FULL',
-  K13: 'ONE_SCROLL', K14: 'NO_FLOAT', K15: 'NO_HOVER_ONLY', K16: 'SHAPE', K17: 'TARGET', K22: 'LAYOUT_STILL', K23: 'BAR_ALIGN', K24: 'WIDE_ROOM', K25: 'GRID_SHOWN', K26: 'ONE_FLOW', K27: 'CODE_HANG', K28: 'LINE_START', K29: 'LINK_LIST', K31: 'CUE_CLEAR', K32: 'PHOTO_FIRST', K33: 'IMG_LOADED', K34: 'RAIL_FLAT', K35: 'BENCH_FULL', K36: 'MAXIMISE'
+  K13: 'ONE_SCROLL', K14: 'NO_FLOAT', K15: 'NO_HOVER_ONLY', K16: 'SHAPE', K17: 'TARGET', K22: 'LAYOUT_STILL', K23: 'BAR_ALIGN', K24: 'WIDE_ROOM', K25: 'GRID_SHOWN', K26: 'ONE_FLOW', K27: 'CODE_HANG', K28: 'LINE_START', K29: 'LINK_LIST', K31: 'CUE_CLEAR', K32: 'PHOTO_FIRST', K33: 'IMG_LOADED', K34: 'RAIL_FLAT', K35: 'BENCH_FULL', K36: 'MAXIMISE', K37: 'SPLIT_MOVES'
 };
 /* K23 BAR_ALIGN: the menu and the band stand at the same place on every page (ZANE-READER-MENUPOS-01; the Principal, 2026-11-10: "the menue
    bar in this page must keep it's position as the other pages and not move to the left"). Each frame records where its brand and its band's
@@ -1263,6 +1263,61 @@ async function auditSystem(doc, win, label, width) {
     else if (doc.activeElement !== btn) add('K36', ide, label, 'after the popup closes, focus is not on the control that opened it [K36 MAXIMISE]');
     if (area && area.value !== before + mark) add('K36', ide, label, 'the code typed before the popup opened is not in the editor after it closes [K36 MAXIMISE]');
     if (area) { area.value = before; area.dispatchEvent(new win.Event('input', { bubbles: true })); }
+  }
+
+  /* K37 SPLIT_MOVES: the border between the code and the report is a splitter the reader moves (the Principal, 2026-11-16: "this border
+     must be movable"; ZAYN-SITE-TESTBENCH-SPLIT-01), at 1085 px and wider, in the page and in the maximised popup: a separator between
+     the two panes; dragged toward the side with room (200 px, or the room there is), the border follows within 5 percent and the two
+     panes change by the same amount; the Left arrow moves it; dragged to either end, neither pane goes under 18rem; Enter sets it back */
+  if (win.innerWidth >= 1085) for (const ide of doc.querySelectorAll('form.ide')) {
+    const split = async where => {
+      const tag = label + ', ' + where;
+      const bar = ide.querySelector('.ide-panes > [role="separator"]');
+      const code = ide.querySelector('.ide-code'), rep = ide.querySelector('.ide-out');
+      if (!bar || !code || !rep) { add('K37', ide, tag, 'the border between the code and the report is not a separator the reader can move [K37 SPLIT_MOVES]'); return; }
+      const floor = 18 * (parseFloat(win.getComputedStyle(doc.documentElement).fontSize) || 16) - 1;
+      const wide = el => el.getBoundingClientRect().width, edge = () => code.getBoundingClientRect().right;
+      const y = () => bar.getBoundingClientRect().top + 20;
+      const drag = async dx => {
+        const b = bar.getBoundingClientRect(), x = b.left + b.width / 2;
+        const ev = (type, cx) => bar.dispatchEvent(new win.PointerEvent(type, { bubbles: true, cancelable: true, clientX: cx, clientY: y(), pointerId: 1, pointerType: 'mouse', isPrimary: true, button: 0, buttons: type === 'pointerup' ? 0 : 1 }));
+        ev('pointerdown', x); ev('pointermove', x + dx / 2); ev('pointermove', x + dx); ev('pointerup', x + dx);
+        await new Promise(r => setTimeout(r, 30));
+      };
+      /* Enter first: the split the IDE starts from, whatever a reader left on this browser */
+      const key = async k => { bar.dispatchEvent(new win.KeyboardEvent('keydown', { key: k, bubbles: true, cancelable: true })); await new Promise(r => setTimeout(r, 20)); };
+      bar.focus();
+      await key('Enter');
+      const e0 = edge(), c0 = wide(code), r0 = wide(rep);
+      const roomLeft = c0 - floor, roomRight = r0 - floor;
+      const dx = roomLeft >= roomRight ? -Math.min(200, roomLeft) : Math.min(200, roomRight);
+      if (Math.abs(dx) < 40) { add('K37', ide, tag, 'the splitter has under 40 px of room either way: the panes leave it no travel [K37 SPLIT_MOVES]'); return; }
+      await drag(dx);
+      const moved = edge() - e0, dc = wide(code) - c0, dr = wide(rep) - r0;
+      if (Math.abs(moved) < 0.95 * Math.abs(dx) || Math.abs(dc - moved) > 10 || Math.abs(dr + dc) > 10)
+        add('K37', ide, tag, 'dragged ' + Math.round(dx) + ' px, the border moved ' + Math.round(moved) + ' px, the code ' + Math.round(dc) + ' px and the report ' + Math.round(dr) + ' px: the border follows the hand [K37 SPLIT_MOVES]');
+      /* an arrow key moves it, toward the side where there is room */
+      bar.focus();
+      const k0 = edge(), back = dx < 0 ? 'ArrowRight' : 'ArrowLeft';
+      await key(back);
+      if (!(Math.abs(edge() - k0) > 1)) add('K37', ide, tag, 'the ' + (back === 'ArrowLeft' ? 'Left' : 'Right') + ' arrow on the splitter does not move it [K37 SPLIT_MOVES]');
+      await drag(-4000);
+      if (wide(code) < floor) add('K37', ide, tag, 'dragged to the left end, the code is ' + Math.round(wide(code)) + ' px: no pane goes under 18rem [K37 SPLIT_MOVES]');
+      await drag(4000);
+      if (wide(rep) < floor) add('K37', ide, tag, 'dragged to the right end, the report is ' + Math.round(wide(rep)) + ' px: no pane goes under 18rem [K37 SPLIT_MOVES]');
+      bar.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }));
+      await new Promise(r => setTimeout(r, 20));
+      if (Math.abs(edge() - e0) > 2) add('K37', ide, tag, 'Enter on the splitter does not set the border back where it started [K37 SPLIT_MOVES]');
+    };
+    await split('in the page');
+    const max = [...ide.querySelectorAll('button')].find(b => /^maximi[sz]e\b/i.test(b.textContent.trim()));
+    if (max) {
+      max.click();
+      await new Promise(r => setTimeout(r, 80));
+      if (ide.closest('dialog[open]')) await split('in the popup');
+      (ide.closest('dialog') || ide).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+      await new Promise(r => setTimeout(r, 80));
+    }
   }
 
   /* K22 LAYOUT_STILL: nothing moved because something else appeared, grew or went */

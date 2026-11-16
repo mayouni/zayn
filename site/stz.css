@@ -931,10 +931,23 @@ form.try.ide .ide-bar > span { display: inline-flex; align-items: center; min-wi
 form.try.ide .ide-bar select { min-width: 0; max-width: 100%; }
 .ide-panes { display: grid; grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 900px) {
-  .ide-panes { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
-  .ide-out { border-left: var(--hairline) solid var(--line); }
+  .ide-panes { grid-template-columns: minmax(18rem, 3fr) auto minmax(18rem, 2fr); }
 }
 @media (max-width: 899px) { .ide-out { border-top: var(--hairline) solid var(--line); } }
+/* the splitter between the code and the report (the Principal, 2026-11-16: "this border must be movable"; K37): a band of its own in
+   the tint, a line on each side, a grip of two short rules at its middle and the col-resize pointer, all shown without a hover (Rule 16);
+   its focus ring in the culture's link colour (Rule 80); on a touch screen its hit area reaches 44 px (Rule 19). Where the panes stack it
+   stands aside: the stack scrolls */
+.ide-split { display: none; }
+@media (min-width: 900px) {
+  .ide-split { display: block; position: relative; width: .75rem; cursor: col-resize; touch-action: none; background: var(--tint);
+    border-left: var(--hairline) solid var(--line); border-right: var(--hairline) solid var(--line); }
+  .ide-split::before { content: ""; position: absolute; left: 50%; top: 50%; width: 2px; height: 2.4rem; transform: translate(-50%, -50%);
+    border-left: 2px solid var(--edge); border-right: 2px solid var(--edge); }
+  .ide-split:focus-visible { outline: var(--ring) solid var(--link); outline-offset: -2px; }
+  .ide-split.dragging { background: var(--line); }
+}
+@media (min-width: 900px) and (pointer: coarse) { .ide-split::after { content: ""; position: absolute; top: 0; bottom: 0; left: -1rem; right: -1rem; } }
 .ide-pane { min-width: 0; display: flex; flex-direction: column; }
 .ide-head { display: flex; justify-content: space-between; gap: 1rem; padding: .45rem .9rem; font: var(--weight-strong) var(--size-small) var(--font);
   color: var(--ink-2); border-bottom: var(--hairline) solid var(--line); }

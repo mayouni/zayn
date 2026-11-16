@@ -8379,6 +8379,13 @@
    "project": "stzzui",
    "source": "the Zayn session's chat, relayed in ZAYN-SITE-TESTBENCH-MAXIMISE-01 (softanza mailbox/zayn.md, 2026-11-16 13:58), on zayn 216b7c5",
    "words": "\"Add a button in the IDE to enlarge it on a poup that is maximised on the page\""
+  },
+  {
+   "sweep": "E46",
+   "date": "2026-11-16",
+   "project": "stzzui",
+   "source": "the Zayn session's chat, on a screenshot of the maximised IDE at zayn 985fb5b with a yellow line drawn on the border between the code and the report, relayed in ZAYN-SITE-TESTBENCH-SPLIT-01 (softanza mailbox/zayn.md, 2026-11-16 20:14)",
+   "words": "\"this border must be movable\""
   }
  ],
  "statements": [

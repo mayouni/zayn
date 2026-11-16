@@ -11,8 +11,8 @@
   if (!form) return;
   const out = document.getElementById('try-result'), button = form.querySelector('button[type="submit"]');
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
-  /* Maximise stands in the IDE's bar from the first paint: it moves the IDE and needs no verifier */
-  if (form.classList.contains('ide')) maximise();
+  /* Maximise stands in the IDE's bar from the first paint, and the splitter between its panes: both move the IDE and need no verifier */
+  if (form.classList.contains('ide')) { maximise(); splitter(); }
   let zayn;
   try { zayn = await ZaynWasm.load(form.dataset.wasm); } catch (e) {
     out.replaceChildren(el('p', 'try-verdict bad', 'The verifier could not load in this browser: ' + e.message + '.'));
@@ -91,6 +91,70 @@
      full-screen button triggers focus mode); Rules 51 and 53 (the rest of the page is inert under a scrim, Escape always exits, the way
      out named in the container's head); Rule 26 (the exit at the top left, the location's hash records the view, so Back returns);
      Rule 92 (closing returns to the same scroll); Rule 80 (focus visible, Escape cancels); Rule 110 (a focus layer the reader opened) */
+  /* The splitter (the Principal, 2026-11-16: "this border must be movable"; ZAYN-SITE-TESTBENCH-SPLIT-01): the border between the code and
+     the report is a separator the reader drags left and right, in the page and in the maximised popup, the same element going with the IDE
+     so its place is kept. The law it keeps: Rule 34 (a boundary between panes resizable by the mouse); Rule 16 (it shows that it moves: a
+     grip and a col-resize pointer, without a hover); Rule 19 (a 44 px hit area on a touch screen); Rule 80 (the Left and Right arrows in
+     steps, Home and End to the ends, Enter or a double-click back to the start, its focus ring visible); Rule 60 (a separator with a name
+     and its value); Rule 32 (the reader's split is remembered on this browser); Rule 112 (it moves with the hand, never animated).
+     Neither pane goes under 18rem, the width that keeps the code's numbered lines and the report's lines readable. Where the panes stack
+     (under 900 px) the stack scrolls and the splitter stands aside. */
+  function splitter() {
+    const panes = form.querySelector('.ide-panes'), code = form.querySelector('.ide-code'), report = form.querySelector('.ide-out');
+    if (!panes || !code || !report) return;
+    const START = 0.6, MIN_REM = 18, KEY = 'zayn-ide-split';
+    const bar = el('div', 'ide-split');
+    bar.setAttribute('role', 'separator');
+    bar.setAttribute('aria-orientation', 'vertical');
+    bar.setAttribute('aria-label', 'Border between the code and the report: drag it, or use the Left and Right arrow keys');
+    bar.tabIndex = 0;
+    code.after(bar);
+    let share = START;
+    try { const v = parseFloat(localStorage.getItem(KEY)); if (v > 0 && v < 1) share = v; } catch (e) {}
+    const wide = matchMedia('(min-width: 900px)');
+    const rem = () => parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    const room = () => Math.max(1, panes.clientWidth - bar.offsetWidth);
+    const limits = () => { const m = MIN_REM * rem() / room(); return [Math.min(0.5, m), Math.max(0.5, 1 - m)]; };
+    const refit = () => { const a = document.getElementById('try-source'); if (a) a.dispatchEvent(new Event('input')); };
+    const apply = (s, keep) => {
+      if (!wide.matches) { panes.style.gridTemplateColumns = ''; return; }
+      const [lo, hi] = limits();
+      share = Math.min(hi, Math.max(lo, s));
+      panes.style.gridTemplateColumns = `minmax(${MIN_REM}rem, ${share}fr) auto minmax(${MIN_REM}rem, ${1 - share}fr)`;
+      bar.setAttribute('aria-valuemin', Math.round(lo * 100));
+      bar.setAttribute('aria-valuemax', Math.round(hi * 100));
+      bar.setAttribute('aria-valuenow', Math.round(share * 100));
+      bar.setAttribute('aria-valuetext', `the code takes ${Math.round(share * 100)} percent of the width`);
+      if (keep) try { localStorage.setItem(KEY, String(share)); } catch (e) {}
+      refit();
+    };
+    let drag = null;
+    bar.addEventListener('pointerdown', e => {
+      if (!wide.matches || e.button > 0) return;
+      e.preventDefault();
+      drag = { x0: e.clientX, s0: share };
+      try { bar.setPointerCapture(e.pointerId); } catch (_) {}
+      bar.classList.add('dragging');
+    });
+    window.addEventListener('pointermove', e => { if (drag) apply(drag.s0 + (e.clientX - drag.x0) / room(), false); });
+    const end = () => { if (!drag) return; drag = null; bar.classList.remove('dragging'); apply(share, true); };
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+    bar.addEventListener('keydown', e => {
+      const [lo, hi] = limits();
+      const to = { ArrowLeft: share - 0.02, ArrowRight: share + 0.02, Home: lo, End: hi, Enter: START }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      apply(to, true);
+    });
+    bar.addEventListener('dblclick', () => apply(START, true));
+    wide.addEventListener('change', () => apply(share, false));
+    window.addEventListener('resize', () => apply(share, false));
+    /* the popup changes the IDE's width: the split is the same share of the new width */
+    let width = 0;
+    new ResizeObserver(() => { const w = panes.clientWidth; if (w !== width && !drag) { width = w; apply(share, false); } }).observe(panes);
+    apply(share, false);
+  }
   function maximise() {
     const area = document.getElementById('try-source'), bar = form.querySelector('.ide-bar');
     if (!bar || typeof HTMLDialogElement === 'undefined') return;
