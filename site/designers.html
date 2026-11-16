@@ -6,7 +6,7 @@
 <title>Designers — Zayn with nothing installed</title>
 <meta name="description" content="A designer declares what a user is doing in the browser, with nothing installed, reads the grammar of verbs, commits each violation beside its lawful twin, and measures a live page.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23241d49'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="stz.css?v=ff74eb25">
+<link rel="stylesheet" href="stz.css?v=8f419ef5">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -86,24 +86,45 @@
   <div class="narrow">
     <h2 id="declare" data-outline="Declare here">Declare a flow, and read the answer</h2>
     <p>Write what the user does, and the verifier in this page answers by rule. Nothing you type leaves the page.</p>
-    <form class="try" id="try-form" data-wasm="zayn.wasm?v=070f1626">
-      <label for="try-source">A declaration in Zayn</label>
-      <textarea id="try-source" spellcheck="false" rows="5">DEFINE INTENT_FLOW approve_payment (
-  SATISFIES [SELECT, CONFIRM, ACT]
-)</textarea>
-      <div class="try-row">
-        <label for="try-level">Level</label>
+    <form class="try ide" id="try-form" data-wasm="zayn.wasm?v=070f1626">
+      <div class="ide-bar">
+        <span><label for="try-example">Example</label>
+        <select id="try-example">
+          <option data-file="payments.zayn" data-src="DEFINE INTENT_FLOW approve_payment (\n  SATISFIES [SELECT, CONFIRM, ACT]\n)" selected>A payment with no way back</option>
+          <option data-file="lawful.zayn" data-src="DEFINE INTENT_FLOW approve_payment (\n  SATISFIES [SELECT, CONFIRM, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL]\n)">The same payment, lawful</option>
+          <option data-file="account.zayn" data-src="DEFINE WIZARD account_opening (\n  SATISFIES [UNDERSTAND, CONFIRM, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL],\n  STEPS [identity, funding, review],\n  ACTOR applicant\n)">A wizard with no way out</option>
+          <option data-file="order.zayn" data-src="DEFINE VIBE order_voice (\n  SURFACE_AS voice\n)\n\nDEFINE INTENT_FLOW order_by_voice (\n  SATISFIES [SELECT, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL, EXIT],\n  ACTOR customer\n)">An order by voice: choosing is buying</option>
+          <option data-file="reader.zayn" data-src="DEFINE SCREEN invoice_reader (\n  SATISFIES [READ, ACT],\n  ALWAYS_REACHABLE [UNDO, CANCEL, EXIT],\n  ACTOR clerk\n)">A screen for reading that acts</option>
+          <option data-file="invoices.zayn" data-src="DEFINE SCREEN invoices (\n  SATISFIES [DISCOVER, FILTER, COMPARE],\n  ALWAYS_REACHABLE [EXIT]\n)">A screen to find and compare</option>
+        </select></span>
+        <span><label for="try-level">Level</label>
         <select id="try-level">
           <option value="1">1</option>
           <option value="2" selected>2, the default</option>
           <option value="3">3</option>
           <option value="4">4</option>
-        </select>
-        <button type="submit" class="btn primary" disabled>Check the declaration</button>
+        </select></span>
+        <button type="submit" class="btn primary" disabled>Check</button>
       </div>
-      <div id="try-result" role="status" aria-live="polite"><p class="try-wait">The verifier is loading.</p></div>
+      <div class="ide-panes">
+        <div class="ide-pane ide-code">
+          <div class="ide-head"><label for="try-source" class="ide-file">payments.zayn</label><span>the code</span></div>
+          <div class="ide-edit">
+            <div class="ide-gutter" id="try-lines" aria-hidden="true">1
+2
+3</div>
+            <textarea id="try-source" spellcheck="false" autocapitalize="off" autocomplete="off">DEFINE INTENT_FLOW approve_payment (
+  SATISFIES [SELECT, CONFIRM, ACT]
+)</textarea>
+          </div>
+        </div>
+        <div class="ide-pane ide-out">
+          <div class="ide-head"><span>The verifier's report</span><span>in this page</span></div>
+          <div id="try-result" role="status" aria-live="polite"><p class="try-wait">The verifier is loading.</p></div>
+        </div>
+      </div>
     </form>
-    <p>Add <code>ALWAYS_REACHABLE [UNDO, CANCEL]</code> to the flow and check it again: the refusals go, because the user can now leave and take the payment back.</p>
+    <p>Add <code>ALWAYS_REACHABLE [UNDO, CANCEL]</code> to the flow: the refusals go as you type, because the user can now leave and take the payment back. <a href="testbench.html">The testbench holds more examples ↗</a></p>
   </div>
 </section>
 
@@ -192,6 +213,6 @@ DEFINE SCREEN designers (
 
 <script src="stz.js?v=05e0e25b"></script>
 <script src="zayn-wasm.js?v=30454a74"></script>
-<script src="try.js?v=1f2e58b2"></script>
+<script src="try.js?v=2714e637"></script>
 </body>
 </html>

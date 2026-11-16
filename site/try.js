@@ -5,12 +5,14 @@
    The testbench (form.try.ide, site/testbench.html and the Designers page; the Principal, 2026-11-15: "add a testbench of the languuage
    in the browser, in the form of well designed simple IDE with code to left and output to right"): the code in the left pane, the
    report in the right, set out as the zayn command sets it out; it checks as you type, Ctrl+Enter checks at once, an example from the
-   list replaces the code, and a finding's line selects that line in the code. */
+   list replaces the code, a finding's line selects that line in the code, and Maximise sets the same IDE over the whole window. */
 (async () => {
   const form = document.getElementById('try-form');
   if (!form) return;
-  const out = document.getElementById('try-result'), button = form.querySelector('button');
+  const out = document.getElementById('try-result'), button = form.querySelector('button[type="submit"]');
   const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; };
+  /* Maximise stands in the IDE's bar from the first paint: it moves the IDE and needs no verifier */
+  if (form.classList.contains('ide')) maximise();
   let zayn;
   try { zayn = await ZaynWasm.load(form.dataset.wasm); } catch (e) {
     out.replaceChildren(el('p', 'try-verdict bad', 'The verifier could not load in this browser: ' + e.message + '.'));
@@ -82,6 +84,53 @@
     form.addEventListener('submit', e => { e.preventDefault(); run(); });
     button.disabled = false;
     grow(); number(); run();
+  }
+  /* Maximise (the Principal, 2026-11-16: "Add a button in the IDE to enlarge it on a poup that is maximised on the page";
+     ZAYN-SITE-TESTBENCH-MAXIMISE-01): the same IDE, not a copy, moves into a modal dialog that fills the window, over the menu, and goes
+     back to its place on Restore or Escape, with what was typed, the example and the level as they were. The law it keeps: Rule 72 (a
+     full-screen button triggers focus mode); Rules 51 and 53 (the rest of the page is inert under a scrim, Escape always exits, the way
+     out named in the container's head); Rule 26 (the exit at the top left, the location's hash records the view, so Back returns);
+     Rule 92 (closing returns to the same scroll); Rule 80 (focus visible, Escape cancels); Rule 110 (a focus layer the reader opened) */
+  function maximise() {
+    const area = document.getElementById('try-source'), bar = form.querySelector('.ide-bar');
+    if (!bar || typeof HTMLDialogElement === 'undefined') return;
+    const max = el('button', 'btn ide-max-btn', 'Maximise'); max.type = 'button';
+    bar.prepend(max);
+    const dialog = el('dialog', 'ide-max'); dialog.setAttribute('aria-label', 'The testbench, over the whole window');
+    document.body.append(dialog);
+    /* the IDE's place on the page, kept at its height while the IDE is in the dialog, so nothing below it moves (Rule 15) */
+    const hold = el('div', 'ide-hold');
+    let scroll = 0;
+    const refit = () => area.dispatchEvent(new Event('input'));
+    const open = () => {
+      if (dialog.open) return;
+      scroll = window.scrollY;
+      hold.style.height = form.getBoundingClientRect().height + 'px';
+      form.before(hold);
+      dialog.append(form);
+      dialog.showModal();
+      max.textContent = 'Restore (Esc)';
+      if (location.hash !== '#maximised') history.pushState({ ide: 'max' }, '', '#maximised');
+      refit();
+      area.focus();
+    };
+    const close = fromHistory => {
+      if (!dialog.open) return;
+      dialog.close();
+      hold.replaceWith(form);
+      max.textContent = 'Maximise';
+      window.scrollTo(0, scroll);
+      refit();
+      max.focus();
+      if (fromHistory) return;
+      if (history.state && history.state.ide === 'max') history.back();
+      else if (location.hash === '#maximised') history.replaceState(null, '', location.pathname + location.search);
+    };
+    max.addEventListener('click', () => (dialog.open ? close() : open()));
+    dialog.addEventListener('keydown', e => { if (e.key === 'Escape') { e.preventDefault(); close(); } });
+    dialog.addEventListener('cancel', e => { e.preventDefault(); close(); });
+    window.addEventListener('popstate', () => { if (dialog.open) close(true); });
+    if (location.hash === '#maximised') open();
   }
   function check() {
     const level = +document.getElementById('try-level').value;

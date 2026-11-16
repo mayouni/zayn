@@ -950,6 +950,16 @@ form.try.ide #try-result { margin: 0; padding: .9rem 1rem; }
 .ide-report .bad { color: var(--danger); } .ide-report .good { color: var(--success); } .ide-report .dim { color: var(--ink-2); }
 .ide-report a.ide-line { color: var(--link); }
 [data-vibe="guardian"] .ide-gutter, [data-vibe="guardian"] .ide-report { font-family: var(--font); }
+/* the IDE maximised (the Principal, 2026-11-16: "Add a button in the IDE to enlarge it on a poup that is maximised on the page"; K36): the
+   same IDE in a modal dialog over the whole window, the menu included; under it the scrim of Rule 52, and the IDE drawn in its 2 px line
+   in the culture's link colour; the dialog scrolls when the code is longer than the window, the page under it never does (Rules 51-53) */
+dialog.ide-max { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0;
+  border: 0; background: var(--paper); color: var(--ink); overflow: auto; }
+dialog.ide-max::backdrop { background: color-mix(in srgb, var(--ink) 40%, transparent); backdrop-filter: blur(8px); }
+dialog.ide-max form.try.ide { margin: 0; min-height: 100%; display: flex; flex-direction: column; border: 2px solid var(--link); border-radius: 0; }
+dialog.ide-max form.try.ide .ide-bar { border-radius: 0; }
+dialog.ide-max .ide-panes { flex: 1; min-height: 0; }
+form.try.ide .ide-max-btn { font: var(--weight-strong) var(--size-small) var(--font); cursor: pointer; }
 /* on a phone the code's lines may wrap, so the gutter's numbers would stand beside the wrong line: the gutter steps aside */
 @media (max-width: 640px) { .ide-gutter { display: none; } }
 /* ---- the sample frame: a live UI sample in a window, the lawful one beside the offending one, each citing its rule (DESIGN-SYSTEM.md
