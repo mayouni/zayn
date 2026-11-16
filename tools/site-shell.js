@@ -103,7 +103,9 @@ const PAGES = [
      points a level deeper than it shows (Rule 116); the command reference and the recipes from any language stand under Programmers */
   { file: 'site/adopt.html', section: 'use', label: 'Start', rail: true, term: 'start' },
   { file: 'site/designers.html', section: 'use', family: 'Designers', label: 'Overview', rail: true, term: 'designer' },
-  { file: 'site/testbench.html', section: 'use', label: 'Testbench', parent: 'site/designers.html', rail: true, term: 'testbench' },
+  /* the testbench takes the whole window (the Principal, 2026-11-16: "The testbed page must be on all the page (to give max space to the
+     code)"): no list at its side; its family's list stands as a row above it (full) */
+  { file: 'site/testbench.html', section: 'use', label: 'Testbench', parent: 'site/designers.html', rail: true, full: true, term: 'testbench' },
   { file: 'site/build.html', section: 'use', family: 'Programmers', label: 'Build', rail: true, term: 'build' },
   { file: 'site/commands.html', section: 'use', label: 'Command reference', parent: 'site/build.html', rail: true, term: 'command' },
   { file: 'site/calling.html', section: 'use', label: 'From any language', parent: 'site/build.html', rail: true, term: 'any language' },
@@ -234,7 +236,8 @@ ${items}
 }
 /* Level 3: a vertical list on the left, where a page has a family or four or more sections; the page then takes the full width.
    The sections are the page's own h2, read from the page by this file, which gives each one an id when it has none, so the list cannot
-   disagree with the page (SITE-3.md section 4). Where a page is in a family, the family is the list and its sections nest under its entry. */
+   disagree with the page (SITE-3.md section 4). Where a page is in a family, the family's pages come first and the page's sections follow
+   as a list of their own, each one level (the Principal, 2026-11-16, K34 RAIL_FLAT). */
 /* a family's list opens on its head page, under the page's own label, then its pages (Rule 116 at v3.16) */
 function familyOf(p) {
   const head = p.parent ? by.get(p.parent) : p;
@@ -278,17 +281,19 @@ function list3(p, secs) {
      Reader keeps its own layout */
   if (p.home || p.outside === 'reader') return '';
   const f = familyOf(p);
-  const own = secs && secs.length >= SECTION_MIN ? secs : null;
-  const subs = own ? `\n      <ul class="sub">\n${own.map(x => `        <li><a href="#${x.id}">${esc(x.label)}</a></li>`).join('\n')}\n      </ul>\n    ` : '';
+  const own = secs && secs.length >= SECTION_MIN && !p.full ? secs : null;
+  /* every list at the side of a page is one level (the Principal, 2026-11-16: "the lateral submenu must not include hierarchy (apply it
+     in all pages)"; ZAYN-SITE-STEP3-REMARKS-02; K34 RAIL_FLAT): the family's pages, the same on each of its pages (Rule 115), then the
+     page's own sections under their own heading, each list a single level, never one nested under the page's entry */
   if (f) {
-    const li = q => `    <li><a${q === p ? ' aria-current="page"' : ''} href="${href(p.file, q.file)}">${esc(q.label)}</a>${q === p ? subs : ''}</li>`;
-    /* the family's list is the same on every page of the family, its head's included, and the outline of the page nests under the page's
-       own entry: one list, never a second one beside the outline (the author, 2026-11-06: "one more square of navigation to think about") */
-    return `<nav class="list3" aria-label="Pages of the family">
+    const pages = `  <p class="outline-title">The pages of this family</p>
   <ul>
-${f.list.map(li).join('\n')}
-  </ul>
-</nav>`;
+${f.list.map(q => `    <li><a${q === p ? ' aria-current="page"' : ''} href="${href(p.file, q.file)}">${esc(q.label)}</a></li>`).join('\n')}
+  </ul>`;
+    /* a page that takes the whole window (the testbench) carries its family's list as a row above its body, not at its side */
+    if (p.full) return `<nav class="list3 row" aria-label="Pages of the family">\n${pages}\n</nav>`;
+    const outline = own ? `\n  <p class="outline-title">On this page</p>\n  <ul class="outline">\n${own.map(x => `    <li><a href="#${x.id}">${esc(x.label)}</a></li>`).join('\n')}\n  </ul>` : '';
+    return `<nav class="list3" aria-label="Pages of the family">\n${pages}${outline}\n</nav>`;
   }
   if (!own) return '';
   return `<nav class="list3 sections" aria-label="Sections of this page">
@@ -367,8 +372,8 @@ function apply(p, text) {
     const shown = [...SECTIONS.map(s => ['the main menu', s.label]), ...(bandOf(p.section) || []).map(q => ['the band', bandLabel(q)])];
     const fam = familyOf(p);
     if (fam && !p.outside) shown.push(...fam.list.map(q => ['the family list', q.label]));
-    // the outline is drawn on its own, or under the page's entry in its family's list
-    if (secs && secs.length >= SECTION_MIN) shown.push(...secs.map(x => ['the outline', x.label]));
+    // the outline is drawn on its own, or after its family's list; a page that takes the whole window draws none
+    if (secs && secs.length >= SECTION_MIN && !p.full) shown.push(...secs.map(x => ['the outline', x.label]));
     const key = s => s.trim().toLowerCase().replace(/^the\s+/, '');
     shown.forEach((a, i) => shown.slice(i + 1).forEach(b => {
       if (key(a[1]) === key(b[1])) problems.push('"' + a[1] + '" in ' + a[0] + ' and "' + b[1] + '" in ' + b[0] + ' name the same thing on one page');
@@ -384,7 +389,7 @@ function apply(p, text) {
     /* every list beside a page sits on its left, a family of pages (level 3) as the sections of a page do, so every block on the page
        shares one left edge and a wide one grows to the right (the Principal, 2026-11-11, ZANE-LEFTEDGE-01, turning the ruling of
        2026-11-06 that had moved the lists to the right); the list comes first in the markup, as it comes first on the screen */
-    fill('layout', `<div class="layout${r ? ' has-list' : ''}">` + (r ? '\n' + r : ''));
+    fill('layout', `<div class="layout${p.full ? ' full' : r ? ' has-list' : ''}">` + (r ? '\n' + r : ''));
   }
   if (fenceRe('footer').test(t)) {
     fill('footer', footer(p));

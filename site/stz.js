@@ -52,7 +52,7 @@
     const page = html.clientWidth;
     document.querySelectorAll(WIDE).forEach(el => {
       /* a cell of a plate keeps its cell, so the figure's grid stays whole */
-      if (el.closest(KEEP) || el.closest('.plate')) return;
+      if (el.closest(KEEP) || el.closest('.plate') || (el.matches('form.ide') && el.closest('.layout.full'))) return;
       el.style.width = ''; el.style.maxWidth = ''; el.style.marginLeft = '';
       const r0 = el.getBoundingClientRect();
       if (!r0.width) return;

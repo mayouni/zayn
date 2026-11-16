@@ -51,6 +51,8 @@ const Page = struct {
     /// a family's head stands in the band under the family's name, and opens the family's list under its own label
     family: ?[]const u8 = null,
     rail: bool = false,
+    /// the page takes the whole window: no list at its side, its family's list a row above its body (the testbench)
+    full: bool = false,
     outside: Outside = .none,
     term: []const u8,
 };
@@ -94,7 +96,7 @@ const pages = [_]Page{
     // recipes from any language stand under Programmers
     .{ .file = "site/adopt.html", .section = "use", .label = "Start", .rail = true, .term = "start" },
     .{ .file = "site/designers.html", .section = "use", .family = "Designers", .label = "Overview", .rail = true, .term = "designer" },
-    .{ .file = "site/testbench.html", .section = "use", .label = "Testbench", .parent = "site/designers.html", .rail = true, .term = "testbench" },
+    .{ .file = "site/testbench.html", .section = "use", .label = "Testbench", .parent = "site/designers.html", .rail = true, .full = true, .term = "testbench" },
     .{ .file = "site/build.html", .section = "use", .family = "Programmers", .label = "Build", .rail = true, .term = "build" },
     .{ .file = "site/commands.html", .section = "use", .label = "Command reference", .parent = "site/build.html", .rail = true, .term = "command" },
     .{ .file = "site/calling.html", .section = "use", .label = "From any language", .parent = "site/build.html", .rail = true, .term = "any language" },
@@ -383,18 +385,22 @@ fn list3(a: Allocator, p: *const Page, secs: []const Sec) ![]const u8 {
     // a tool page shows its family's list (Rule 115); the Reader keeps its own layout (list3 in tools/site-shell.js)
     if (p.home or p.outside == .reader) return "";
     const f = try familyOf(a, p);
-    const own: ?[]const Sec = if (secs.len >= SECTION_MIN) secs else null;
-    var subs: []const u8 = "";
-    if (own) |o| {
-        var li: List = .empty;
-        for (o) |x| try li.append(a, try fmt(a, "        <li><a href=\"#{s}\">{s}</a></li>", .{ x.id, try esc(a, x.label) }));
-        subs = try fmt(a, "\n      <ul class=\"sub\">\n{s}\n      </ul>\n    ", .{try std.mem.join(a, "\n", li.items)});
-    }
+    const own: ?[]const Sec = if (secs.len >= SECTION_MIN and !p.full) secs else null;
     if (f) |family| {
-        // the same list on every page of the family, its head's included, the page's outline nested under its own entry
+        // every list at the side of a page is one level (the Principal, 2026-11-16; K34 RAIL_FLAT): the family's pages, the same on each
+        // of its pages (Rule 115), then the page's own sections under their own heading, never nested under the page's entry
         var li: List = .empty;
-        for (family.list) |q| try li.append(a, try fmt(a, "    <li><a{s} href=\"{s}\">{s}</a>{s}</li>", .{ if (q == p) " aria-current=\"page\"" else "", try href(a, p.file, q.file), try esc(a, q.label), if (q == p) subs else "" }));
-        return fmt(a, "<nav class=\"list3\" aria-label=\"Pages of the family\">\n  <ul>\n{s}\n  </ul>\n</nav>", .{try std.mem.join(a, "\n", li.items)});
+        for (family.list) |q| try li.append(a, try fmt(a, "    <li><a{s} href=\"{s}\">{s}</a></li>", .{ if (q == p) " aria-current=\"page\"" else "", try href(a, p.file, q.file), try esc(a, q.label) }));
+        const pages_list = try fmt(a, "  <p class=\"outline-title\">The pages of this family</p>\n  <ul>\n{s}\n  </ul>", .{try std.mem.join(a, "\n", li.items)});
+        // a page that takes the whole window (the testbench) carries its family's list as a row above its body, not at its side
+        if (p.full) return fmt(a, "<nav class=\"list3 row\" aria-label=\"Pages of the family\">\n{s}\n</nav>", .{pages_list});
+        var outline: []const u8 = "";
+        if (own) |o| {
+            var ol: List = .empty;
+            for (o) |x| try ol.append(a, try fmt(a, "    <li><a href=\"#{s}\">{s}</a></li>", .{ x.id, try esc(a, x.label) }));
+            outline = try fmt(a, "\n  <p class=\"outline-title\">On this page</p>\n  <ul class=\"outline\">\n{s}\n  </ul>", .{try std.mem.join(a, "\n", ol.items)});
+        }
+        return fmt(a, "<nav class=\"list3\" aria-label=\"Pages of the family\">\n{s}{s}\n</nav>", .{ pages_list, outline });
     }
     const o = own orelse return "";
     var li: List = .empty;
@@ -530,7 +536,8 @@ fn apply(a: Allocator, p: *const Page, text: []const u8) !Applied {
         for (sections) |s| try shown.append(a, .{ .where = "the main menu", .label = s.label });
         if (try bandOf(a, p.section)) |top| for (top) |q| try shown.append(a, .{ .where = "the band", .label = bandLabel(q) });
         if (try familyOf(a, p)) |f| if (p.outside == .none) for (f.list) |q| try shown.append(a, .{ .where = "the family list", .label = q.label });
-        if (outlined) for (secs) |x| try shown.append(a, .{ .where = "the outline", .label = x.label });
+        // the outline is drawn on its own, or after its family's list; a page that takes the whole window draws none
+        if (outlined and !p.full) for (secs) |x| try shown.append(a, .{ .where = "the outline", .label = x.label });
         const the = try re.compile(a, "^the\\s+", "");
         var keys = try a.alloc([]const u8, shown.items.len);
         for (shown.items, 0..) |s, i| keys[i] = try re.replace(a, &the, try lowerTrim(a, s.label), "");
@@ -544,7 +551,7 @@ fn apply(a: Allocator, p: *const Page, text: []const u8) !Applied {
     if (!p.home and try hasFence(a, t, "trail")) t = try fill(a, t, "trail", try trail(a, p));
     if (try hasFence(a, t, "layout")) {
         const r = try list3(a, p, secs);
-        t = try fill(a, t, "layout", try fmt(a, "<div class=\"layout{s}\">{s}{s}", .{ if (r.len > 0) " has-list" else "", if (r.len > 0) "\n" else "", r }));
+        t = try fill(a, t, "layout", try fmt(a, "<div class=\"layout{s}\">{s}{s}", .{ if (p.full) " full" else if (r.len > 0) " has-list" else "", if (r.len > 0) "\n" else "", r }));
     }
     if (try hasFence(a, t, "footer")) t = try fill(a, t, "footer", try footer(a, p));
     // ---- the page declares its archetype on its body (K21) ----

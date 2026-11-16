@@ -650,7 +650,7 @@ A container (a section, a row, a sample frame) is none of the four and never cha
 |---|---|---|---|
 | **bar** | the main menu | brand, then at most five entries with a visible rule between them and a space of its own after the brand (`--space-3`, beyond the entries' gap); the brand in `--brand`, so the current section's entry, bold in the bar's white (in Retro, in reverse video: a monospaced bold is barely bolder), never reads as a second brand; the theme select and GitHub at the right | N, B |
 | **band** | a section's pages | horizontal, fixed under the bar, apart from the bar by place, size and weight; the landing first under its own label; only the deepest current entry is marked | N |
-| **side list** | a family's pages, or the page's outline | each entry draws its own cue, a short rule at its left, the current one solid and thicker in `--link`, its word strong, so the list never reads as a paragraph (K29); on the left, under the brand, its line on the side of the text; the page's head stays on the top menu's container (Z392); the text beside the list, and every block in it, shares one left edge (Z391); its heading in `--ink-2`, regular weight, apart by space; an outline by default on pages of three or more sections | N, F |
+| **side list** | a family's pages, then the page's outline, each a list of one level under its own heading (*The pages of this family*, *On this page*): no list inside an entry and no entry indented by depth (the Principal, 2026-11-16: *"the lateral submenu must not include hierarchy (apply it in all pages)"*; K34); a page that takes the whole window, the testbench, carries its family's list as a row above its body (K35) | each entry draws its own cue, a short rule at its left, the current one solid and thicker in `--link`, its word strong, so the list never reads as a paragraph (K29); on the left, under the brand, its line on the side of the text; the page's head stays on the top menu's container (Z392); the text beside the list, and every block in it, shares one left edge (Z391); its heading in `--ink-2`, regular weight, apart by space; an outline by default on pages of three or more sections | N, F |
 | **trail** | the path, where a level is not already shown | only then | N, I |
 | **page head** | kicker, title, lead | the kicker names the section; the title is one declarative sentence, balanced; the lead's first sentence defines the subject | W, B |
 | **section** | a part of a page | its title says what it holds | W |
@@ -751,8 +751,10 @@ runs at 320, 375, 768, 1085, 1440 and 1900 px in Modern and in Retro (320 added 
 | K31 CUE_CLEAR | every link that draws a cue before it (the short rule of a list of links) | the cue ends less than 4 px before the link's first character: it strikes through the words (ZAYN-SITE-FIX-03) | I, F | new |
 | K32 PHOTO_FIRST | the front page's first viewport | no photograph painted and loaded in it (ZAYN-SITE-PHOTO-04: the photograph belongs to the first screen) | X | new |
 | K33 IMG_LOADED | every image a page paints, a lazy one forced to load | an image that did not load: a blank box where a picture belongs (ZAYN-SITE-FIX-03) | P | new |
+| K34 RAIL_FLAT | every side list (a nav below the bars, not the trail, the band or the menu) | a list inside an entry, or an entry that starts right of its list's first one: a side list is one level (ZAYN-SITE-STEP3-REMARKS-02) | L, N | new |
+| K35 BENCH_FULL | the testbench (`form.ide`) at 1085 px and wider | the IDE spans less than 90 percent of the window: the testbench takes the whole page (ZAYN-SITE-STEP3-REMARKS-02) | L | new |
 
-**Twenty-eight checks are new and five extend checks that exist.** None of them is a list of element kinds: each reads every element
+**Thirty checks are new and five extend checks that exist.** None of them is a list of element kinds: each reads every element
 that has the property it judges.
 
 **The site rethink adds five checks on the files** (ZAYN-SITE-RETHINK-01 and its addendum, 2026-11-14), in `zayn site shell` and its

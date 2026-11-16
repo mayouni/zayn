@@ -304,7 +304,7 @@ nav.list3 a { display: block; padding: .3rem .6rem; color: var(--ink); text-deco
    is set in bold ink */
 nav.list3 a:hover { color: var(--link); text-decoration: underline; }
 /* a page's own name in a family list wraps rather than be cut: it must read as the menu names that page (Rule 116); a section's entry keeps one line */
-nav.list3:not(.sections) > ul > li > a { white-space: normal; }
+nav.list3:not(.sections) > ul:not(.outline) > li > a { white-space: normal; }
 nav.list3 a[aria-current] { font-weight: var(--weight-strong); color: var(--ink); }
 /* each entry of a list of links draws its own cue, a short rule at its left, which no paragraph has, so the outline reads as a list of
    places and not as text; the current entry's rule is solid, thicker and in the culture's link colour, its word strong (the Principal,
@@ -314,8 +314,6 @@ nav.list3 a { position: relative; padding-left: 1.6rem; }
 nav.list3 a::before { content: ""; position: absolute; left: .45rem; top: calc(.3rem + .75em); width: .7rem;
   border-top: var(--hairline) solid var(--edge); }
 nav.list3 a[aria-current]::before { border-top: calc(var(--ring) + 1px) solid var(--link); top: calc(.3rem + .75em - 1px); }
-nav.list3 .sub a { padding-left: 2.6rem; }
-nav.list3 .sub a::before { left: 1.45rem; }
 /* the outline's heading is a label, not an entry: gray, normal weight and a step smaller, so it never reads as something to click
    (the author, 2026-11-06: "On this page seems like a clickable option in the menu") */
 nav.list3 .outline-title { margin: 0 0 .5rem; padding: 0 .6rem; font-weight: var(--weight-regular); font-size: var(--size-small); color: var(--ink-2); max-width: none; }
@@ -326,7 +324,22 @@ nav.list3 .outline-title { margin: 0 0 .5rem; padding: 0 .6rem; font-weight: var
 nav.list3.sections { border-right: 0; padding-right: 0; }
 nav.list3.sections .outline-title { padding: 0; margin: 0 0 1rem; }
 nav.list3.sections > ul { border-right: var(--hairline) solid var(--line); padding-right: .9rem; }
-nav.list3 .sub { margin: 0 0 .3rem; }
+/* a family's list and the page's own sections are two lists of one level each, the second under its own heading with a space above it,
+   never one nested under the other (the Principal, 2026-11-16: "the lateral submenu must not include hierarchy (apply it in all pages)";
+   K34 RAIL_FLAT) */
+nav.list3 > ul + .outline-title { margin-top: 1.4rem; }
+/* a page that takes the whole window (the testbench): no list at its side; its family's pages stand in one row above its body, and its
+   body spans the window less the gutter (the Principal, 2026-11-16: "The testbed page must be on all the page (to give max space to the
+   code)"; K35 BENCH_FULL) */
+.layout.full { padding: 0 var(--gutter); }
+.layout.full > nav.list3.row { position: static; margin: 1.2rem 0 0; border: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; }
+.layout.full > nav.list3.row .outline-title { margin: 0; padding: 0; }
+.layout.full > nav.list3.row ul { display: flex; flex-wrap: wrap; gap: 0 .4rem; }
+.layout.full main section { padding-left: 0; padding-right: 0; }
+/* the reading sections under the testbench keep their measure and the IDE's left edge, so every block shares one left edge (Z391) */
+.layout.full main .narrow { margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0; }
+/* the IDE takes the height of the window under the bars, its code pane growing past it with the code */
+@media (min-width: 900px) { .layout.full form.ide .ide-panes { min-height: calc(100svh - var(--bars-h, 6rem) - 8rem); } }
 @media (max-height: 640px) { nav.list3 { position: static; } }
 html { scroll-padding-top: calc(var(--bars-h, 6rem) + .5rem); }
 @media (max-width: 900px) {

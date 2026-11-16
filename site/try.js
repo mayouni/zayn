@@ -22,8 +22,16 @@
     const examples = document.getElementById('try-example'), file = form.querySelector('.ide-file');
     const lines = document.getElementById('try-lines');
     /* the height the code's own lines take, measured without the pane's least height, which then still applies */
-    const natural = () => { area.style.minHeight = '0'; area.style.height = 'auto'; const h = area.scrollHeight; area.style.minHeight = ''; return h; };
-    const grow = () => { area.style.height = natural() + 2 + 'px'; };
+    /* the code fills its pane's height (a stretched row), and its least height grows with its lines, so the code never scrolls inside */
+    const floor = parseFloat(getComputedStyle(area).minHeight) || 0;
+    const natural = () => {
+      const s = area.style, keep = s.minHeight;
+      s.minHeight = '0'; s.alignSelf = 'flex-start'; s.height = 'auto';
+      const h = area.scrollHeight;
+      s.alignSelf = ''; s.height = ''; s.minHeight = keep;
+      return h;
+    };
+    const grow = () => { area.style.minHeight = Math.max(floor, natural() + 2) + 'px'; };
     /* the gutter numbers each line of the code; when a line is too long for the pane and wraps, a number would stand beside the
        wrong line, so the gutter steps aside until the lines fit again */
     const number = () => {
