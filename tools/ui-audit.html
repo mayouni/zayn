@@ -6,7 +6,7 @@
 <title>UI audit — the audit that measures a painted page against Rules 105, 107, 108 and 114–116</title>
 <meta name="description" content="The UI audit measures every rendered text node of an application UI: its computed size and its true contrast against the composited background. The audit is the enforcement tool for Rule 105 (The Legibility Floor) and Rule 107 (Hierarchy Is Not Miniaturization).">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e04a6e'/%3E%3Ctext x='16' y='24' font-family='Arial Black,sans-serif' font-size='22' font-weight='900' fill='%23241d49' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="../site/stz.css?v=1315c837">
+<link rel="stylesheet" href="../site/stz.css?v=115c583f">
 <!-- shell:vibe -->
 <script>try{if(localStorage.getItem('stzzui-vibe')==='guardian')document.documentElement.dataset.vibe='guardian'}catch(e){}</script>
 <!-- /shell:vibe -->
@@ -1253,16 +1253,33 @@ async function auditSystem(doc, win, label, width) {
     if (area) { area.value = before + mark; area.dispatchEvent(new win.Event('input', { bubbles: true })); }
     btn.click();
     await new Promise(r => setTimeout(r, 80));
+    /* the IDE's own box is measured, never the dialog's: a dialog can fill the window while the IDE inside it keeps a width the page gave
+       it (ZAYN-SITE-MAXIMISE-FILL-01: the Designers IDE at 935 px in a 1596 px popup) */
     const box = ide.closest('dialog[open]');
-    const r = (box || ide).getBoundingClientRect();
+    const r = ide.getBoundingClientRect();
     if (!box || r.width < 0.98 * win.innerWidth || r.height < 0.98 * win.innerHeight)
-      add('K36', ide, label, 'Maximise opens ' + (box ? 'a popup of ' + Math.round(r.width) + ' by ' + Math.round(r.height) + ' px' : 'no popup') + ' in a ' + win.innerWidth + ' by ' + win.innerHeight + ' px window: it fills 98 percent of the window both ways [K36 MAXIMISE]');
+      add('K36', ide, label + ', by the button', 'Maximise opens ' + (box ? 'an IDE of ' + Math.round(r.width) + ' by ' + Math.round(r.height) + ' px' : 'no popup') + ' in a ' + win.innerWidth + ' by ' + win.innerHeight + ' px window: the IDE fills 98 percent of the window both ways [K36 MAXIMISE]');
     (box || ide).dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
     await new Promise(r => setTimeout(r, 80));
     if (ide.closest('dialog[open]')) add('K36', ide, label, 'Escape leaves the popup open: Escape closes it [K36 MAXIMISE]');
     else if (doc.activeElement !== btn) add('K36', ide, label, 'after the popup closes, focus is not on the control that opened it [K36 MAXIMISE]');
     if (area && area.value !== before + mark) add('K36', ide, label, 'the code typed before the popup opened is not in the editor after it closes [K36 MAXIMISE]');
     if (area) { area.value = before; area.dispatchEvent(new win.Event('input', { bubbles: true })); }
+  }
+  /* the second path: the page loaded with #maximised in its address opens the popup itself; it is loaded in a frame of its own, at this
+     width and height, and the IDE's own box is measured there */
+  if (doc.querySelector('form.ide')) {
+    const f = document.createElement('iframe');
+    f.style.cssText = 'position:absolute;left:-20000px;top:0;border:0;width:' + win.innerWidth + 'px;height:' + win.innerHeight + 'px';
+    f.src = win.location.href.replace(/#.*$/, '') + '#maximised';
+    await new Promise(res => { f.onload = res; document.body.appendChild(f); setTimeout(res, 8000); });
+    await new Promise(r => setTimeout(r, 500));
+    const fd = f.contentDocument, fw = f.contentWindow;
+    const ide2 = fd && fd.querySelector('dialog[open] form.ide');
+    const r2 = ide2 ? ide2.getBoundingClientRect() : null;
+    if (!r2 || r2.width < 0.98 * fw.innerWidth || r2.height < 0.98 * fw.innerHeight)
+      add('K36', doc.querySelector('form.ide'), label + ', by #maximised', 'loaded with #maximised, the page shows ' + (r2 ? 'an IDE of ' + Math.round(r2.width) + ' by ' + Math.round(r2.height) + ' px' : 'no popup') + ' in a ' + fw.innerWidth + ' by ' + fw.innerHeight + ' px window: the IDE fills 98 percent of the window both ways [K36 MAXIMISE]');
+    f.remove();
   }
 
   /* K37 SPLIT_MOVES: the border between the code and the report is a splitter the reader moves (the Principal, 2026-11-16: "this border

@@ -952,6 +952,9 @@ form.try.ide .ide-bar select { min-width: 0; max-width: 100%; }
 .ide-head { display: flex; justify-content: space-between; gap: 1rem; padding: .45rem .9rem; font: var(--weight-strong) var(--size-small) var(--font);
   color: var(--ink-2); border-bottom: var(--hairline) solid var(--line); }
 form.try.ide .ide-head label { display: inline; margin: 0; font-weight: inherit; }
+/* a pane's head stays on one line down to the pane's least width (18rem): its words do not wrap, the second gives way first */
+.ide-head > * { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.ide-head > :last-child { flex-shrink: 4; }
 .ide-edit { display: flex; align-items: stretch; flex: 1; }
 .ide-edit textarea { flex: 1; min-width: 0; }
 .ide-gutter { flex: none; padding: .9rem .6rem .9rem .9rem; font: var(--size-small)/1.55 var(--mono); color: var(--ink-2); text-align: right; white-space: pre;
@@ -965,13 +968,19 @@ form.try.ide #try-result { margin: 0; padding: .9rem 1rem; }
 [data-vibe="guardian"] .ide-gutter, [data-vibe="guardian"] .ide-report { font-family: var(--font); }
 /* the IDE maximised (the Principal, 2026-11-16: "Add a button in the IDE to enlarge it on a poup that is maximised on the page"; K36): the
    same IDE in a modal dialog over the whole window, the menu included; under it the scrim of Rule 52, and the IDE drawn in its 2 px line
-   in the culture's link colour; the dialog scrolls when the code is longer than the window, the page under it never does (Rules 51-53) */
+   in the culture's link colour; the page under it never scrolls (Rules 51-53).
+   The IDE fills the popup on every page, however it was opened (the Principal, 2026-11-17: "not maximised on all the page";
+   ZAYN-SITE-MAXIMISE-FILL-01): on the page a script may give the IDE a width of its own (site/stz.js widen() stretches it into the right
+   margin as a pixel width), and the popup keeps the element as it is; the width, its limit and its margins are therefore this rule's, above
+   any value written on the element, and the page's own value is still there when the IDE goes back. The IDE is the box that scrolls when
+   the code is longer than the window, so its frame keeps the window's full width and height */
 dialog.ide-max { position: fixed; inset: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0;
-  border: 0; background: var(--paper); color: var(--ink); overflow: auto; }
+  border: 0; background: var(--paper); color: var(--ink); overflow: hidden; }
 dialog.ide-max::backdrop { background: color-mix(in srgb, var(--ink) 40%, transparent); backdrop-filter: blur(8px); }
-dialog.ide-max form.try.ide { margin: 0; min-height: 100%; display: flex; flex-direction: column; border: 2px solid var(--link); border-radius: 0; }
+dialog.ide-max form.try.ide { width: 100% !important; max-width: none !important; margin: 0 !important; height: 100%; box-sizing: border-box;
+  overflow: auto; display: flex; flex-direction: column; border: 2px solid var(--link); border-radius: 0; }
 dialog.ide-max form.try.ide .ide-bar { border-radius: 0; }
-dialog.ide-max .ide-panes { flex: 1; min-height: 0; }
+dialog.ide-max .ide-panes { flex: 1 0 auto; }
 form.try.ide .ide-max-btn { font: var(--weight-strong) var(--size-small) var(--font); cursor: pointer; }
 /* on a phone the code's lines may wrap, so the gutter's numbers would stand beside the wrong line: the gutter steps aside */
 @media (max-width: 640px) { .ide-gutter { display: none; } }
